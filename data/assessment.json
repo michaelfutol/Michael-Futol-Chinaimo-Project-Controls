@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "title": "Michael Futol — Chinaimo Project Controls Assessment",
+    "subtitle": "Chinaimo WTP-style illustrative technical assessment",
+    "dataBoundary": "Public project scope informed the mock WBS. Quantities, rates, durations, logic, progress, claims and delay scenarios are illustrative assessment data and are not Kubota Construction contract data.",
+    "projectStart": "2026-09-01",
+    "statusDate": "2027-08-31",
+    "baselineFinish": "2029-01-17",
+    "controlValue": 6000000000,
+    "plannedProgress": 47.0,
+    "actualProgress": 39.525,
+    "variance": -7.475,
+    "currentGrossClaim": 346000000
+  },
+  "requirements": [
+    {
+      "group": "1. BOQ, Measurement & Progress",
+      "items": [
+        {"request":"Prepare a simple BOQ / measurement sheet in Excel","solution":"14-item weighted control BOQ with traceable measurement fields","evidence":"Excel: 01_BOQ, 02_MEASUREMENT"},
+        {"request":"Calculate monthly progress from completed quantities","solution":"Value-weighted cumulative progress = 39.525% at data date","evidence":"Excel: 02_MEASUREMENT, 04_MONTHLY_PROGRESS"},
+        {"request":"Prepare Planned vs Actual comparison","solution":"Planned 47.000% vs Actual 39.525%; variance −7.475 percentage points","evidence":"Excel/Web: 04_MONTHLY_PROGRESS"},
+        {"request":"Create Gantt and S-Curve","solution":"Baseline/status Gantt and cumulative Planned vs Actual S-Curve","evidence":"Excel/Web: 05_GANTT, 04_MONTHLY_PROGRESS"}
+      ]
+    },
+    {
+      "group": "2. Planning & Scheduling",
+      "items": [
+        {"request":"Prepare basic programme in Microsoft Project","solution":"49 activities with WBS, durations and logical dependencies","evidence":"MS Project + Excel: 03_SCHEDULE_DATA"},
+        {"request":"Identify Critical Path / activities","solution":"Controlling WTP → process M&E → commissioning chain highlighted","evidence":"MS Project/Web: Critical Path"},
+        {"request":"Update programme for activity delays","solution":"Four delay test cases prepared, including critical and non-critical delays","evidence":"MS Project + Excel: 07_DELAY_ANALYSIS"},
+        {"request":"Determine overall delay / forecast completion","solution":"Critical +10 wd scenario moves forecast; non-critical +15 wd scenario is absorbed by float","evidence":"MS Project/Web: Delay Scenarios"}
+      ]
+    },
+    {
+      "group": "3. Monthly Progress / Payment Claim",
+      "items": [
+        {"request":"Prepare monthly claim from completed quantities","solution":"Claim linked to the same verified quantities used for progress","evidence":"Excel: 06_PAYMENT_CLAIM"},
+        {"request":"Show Previous / Current / Cumulative / Remaining","solution":"All four quantity and amount states shown per BOQ item","evidence":"Excel/Web: Payment Claim"},
+        {"request":"Ensure claim consistency with BOQ / site progress","solution":"Overclaim and arithmetic mismatch QA flags included","evidence":"Excel: 02_MEASUREMENT QA"}
+      ]
+    }
+  ],
+  "progress": [
+    {"period":"2026-09","planned":1.0,"actual":0.8},{"period":"2026-10","planned":2.5,"actual":1.8},{"period":"2026-11","planned":4.5,"actual":3.2},{"period":"2026-12","planned":7.0,"actual":5.1},{"period":"2027-01","planned":10.0,"actual":7.8},{"period":"2027-02","planned":14.0,"actual":11.1},{"period":"2027-03","planned":18.0,"actual":15.0},{"period":"2027-04","planned":23.0,"actual":19.3},{"period":"2027-05","planned":29.0,"actual":24.0},{"period":"2027-06","planned":35.0,"actual":29.0},{"period":"2027-07","planned":41.0,"actual":33.7583333333},{"period":"2027-08","planned":47.0,"actual":39.525},{"period":"2027-09","planned":53.0,"actual":null},{"period":"2027-10","planned":59.0,"actual":null},{"period":"2027-11","planned":65.0,"actual":null},{"period":"2027-12","planned":71.0,"actual":null},{"period":"2028-01","planned":76.0,"actual":null},{"period":"2028-02","planned":81.0,"actual":null},{"period":"2028-03","planned":86.0,"actual":null},{"period":"2028-04","planned":90.0,"actual":null},{"period":"2028-05","planned":93.0,"actual":null},{"period":"2028-06","planned":95.0,"actual":null},{"period":"2028-07","planned":97.0,"actual":null},{"period":"2028-08","planned":98.5,"actual":null},{"period":"2028-09","planned":99.3,"actual":null},{"period":"2028-10","planned":99.7,"actual":null},{"period":"2028-11","planned":100.0,"actual":null},{"period":"2028-12","planned":100.0,"actual":null},{"period":"2029-01","planned":100.0,"actual":null}
+  ],
+  "boq": [
+    {"id":"PREL-001","wbs":"1.0","description":"Preliminaries / Temporary Works","unit":"LS","contractQty":1,"rate":300000000,"amount":300000000,"previousQty":1,"currentQty":0,"cumulativeQty":1,"balanceQty":0,"progress":1,"previousAmount":300000000,"currentAmount":0,"cumulativeAmount":300000000,"remainingAmount":0},
+    {"id":"CIV-001","wbs":"3.0/4.0/7.0","description":"Earthworks / Excavation / Dewatering","unit":"m³","contractQty":185000,"rate":2000,"amount":370000000,"previousQty":175750,"currentQty":9250,"cumulativeQty":185000,"balanceQty":0,"progress":1,"previousAmount":351500000,"currentAmount":18500000,"cumulativeAmount":370000000,"remainingAmount":0},
+    {"id":"RC-001","wbs":"3.0/4.0/7.0","description":"Structural Concrete","unit":"m³","contractQty":45000,"rate":30000,"amount":1350000000,"previousQty":20250,"currentQty":4500,"cumulativeQty":24750,"balanceQty":20250,"progress":0.55,"previousAmount":607500000,"currentAmount":135000000,"cumulativeAmount":742500000,"remainingAmount":607500000},
+    {"id":"RB-001","wbs":"3.0/4.0/7.0","description":"Reinforcement Steel","unit":"t","contractQty":7500,"rate":120000,"amount":900000000,"previousQty":3225,"currentQty":675,"cumulativeQty":3900,"balanceQty":3600,"progress":0.52,"previousAmount":387000000,"currentAmount":81000000,"cumulativeAmount":468000000,"remainingAmount":432000000},
+    {"id":"FW-001","wbs":"3.0/4.0/7.0","description":"Formwork","unit":"m²","contractQty":170000,"rate":2000,"amount":340000000,"previousQty":85000,"currentQty":17000,"cumulativeQty":102000,"balanceQty":68000,"progress":0.6,"previousAmount":170000000,"currentAmount":34000000,"cumulativeAmount":204000000,"remainingAmount":136000000},
+    {"id":"WPF-001","wbs":"3.0/4.0","description":"Waterproofing / Protective Coating","unit":"m²","contractQty":85000,"rate":2000,"amount":170000000,"previousQty":4250,"currentQty":4250,"cumulativeQty":8500,"balanceQty":76500,"progress":0.1,"previousAmount":8500000,"currentAmount":8500000,"cumulativeAmount":17000000,"remainingAmount":153000000},
+    {"id":"MECH-001","wbs":"6.0","description":"Process Piping / Mechanical","unit":"LS","contractQty":1,"rate":550000000,"amount":550000000,"previousQty":0,"currentQty":0,"cumulativeQty":0,"balanceQty":1,"progress":0,"previousAmount":0,"currentAmount":0,"cumulativeAmount":0,"remainingAmount":550000000},
+    {"id":"PMP-001","wbs":"6.0","description":"Pumps / Major Mechanical Equipment","unit":"LS","contractQty":1,"rate":500000000,"amount":500000000,"previousQty":0,"currentQty":0,"cumulativeQty":0,"balanceQty":1,"progress":0,"previousAmount":0,"currentAmount":0,"cumulativeAmount":0,"remainingAmount":500000000},
+    {"id":"CHEM-001","wbs":"5.0/6.0","description":"Chemical Dosing Systems","unit":"LS","contractQty":1,"rate":240000000,"amount":240000000,"previousQty":0,"currentQty":0,"cumulativeQty":0,"balanceQty":1,"progress":0,"previousAmount":0,"currentAmount":0,"cumulativeAmount":0,"remainingAmount":240000000},
+    {"id":"ELEC-001","wbs":"6.0","description":"Electrical / MCC / Cabling","unit":"LS","contractQty":1,"rate":420000000,"amount":420000000,"previousQty":0.05,"currentQty":0.05,"cumulativeQty":0.1,"balanceQty":0.9,"progress":0.1,"previousAmount":21000000,"currentAmount":21000000,"cumulativeAmount":42000000,"remainingAmount":378000000},
+    {"id":"SCADA-001","wbs":"6.0","description":"Instrumentation / SCADA","unit":"LS","contractQty":1,"rate":270000000,"amount":270000000,"previousQty":0,"currentQty":0,"cumulativeQty":0,"balanceQty":1,"progress":0,"previousAmount":0,"currentAmount":0,"cumulativeAmount":0,"remainingAmount":270000000},
+    {"id":"PWR-001","wbs":"8.0","description":"22-kV Off-site Power Works","unit":"LS","contractQty":1,"rate":240000000,"amount":240000000,"previousQty":0.35,"currentQty":0.1,"cumulativeQty":0.45,"balanceQty":0.55,"progress":0.45,"previousAmount":84000000,"currentAmount":24000000,"cumulativeAmount":108000000,"remainingAmount":132000000},
+    {"id":"BLDG-001","wbs":"5.0","description":"Administration / Lab / Support Buildings","unit":"LS","contractQty":1,"rate":240000000,"amount":240000000,"previousQty":0.4,"currentQty":0.1,"cumulativeQty":0.5,"balanceQty":0.5,"progress":0.5,"previousAmount":96000000,"currentAmount":24000000,"cumulativeAmount":120000000,"remainingAmount":120000000},
+    {"id":"COMM-001","wbs":"9.0","description":"Testing / Commissioning / Handover","unit":"LS","contractQty":1,"rate":110000000,"amount":110000000,"previousQty":0,"currentQty":0,"cumulativeQty":0,"balanceQty":1,"progress":0,"previousAmount":0,"currentAmount":0,"cumulativeAmount":0,"remainingAmount":110000000}
+  ],
+  "scenarios": [
+    {"id":"A","name":"Critical Activity Delay","activity":"WTP-CIV-060 — Rapid Sand Filter Structure","reportedDelay":10,"baselineCritical":"Yes","baselineFinish":"2029-01-17","forecastFinish":"2029-01-29","netImpact":10,"result":"Project completion moves by 10 working days.","why":"The delayed activity is on the controlling path and the delay propagates through downstream process installation and commissioning."},
+    {"id":"B","name":"Non-Critical Delay","activity":"BLDG-030 — Administration & Laboratory Building","reportedDelay":15,"baselineCritical":"No","baselineFinish":"2029-01-17","forecastFinish":"2029-01-17","netImpact":0,"result":"No change to project completion.","why":"The delay remains within available float / parallel-path flexibility and does not control the completion milestone."},
+    {"id":"C","name":"Multiple Concurrent Delays","activity":"WTP-CIV-060 +10 wd; BLDG-030 +15 wd","reportedDelay":25,"baselineCritical":"Mixed","baselineFinish":"2029-01-17","forecastFinish":"2029-01-29","netImpact":10,"result":"25 reported delay-days do not equal 25 project-delay days.","why":"Only the controlling-path impact governs the forecast finish; the non-critical delay is absorbed and is not simply added."},
+    {"id":"D","name":"Procurement Watch","activity":"PROC-030 — Electrical / Receiving Equipment","reportedDelay":10,"baselineCritical":"No","baselineFinish":"2029-01-17","forecastFinish":"2029-01-17","netImpact":0,"result":"Float is consumed; completion remains unchanged in this test case.","why":"The procurement delay matters only when it pushes the required-on-site date enough to control energization or a downstream commissioning path."}
+  ],
+  "criticalPath": ["PREL-010","PREL-020","PREL-030","WTP-CIV-010","WTP-CIV-020","WTP-CIV-030","WTP-CIV-040","WTP-CIV-050","WTP-CIV-060","WTP-CIV-070","WTP-CIV-080","WTP-CIV-090","ME-010","ME-060","COMM-020","COMM-030","COMM-040","COMM-050","COMM-060","COMM-080"],
+  "sources": [
+    {"label":"Kubota corporate project announcement","url":"https://www.kubota.co.jp/news/2025/management-20250829.html","use":"Public project scope and order of magnitude"},
+    {"label":"JICA project information","url":"https://www.jica.go.jp/english/about/policy/environment/id/asia/southeast/a_b_fi/laos/c8h0vm00009368pw.html","use":"Vientiane water-supply expansion context"},
+    {"label":"Japan Water Research Center / NewTap","url":"https://www.jwrc-net.or.jp/english/newtap/report/NewTap_007.pdf","use":"Public treatment-process reference"}
+  ]
+}
