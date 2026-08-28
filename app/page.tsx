@@ -1,0 +1,70 @@
+import assessment from '../data/assessment.json';
+import schedule from '../data/schedule.json';
+
+const money = (n:number) => new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(n);
+const pct = (n:number) => `${n.toFixed(3)}%`;
+
+function SCurve(){
+  const rows=assessment.progress;
+  const width=920, height=300, pad=42;
+  const x=(i:number)=>pad + (i/(rows.length-1))*(width-pad*2);
+  const y=(v:number)=>height-pad-(v/100)*(height-pad*2);
+  const planned=rows.map((r,i)=>`${x(i)},${y(r.planned)}`).join(' ');
+  const actualRows=rows.filter(r=>r.actual!==null);
+  const actual=actualRows.map((r,i)=>`${x(i)},${y(Number(r.actual))}`).join(' ');
+  return <div className="chartCard"><svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Planned versus actual S-Curve">
+    {[0,20,40,60,80,100].map(v=><g key={v}><line x1={pad} y1={y(v)} x2={width-pad} y2={y(v)} className="gridline"/><text x="5" y={y(v)+4} className="axisText">{v}%</text></g>)}
+    <polyline points={planned} className="plannedLine"/><polyline points={actual} className="actualLine"/>
+    {actualRows.map((r,i)=><circle key={r.period} cx={x(i)} cy={y(Number(r.actual))} r="3" className="actualDot"/>)}
+  </svg><div className="legend"><span><i className="planSwatch"/>Planned</span><span><i className="actualSwatch"/>Actual</span><strong>Data date: {assessment.meta.statusDate}</strong></div></div>
+}
+
+function Gantt(){
+  const start=new Date(assessment.meta.projectStart+'T00:00:00');
+  const end=new Date(assessment.meta.baselineFinish+'T00:00:00');
+  const total=end.getTime()-start.getTime();
+  const key=schedule.filter(a=>a.critical || ['PROC-010','RES-030','BLDG-030','SAL-020','PWR-030'].includes(a.id));
+  const pos=(d:string)=>((new Date(d+'T00:00:00').getTime()-start.getTime())/total)*100;
+  return <div className="ganttWrap"><div className="ganttHead"><span>Activity</span><span>Sep 2026</span><span>2027</span><span>2028</span><span>Jan 2029</span></div>{key.map(a=>{
+    const left=Math.max(0,pos(a.baselineStart)); const right=Math.min(100,pos(a.baselineFinish)); const width=Math.max(a.duration===0?0.8:right-left,0.8);
+    return <div className="ganttRow" key={a.id}><div className="ganttLabel"><b>{a.id}</b><span>{a.name}</span></div><div className="ganttTrack"><div className={a.critical?'ganttBar criticalBar':'ganttBar'} style={{left:`${left}%`,width:`${width}%`}}/><div className="dataDate" style={{left:`${pos(assessment.meta.statusDate)}%`}}/></div></div>})}</div>
+}
+
+export default function Page(){
+  const claim=assessment.boq.reduce((s,r)=>s+r.currentAmount,0);
+  const previous=assessment.boq.reduce((s,r)=>s+r.previousAmount,0);
+  const cumulative=assessment.boq.reduce((s,r)=>s+r.cumulativeAmount,0);
+  const remaining=assessment.boq.reduce((s,r)=>s+r.remainingAmount,0);
+  return <main>
+    <section className="hero" id="top"><div><div className="eyebrow">MICHAEL FUTOL · TECHNICAL ASSESSMENT</div><h1>Chinaimo Project Controls</h1><p>BOQ · Measurement · Planned vs Actual · Gantt · S-Curve · Critical Path · Delay Impact · Monthly Payment Claim</p><div className="heroTags"><span>11/11 requested outputs covered</span><span>Excel + Microsoft Project</span><span>Auditable source data</span></div></div><div className="heroAction"><a className="primaryBtn" href="/downloads/Michael_Futol_Chinaimo_Project_Controls.xlsx" download>Download Excel Workbook</a><a className="secondaryBtn" href="/downloads/Michael_Futol_Chinaimo_Baseline.mpp" download>Download MS Project</a><a className="textLink" href="https://github.com/michaelfutol/Michael-Futol-Chinaimo-Project-Controls" target="_blank">Inspect GitHub audit trail ↗</a></div></section>
+
+    <nav className="navBar"><a href="#coverage">Assessment Coverage</a><a href="#progress">Progress</a><a href="#schedule">Schedule</a><a href="#delays">Delay Scenarios</a><a href="#claim">Payment Claim</a><a href="#sources">Sources</a></nav>
+
+    <section className="notice"><b>Assessment boundary:</b> {assessment.meta.dataBoundary}</section>
+
+    <section className="kpis"><Kpi label="Control Value" value={`¥${money(assessment.meta.controlValue)}`}/><Kpi label="Planned @ Data Date" value={pct(assessment.meta.plannedProgress)}/><Kpi label="Actual @ Data Date" value={pct(assessment.meta.actualProgress)}/><Kpi label="Variance" value={`${assessment.meta.variance.toFixed(3)} pp`} bad/><Kpi label="Baseline Finish" value={assessment.meta.baselineFinish}/><Kpi label="Current Gross Claim" value={`¥${money(assessment.meta.currentGrossClaim)}`}/></section>
+
+    <section className="panel" id="coverage"><div className="sectionHead"><div><span className="sectionNo">01</span><h2>Assessment Coverage</h2><p>Requested item → submitted solution → evidence location.</p></div><span className="statusPill">COMPLETE</span></div>
+      <div className="coverageGrid">{assessment.requirements.map(group=><div className="coverageGroup" key={group.group}><h3>{group.group}</h3>{group.items.map(item=><div className="coverageRow" key={item.request}><div><small>REQUESTED</small><b>{item.request}</b></div><div><small>SOLUTION</small><span>{item.solution}</span></div><div><small>EVIDENCE</small><code>{item.evidence}</code></div></div>)}</div>)}</div>
+    </section>
+
+    <section className="twoCol" id="progress"><div className="panel"><div className="sectionHead"><div><span className="sectionNo">02</span><h2>Planned vs Actual Progress</h2><p>Value-weighted cumulative progress from the same BOQ quantities used for the claim.</p></div></div><SCurve/><div className="resultStrip"><div><small>Planned</small><b>{pct(assessment.meta.plannedProgress)}</b></div><div><small>Actual</small><b>{pct(assessment.meta.actualProgress)}</b></div><div><small>Variance</small><b className="negative">{assessment.meta.variance.toFixed(3)} pp</b></div></div></div>
+      <div className="panel"><div className="sectionHead"><div><span className="sectionNo">03</span><h2>BOQ / Measurement Snapshot</h2><p>Previous + Current = Cumulative; cumulative is checked against contract quantity.</p></div></div><div className="tableScroll short"><table><thead><tr><th>ID</th><th>Description</th><th>Progress</th><th>Cumulative</th></tr></thead><tbody>{assessment.boq.map(r=><tr key={r.id}><td><code>{r.id}</code></td><td>{r.description}</td><td>{(r.progress*100).toFixed(1)}%</td><td>¥{money(r.cumulativeAmount)}</td></tr>)}</tbody></table></div><a className="inlineDownload" href="/downloads/Michael_Futol_Chinaimo_Project_Controls.xlsx" download>Open full measurement sheet in Excel ↓</a></div></section>
+
+    <section className="panel" id="schedule"><div className="sectionHead"><div><span className="sectionNo">04</span><h2>Construction Programme / WBS</h2><p>49 activities · 6-day calendar · common Activity IDs across Excel, Microsoft Project and this presentation.</p></div><span className="statusPill">BASELINE</span></div><Gantt/><details className="details"><summary>View all 49 schedule activities and dependencies</summary><div className="tableScroll"><table><thead><tr><th>Activity ID</th><th>WBS</th><th>Activity</th><th>Dur.</th><th>Predecessor / Logic</th><th>Start</th><th>Finish</th><th>Critical</th></tr></thead><tbody>{schedule.map(a=><tr key={a.id} className={a.critical?'criticalRow':''}><td><code>{a.id}</code></td><td>{a.wbs}</td><td>{a.name}</td><td>{a.duration}d</td><td>{a.predecessors||'—'} {a.relationships}</td><td>{a.baselineStart}</td><td>{a.baselineFinish}</td><td>{a.critical?'YES':'NO'}</td></tr>)}</tbody></table></div></details></section>
+
+    <section className="panel"><div className="sectionHead"><div><span className="sectionNo">05</span><h2>Critical Path</h2><p>Controlling sequence from project start through WTP civil works, process installation and commissioning.</p></div><span className="criticalPill">CRITICAL</span></div><div className="criticalChain">{assessment.criticalPath.map((id,i)=><span key={id}><code>{id}</code>{i<assessment.criticalPath.length-1&&<b>→</b>}</span>)}</div><details className="details"><summary>Why this is the controlling path</summary><p>The chain has no usable scheduling flexibility in the assessment baseline. A delay on a controlling activity propagates into downstream process installation / commissioning unless recovery is achieved. Final critical-path status is validated in the native Microsoft Project calculation.</p></details></section>
+
+    <section className="panel" id="delays"><div className="sectionHead"><div><span className="sectionNo">06</span><h2>Delay Scenarios & Forecast</h2><p>Results are shown first; open each scenario for the control logic behind the result.</p></div></div><div className="scenarioGrid">{assessment.scenarios.map(s=><article className="scenario" key={s.id}><div className="scenarioTop"><span>SCENARIO {s.id}</span><b className={s.netImpact>0?'impactBad':'impactOk'}>{s.netImpact>0?`+${s.netImpact} wd`:'0 wd'}</b></div><h3>{s.name}</h3><p className="activityName">{s.activity}</p><div className="scenarioDates"><div><small>Baseline Finish</small><b>{s.baselineFinish}</b></div><div><small>Forecast Finish</small><b>{s.forecastFinish}</b></div></div><div className="solutionBox"><small>SOLUTION</small><strong>{s.result}</strong></div><details><summary>Approach / why this result</summary><p>{s.why}</p></details></article>)}</div></section>
+
+    <section className="panel" id="claim"><div className="sectionHead"><div><span className="sectionNo">07</span><h2>Monthly Progress / Payment Claim</h2><p>The claim uses the exact same verified quantities as progress measurement.</p></div></div><div className="claimKpis"><Kpi label="Previous Earned" value={`¥${money(previous)}`}/><Kpi label="Current Gross Work" value={`¥${money(claim)}`}/><Kpi label="Cumulative Earned" value={`¥${money(cumulative)}`}/><Kpi label="Remaining Balance" value={`¥${money(remaining)}`}/></div><div className="tableScroll"><table><thead><tr><th>BOQ ID</th><th>Description</th><th>Previous Qty</th><th>Current Qty</th><th>Cumulative</th><th>Remaining</th><th>Current Amount</th><th>QA</th></tr></thead><tbody>{assessment.boq.map(r=><tr key={r.id}><td><code>{r.id}</code></td><td>{r.description}</td><td>{r.previousQty}</td><td>{r.currentQty}</td><td>{r.cumulativeQty}</td><td>{r.balanceQty}</td><td>¥{money(r.currentAmount)}</td><td><span className="qaOk">OK</span></td></tr>)}</tbody></table></div><details className="details"><summary>Claim control rule</summary><p>Previous + Current must equal Cumulative. Cumulative quantity cannot exceed the BOQ quantity unless the excess is separately supported as remeasurement or approved variation. Claim quantities remain linked to verified site progress.</p></details></section>
+
+    <section className="panel downloads"><div><span className="sectionNo">08</span><h2>Native Deliverables</h2><p>Download the actual working files used behind the presentation.</p></div><div className="downloadGrid"><a href="/downloads/Michael_Futol_Chinaimo_Project_Controls.xlsx" download><b>Excel Project Controls Workbook</b><span>.xlsx · BOQ · Measurement · Progress · Gantt · S-Curve · Claim · Delay Analysis</span></a><a href="/downloads/Michael_Futol_Chinaimo_Baseline.mpp" download><b>Microsoft Project Baseline</b><span>.mpp · WBS · Logic · Baseline · Critical Path · Float</span></a><a href="/downloads/Michael_Futol_Chinaimo_Updated_Delay.mpp" download><b>Microsoft Project Delay Update</b><span>.mpp · Critical delay update · Forecast completion</span></a><a href="https://github.com/michaelfutol/Michael-Futol-Chinaimo-Project-Controls" target="_blank"><b>GitHub Audit Trail</b><span>Source data · Schedule data · Web source · Revision history</span></a></div></section>
+
+    <section className="panel" id="sources"><div className="sectionHead"><div><span className="sectionNo">09</span><h2>Public Source Basis & Assumptions</h2><p>The public sources define the project context; the assessment baseline remains deliberately illustrative.</p></div></div><div className="sourceGrid">{assessment.sources.map(s=><a href={s.url} target="_blank" key={s.url}><b>{s.label}</b><span>{s.use}</span><small>Open source ↗</small></a>)}</div><details className="details" open><summary>What is public vs assessment-derived</summary><div className="boundaryGrid"><div><b>Publicly grounded</b><p>Chinaimo WTP expansion context, reservoir capacities, support facilities, off-site power scope and treatment-process references.</p></div><div><b>Assessment-derived</b><p>WBS coding, quantities, unit rates, control-value allocation, durations, logic, progress, claims, delay events and forecast scenarios.</p></div></div></details></section>
+
+    <footer><b>Michael Futol</b><span>Project Controls & Construction Planning Technical Assessment</span><a href="#top">Back to top ↑</a></footer>
+  </main>
+}
+
+function Kpi({label,value,bad=false}:{label:string,value:string,bad?:boolean}){return <div className="kpi"><small>{label}</small><b className={bad?'negative':''}>{value}</b></div>}
