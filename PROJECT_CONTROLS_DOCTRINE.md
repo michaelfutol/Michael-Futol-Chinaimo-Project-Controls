@@ -5,7 +5,7 @@ This assessment follows a practical project-controls doctrine intended to make i
 ## 1. One controlled model, several views
 - Excel is the quantity/commercial/progress authority.
 - Microsoft Project is the schedule/CPM authority.
-- Web and PDF are reviewer/management presentation layers.
+- Web and PDF are management presentation layers.
 - Stable `WBS_ID`, `ACTIVITY_ID` and `BOQ_ID` fields connect the views.
 - A figure must not be independently re-invented in each output; it must reconcile to its authoritative source.
 
@@ -33,8 +33,8 @@ Every management commentary should answer four questions quickly:
 
 The preferred delivery is calm, concise and visual. Charts support the explanation; they do not replace it.
 
-## 8. Result first, evidence underneath
-A reviewer should immediately see the requested answer. Supporting CPM/float/detail remains available for audit without forcing the reviewer through unnecessary theory.
+## 8. Result First, Evidence Underneath
+The controlling result and current decision point are presented first. Supporting CPM, float and detailed logic remain available as auditable technical evidence.
 
 ## 9. Controlled scenario presentation
 Each scenario should show:
@@ -50,7 +50,7 @@ Each scenario should show:
 - Overall S-Curve: Baseline Planned + Actual to Data Date + Current Forecast.
 - Scenario S-Curve: Baseline + Unmitigated Forecast + Mitigated/Recovery Forecast when relevant.
 - Tracking Gantt: baseline bars superimposed with current/forecast bars and Data Date.
-- Critical path/network evidence is secondary unless specifically requested.
+- Critical path/network evidence remains available as supporting technical detail when needed.
 
 ## 11. Management-system compatibility
 The workflow is designed to be compatible with an ISO-style integrated management system without claiming certification or reproducing Kubota Construction's internal procedures.
@@ -78,8 +78,5 @@ Kubota Construction publicly lists ISO 14001, ISO 9001 and ISO 45001 certificati
 ## 12. Public-source / confidentiality boundary
 Public project facts are cited to exact public URLs. The independently prepared WBS, durations, logic, BOQ quantities/rates, progress, claims and delay scenarios are clearly labelled illustrative. No confidential Kubota programme, BOQ, rate, claim or internal procedure is represented as source material.
 
-## 13. AI and automation boundary for future live work
-This public/mock assessment may use automation freely. On a live employer project, external AI or personal automation must not receive confidential project information without explicit company approval. If approved later, use least privilege, company-approved storage/access, auditability and read-only integration first.
-
-## 14. The management objective
-The system should make it easy for a PM or reviewer to understand the project story quickly: status, variance, cause, schedule consequence, commercial consequence, recommended action and remaining exposure.
+## 13. Management Objective
+The control system presents the project story in a concise decision sequence: status, variance, cause, schedule consequence, commercial consequence, recommended action and remaining exposure.
