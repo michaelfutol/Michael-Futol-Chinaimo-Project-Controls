@@ -5,7 +5,9 @@
     "dataBoundary": "Public project scope informed the mock WBS. Quantities, rates, durations, logic, progress, claims and delay scenarios are illustrative assessment data and are not Kubota Construction contract data.",
     "projectStart": "2026-09-01",
     "statusDate": "2027-08-31",
-    "baselineFinish": "2029-01-17",
+    "baselineFinish": "2029-01-15",
+    "scheduleCalendar": "Monday-Saturday, 8 h/day; Sunday non-working",
+    "scheduleAuthority": "Native Microsoft Project recalculation",
     "controlValue": 6000000000,
     "plannedProgress": 47.0,
     "actualProgress": 39.525,
@@ -25,10 +27,10 @@
     {
       "group": "2. Planning & Scheduling",
       "items": [
-        {"request":"Prepare basic programme in Microsoft Project","solution":"49 activities with WBS, durations and logical dependencies","evidence":"MS Project + Excel: 03_SCHEDULE_DATA"},
-        {"request":"Identify Critical Path / activities","solution":"Controlling WTP → process M&E → commissioning chain highlighted","evidence":"MS Project/Web: Critical Path"},
-        {"request":"Update programme for activity delays","solution":"Four delay test cases prepared, including critical and non-critical delays","evidence":"MS Project + Excel: 07_DELAY_ANALYSIS"},
-        {"request":"Determine overall delay / forecast completion","solution":"Critical +10 wd scenario moves forecast; non-critical +15 wd scenario is absorbed by float","evidence":"MS Project/Web: Delay Scenarios"}
+        {"request":"Prepare basic programme in Microsoft Project","solution":"49 activities with WBS, durations and logical dependencies on a six-day working calendar","evidence":"Native MS Project + Excel: 03_SCHEDULE_DATA"},
+        {"request":"Identify Critical Path / activities","solution":"Native Microsoft Project identifies the controlling WTP → process M&E → commissioning chain","evidence":"MS Project/Web: Critical Path"},
+        {"request":"Update programme for activity delays","solution":"Four delay test cases prepared and natively recalculated in Microsoft Project","evidence":"MS Project + Excel: 07_DELAY_ANALYSIS"},
+        {"request":"Determine overall delay / forecast completion","solution":"Baseline 15 Jan 2029; critical +10 wd scenario forecasts 26 Jan 2029; non-critical +15 wd scenario remains 15 Jan 2029","evidence":"MS Project/Web: Delay Scenarios"}
       ]
     },
     {
@@ -60,14 +62,39 @@
     {"id":"COMM-001","wbs":"9.0","description":"Testing / Commissioning / Handover","unit":"LS","contractQty":1,"rate":110000000,"amount":110000000,"previousQty":0,"currentQty":0,"cumulativeQty":0,"balanceQty":1,"progress":0,"previousAmount":0,"currentAmount":0,"cumulativeAmount":0,"remainingAmount":110000000}
   ],
   "scenarios": [
-    {"id":"A","name":"Critical Activity Delay","activity":"WTP-CIV-060 — Rapid Sand Filter Structure","reportedDelay":10,"baselineCritical":"Yes","baselineFinish":"2029-01-17","forecastFinish":"2029-01-29","netImpact":10,"result":"Project completion moves by 10 working days.","why":"The delayed activity is on the controlling path and the delay propagates through downstream process installation and commissioning."},
-    {"id":"B","name":"Non-Critical Delay","activity":"BLDG-030 — Administration & Laboratory Building","reportedDelay":15,"baselineCritical":"No","baselineFinish":"2029-01-17","forecastFinish":"2029-01-17","netImpact":0,"result":"No change to project completion.","why":"The delay remains within available float / parallel-path flexibility and does not control the completion milestone."},
-    {"id":"C","name":"Multiple Concurrent Delays","activity":"WTP-CIV-060 +10 wd; BLDG-030 +15 wd","reportedDelay":25,"baselineCritical":"Mixed","baselineFinish":"2029-01-17","forecastFinish":"2029-01-29","netImpact":10,"result":"25 reported delay-days do not equal 25 project-delay days.","why":"Only the controlling-path impact governs the forecast finish; the non-critical delay is absorbed and is not simply added."},
-    {"id":"D","name":"Procurement Watch","activity":"PROC-030 — Electrical / Receiving Equipment","reportedDelay":10,"baselineCritical":"No","baselineFinish":"2029-01-17","forecastFinish":"2029-01-17","netImpact":0,"result":"Float is consumed; completion remains unchanged in this test case.","why":"The procurement delay matters only when it pushes the required-on-site date enough to control energization or a downstream commissioning path."}
+    {
+      "id":"A","name":"Critical Activity Delay","activity":"WTP-CIV-060 — Rapid Sand Filter Structure","reportedDelay":10,"baselineCritical":"Yes","baselineFinish":"2029-01-15","forecastFinish":"2029-01-26","netImpact":10,
+      "result":"Project completion moves by 10 working days.",
+      "why":"Native Microsoft Project recalculation confirms that the delayed filter-structure activity remains on the controlling path and the added duration propagates through downstream process installation and commissioning.",
+      "planningResponse":"Protect the filter-to-process-piping interface, test permissible overlap/resequencing of downstream preparation, review resource acceleration options, and monitor the controlling chain at each update. Any recovery commitment should be supported by a recalculated programme rather than an assumed offset.",
+      "residualRisk":"Completion remains exposed until recovery on the controlling path is demonstrated in the updated schedule."
+    },
+    {
+      "id":"B","name":"Non-Critical Delay","activity":"BLDG-030 — Administration & Laboratory Building","reportedDelay":15,"baselineCritical":"No","baselineFinish":"2029-01-15","forecastFinish":"2029-01-15","netImpact":0,
+      "result":"No change to project completion.",
+      "why":"Native Microsoft Project recalculation shows the delay remains within available float / parallel-path flexibility and does not control the completion milestone.",
+      "planningResponse":"Record and monitor the consumed float, protect interfaces with building finishes/MEP and avoid allowing repeated slippage to convert the path into a near-critical constraint.",
+      "residualRisk":"No current completion impact, but remaining float should be tracked rather than treated as free time."
+    },
+    {
+      "id":"C","name":"Multiple Concurrent Delays","activity":"WTP-CIV-060 +10 wd; BLDG-030 +15 wd","reportedDelay":25,"baselineCritical":"Mixed","baselineFinish":"2029-01-15","forecastFinish":"2029-01-26","netImpact":10,
+      "result":"25 reported delay-days do not equal 25 project-delay days; net completion impact is 10 working days.",
+      "why":"The controlling-path delay governs the forecast finish while the concurrent building delay remains within its parallel-path float. Delay events therefore cannot simply be added arithmetically.",
+      "planningResponse":"Manage each event on its own logic path, focus recovery effort on the controlling WTP/process chain, and separately monitor float erosion on the building path.",
+      "residualRisk":"A later change in logic, float consumption or interface dates can alter which path controls completion."
+    },
+    {
+      "id":"D","name":"Procurement Watch","activity":"PROC-030 — Electrical / Receiving Equipment","reportedDelay":10,"baselineCritical":"No","baselineFinish":"2029-01-15","forecastFinish":"2029-01-15","netImpact":0,
+      "result":"Float is consumed; completion remains unchanged in this test case.",
+      "why":"The procurement delay does not yet push the receiving-equipment requirement far enough to control energization or the downstream commissioning path in the native recalculation.",
+      "planningResponse":"Track required-on-site dates, approvals, manufacturing/shipping milestones and energization interfaces. Escalate before procurement float is exhausted rather than waiting for a critical-path conversion.",
+      "residualRisk":"Procurement can become critical rapidly if delivery slips into the energization or commissioning window."
+    }
   ],
   "criticalPath": ["PREL-010","PREL-020","PREL-030","WTP-CIV-010","WTP-CIV-020","WTP-CIV-030","WTP-CIV-040","WTP-CIV-050","WTP-CIV-060","WTP-CIV-070","WTP-CIV-080","WTP-CIV-090","ME-010","ME-060","COMM-020","COMM-030","COMM-040","COMM-050","COMM-060","COMM-080"],
   "sources": [
-    {"label":"Kubota corporate project announcement","url":"https://www.kubota.co.jp/news/2025/management-20250829.html","use":"Public project scope and order of magnitude"},
+    {"label":"Kubota Construction official project announcement","url":"https://www.kubota-const.co.jp/news/2025/news_02.html","use":"Primary public source for project scope, capacities, 30-month duration and approximate contract value"},
+    {"label":"Kubota corporate project announcement","url":"https://www.kubota.co.jp/news/2025/management-20250829.html","use":"Corporate confirmation of public project scope and order of magnitude"},
     {"label":"JICA project information","url":"https://www.jica.go.jp/english/about/policy/environment/id/asia/southeast/a_b_fi/laos/c8h0vm00009368pw.html","use":"Vientiane water-supply expansion context"},
     {"label":"Japan Water Research Center / NewTap","url":"https://www.jwrc-net.or.jp/english/newtap/report/NewTap_007.pdf","use":"Public treatment-process reference"}
   ]
