@@ -2,6 +2,7 @@ import './globals.css';
 import './governance.css';
 import './editorial.css';
 import type { Metadata } from 'next';
+import SubmissionFileGuard from './SubmissionFileGuard';
 
 export const metadata: Metadata = {
   title: 'Michael Futol — Chinaimo Project Controls Assessment',
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <a href="/decision-simulator">Bonus · Decision Simulator</a>
         </div>
         {children}
+        <SubmissionFileGuard />
       </body>
     </html>
   );
