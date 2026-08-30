@@ -1,5 +1,24 @@
 ﻿CHINAIMO PROJECT CONTROLS - NATIVE MICROSOFT PROJECT PACKAGE
 
+PRIMARY CONTROL STRUCTURE
+1. BASELINE PROGRAMME
+   - Fixed reference commitment.
+   - Preserves original logic, dates and completion milestone.
+   - Must not be overwritten by status updates or recovery changes.
+
+2. RUNNING / CURRENT SCHEDULE
+   - Live status model at the Data Date.
+   - Carries actual progress/status, remaining work, current forecast and variance against Baseline.
+   - This is the principal model for explaining where the project stands now.
+
+3. RECOVERY PROGRAMME
+   - Separate forward-looking recovery model.
+   - Tests practical recovery measures without rewriting Baseline.
+   - Used to demonstrate how the completion target can be restored or protected.
+
+SUPPORTING CPM ANALYSIS
+Scenario A/B/C/D files are supporting technical-assessment evidence for critical-delay, non-critical-delay, concurrent-delay and procurement-watch analysis. They are not additional primary programmes and are not represented as actual Chinaimo project delay records.
+
 Authority model
 - Excel: BOQ, measurement, earned progress, S-Curve and payment claim.
 - Microsoft Project: schedule calendar, activity logic, baseline/current dates, Critical Path, Total Slack and forecast completion.
@@ -18,7 +37,7 @@ Resources prefixed 'CTRL -' are normalized schedule-derived control workstreams 
 
 Key dates
 Baseline Finish: 15-Jan-2029
+Data Date: 31-Aug-2027
 Scenario A / C Forecast: 26-Jan-2029 (+10 working days)
 Scenario B / D: no movement of completion milestone in the test case.
-
-Delay cases are technical-assessment scenario inputs used only to demonstrate CPM schedule-impact analysis and are not represented as actual project delay records.
+Recovery Programme: restores the 15-Jan-2029 completion target in the assessment model.
