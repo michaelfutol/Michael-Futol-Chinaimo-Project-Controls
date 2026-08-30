@@ -3,6 +3,7 @@ import schedule from '../data/schedule.json';
 import governance from '../data/governance.json';
 import ProgressExplorer from './ProgressExplorer';
 import ScheduleExplorer from './ScheduleExplorer';
+import ReviewerFAQ from './ReviewerFAQ';
 
 const money=(n:number)=>new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(n);
 const pct=(n:number)=>`${n.toFixed(3)}%`;
@@ -39,7 +40,7 @@ export default function Page(){
     </section>
 
     <nav className="navBar" aria-label="Assessment sections">
-      <a href="#start">Overview</a><a href="#progress">Progress</a><a href="#boq">BOQ</a><a href="#schedule">Schedule</a><a href="#delays">Delay Analysis</a><a href="#claim">Claim</a><a href="#controls">Controls</a><a href="#downloads">Downloads</a><a href="#sources">Sources</a>
+      <a href="#start">Overview</a><a href="#progress">Progress</a><a href="#boq">BOQ</a><a href="#schedule">Schedule</a><a href="#delays">Delay Analysis</a><a href="#claim">Claim</a><a href="#controls">Controls</a><a href="#reviewer-qa">Reviewer Q&A</a><a href="#downloads">Downloads</a><a href="#sources">Sources</a>
     </nav>
 
     <section className="notice"><b>Assessment boundary:</b> {assessment.meta.dataBoundary}</section>
@@ -110,13 +111,15 @@ export default function Page(){
       <p className="controlNote">{governance.documentControl.controlNote}</p>
     </section>
 
+    <ReviewerFAQ/>
+
     <section className="panel downloads" id="downloads">
-      <div className="downloadIntro"><span className="sectionNo">07 · WORKING FILES</span><h2>Open the actual working files</h2><p>The web view summarizes the control model; the Excel workbook and Microsoft Project package remain the native working records.</p></div>
+      <div className="downloadIntro"><span className="sectionNo">08 · WORKING FILES</span><h2>Open the actual working files</h2><p>The web view summarizes the control model; the Excel workbook and Microsoft Project package remain the native working records.</p></div>
       <div className="downloadGrid"><a href="/downloads/Michael_Futol_Chinaimo_Project_Controls.xlsx" download><b>Excel Project Controls Workbook</b><span>.xlsx · BOQ · Measurement · Progress · Gantt · S-Curve · Claim · Delay Analysis</span><em>DOWNLOAD ↓</em></a><a href="/downloads/Michael_Futol_Chinaimo_Technical_Assessment.pdf" download><b>Printable Assessment Pack</b><span>PDF · executive status · BOQ/progress · native schedule evidence · delay commentary · source register</span><em>DOWNLOAD PDF ↓</em></a><a href="/downloads/Michael_Futol_Chinaimo_MSProject_Package.zip" download><b>Complete Microsoft Project Package</b><span>ZIP · baseline + critical-delay + non-critical + concurrent-delay + procurement-watch .mpp files. Extract into the same folder as the Excel workbook.</span><em>DOWNLOAD ZIP ↓</em></a><a href="https://github.com/michaelfutol/Michael-Futol-Chinaimo-Project-Controls" target="_blank"><b>GitHub Audit Trail</b><span>Source data · Schedule data · Governance · Web source · Revision history</span><em>INSPECT ↗</em></a></div>
     </section>
 
     <section className="panel" id="sources">
-      <div className="sectionHead"><div><span className="sectionNo">08 · SOURCE & CONFIDENTIALITY BASIS</span><h2>Exact public references for every externally derived project fact</h2><p>A reviewer should not have to wonder where the project figures came from. Public facts are linked directly; assessment data are explicitly labelled illustrative.</p></div></div>
+      <div className="sectionHead"><div><span className="sectionNo">09 · SOURCE & CONFIDENTIALITY BASIS</span><h2>Exact public references for every externally derived project fact</h2><p>A reviewer should not have to wonder where the project figures came from. Public facts are linked directly; assessment data are explicitly labelled illustrative.</p></div></div>
       <div className="boundaryGrid"><div><b>Publicly grounded project context</b><p>{governance.assessmentBoundary.public}</p></div><div><b>Assessment-derived control model</b><p>{governance.assessmentBoundary.illustrative}</p></div></div>
       <div className="confidentialityBox"><b>Confidentiality boundary</b><span>{governance.assessmentBoundary.confidentiality}</span></div>
       <h3 className="subHeading">Public facts used in this assessment</h3>
