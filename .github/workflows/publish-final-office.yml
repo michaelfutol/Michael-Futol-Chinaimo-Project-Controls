@@ -17,24 +17,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Reconstruct and verify exact Office files
+      - name: Reconstruct and verify lean final Office files
         shell: python
         run: |
           from pathlib import Path
           import base64, hashlib
 
           specs = {
-            'excel': ('Michael_Futol_Chinaimo_Project_Controls.xlsx', 57387, 'c74d05c2efbb33ee8c36b24f3a6285df4e16a643a3f1bc625ca8b18aff39c529'),
-            'en': ('CHINAIMO_PROJECT_CONTROLS_QA_FINAL_REVIEWED_EN.docx', 18789, '02967610b290bf583886151066eb8b98ec6a5a8e4fe9269d1fef1b1e94a52530'),
-            'jp': ('CHINAIMO_PROJECT_CONTROLS_QA_JAPANESE_REVIEWER_COMPANION.docx', 20021, '4b987ffd9df186a9b97fe3eb3a6b50e407094ade1ba5439e05196fa70ac59eb9'),
+            'excel': ('Michael_Futol_Chinaimo_Project_Controls.xlsx', 41404, '8b8cc4516afea1c0878e37d3a7d3fc081580dafbdd8d758aee9b40220acf9b84'),
+            'en': ('CHINAIMO_PROJECT_CONTROLS_QA_FINAL_REVIEWED_EN.docx', 41673, '7d940180e8f8a6b5d2b14ad33caae1281a053b57698d6708b680faa8431739dd'),
+            'jp': ('CHINAIMO_PROJECT_CONTROLS_QA_JAPANESE_REVIEWER_COMPANION.docx', 42367, '9ee89bcf9a716d2dcc3d7d67fbe4cc18a659dba3c4a4de4671ab4573384f2ffb'),
           }
           src = Path('.binary-staging/final')
           out = Path('public/downloads')
           out.mkdir(parents=True, exist_ok=True)
           for key, (name, expected_size, expected_sha) in specs.items():
-              parts = sorted(src.glob(f'{key}.part*'))
+              parts = sorted(src.glob(f'{key}.leanpart*'))
               if not parts:
-                  raise SystemExit(f'No staged parts for {key}')
+                  raise SystemExit(f'No lean staged parts for {key}')
               encoded = ''.join(p.read_text(encoding='ascii').strip() for p in parts)
               data = base64.b64decode(encoded, validate=True)
               actual_sha = hashlib.sha256(data).hexdigest()
@@ -53,5 +53,5 @@ jobs:
           git config user.name "FutolTech Submission QA"
           git config user.email "actions@users.noreply.github.com"
           git add -A
-          git commit -m "deliverables: publish exact final Excel and bilingual reviewer Word files"
+          git commit -m "deliverables: publish lean final Excel and bilingual reviewer Word files"
           git push
