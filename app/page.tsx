@@ -24,12 +24,8 @@ export default function Page(){
         <div className="heroTags"><span>Baseline → Actual Progress → Recovery</span><span>05-May-2026 Data Date</span><span>Public 4.19% checkpoint</span><span>Native Microsoft Project CPM</span></div>
       </div>
       <div className="heroAction">
-        <div className="deliverableLabel">CORE SUBMISSION</div>
-        <a className="primaryBtn" href="/downloads/Michael_Futol_Chinaimo_Project_Controls.xlsx" download><b>Master Excel Workbook</b><span>Public facts · control data · recovery evidence</span></a>
-        <div className="heroButtonRow">
-          <a className="secondaryBtn" href="/downloads/CHINAIMO_PROJECT_CONTROLS_QA_FINAL_REVIEWED_EN.docx" download>English Reviewer Companion</a>
-          <a className="secondaryBtn" href="/downloads/CHINAIMO_PROJECT_CONTROLS_QA_JAPANESE_REVIEWER_COMPANION.docx" download>日本語 Companion</a>
-        </div>
+        <div className="deliverableLabel">FORMAL SUBMISSION</div>
+        <div className="notice" style={{margin:0}}><b>Six files are issued separately with the application.</b><br/>1 Excel · 2 Word companions · 3 native Microsoft Project files.</div>
       </div>
     </section>
 
@@ -48,14 +44,13 @@ export default function Page(){
     </section>
 
     <section className="panel">
-      <div className="sectionHead"><div><span className="sectionNo">02 · THREE-MODEL GOVERNANCE</span><h2>Baseline → Actual Progress → Recovery</h2><p>The old multi-scenario reviewer package has been deliberately removed. The reviewer only needs the three schedule states that would matter in live controls.</p></div></div>
+      <div className="sectionHead"><div><span className="sectionNo">02 · THREE-MODEL GOVERNANCE</span><h2>Baseline → Actual Progress → Recovery</h2><p>The old multi-scenario reviewer package has been deliberately removed. The reviewer only needs the three schedule states that matter in live controls.</p></div></div>
       <div className="scenarioGrid">
         {assessment.models.map((model,index)=><article className="scenario" key={model.id}>
           <div className="scenarioTop"><span>{String(index+1).padStart(2,'0')}</span><b className={model.id==='actual'?'impactBad':'impactOk'}>{model.delta}</b></div>
           <h3>{model.name}</h3><p className="activityName">Anchor: {model.anchor}</p>
           <div className="scenarioDates"><div><small>FORECAST FINISH</small><b>{model.finish}</b></div></div>
           <div className="solutionBox"><small>CONTROL PURPOSE</small><strong>{model.purpose}</strong></div>
-          <a className="miniDownload" href={`/downloads/${model.file}`} download>Open native .mpp ↓</a>
         </article>)}
       </div>
       <p className="controlNote"><b>Important:</b> the +143 working-day model difference is not presented as a contractual delay/EOT entitlement. It is a forecast variance between two assessment schedule states.</p>
@@ -69,13 +64,12 @@ export default function Page(){
       <div className="controlRule"><b>Recovery approval gate</b><span>Construction</span><span>Engineering</span><span>Procurement</span><span>QA/QC</span><span>HSE</span><span>Commercial</span></div>
     </section>
 
-    <section className="panel downloads" id="downloads">
-      <div className="downloadIntro"><span className="sectionNo">04 · SIX SUBMISSION FILES</span><h2>Nothing extra</h2><p>One master Excel, two reviewer Word companions, and exactly three native Microsoft Project files.</p></div>
-      <div className="downloadGrid">
-        <a href="/downloads/Michael_Futol_Chinaimo_Project_Controls.xlsx" download><b>Master Excel</b><span>.xlsx · public status · schedule basis · recovery control</span><em>DOWNLOAD ↓</em></a>
-        <a href="/downloads/CHINAIMO_PROJECT_CONTROLS_QA_FINAL_REVIEWED_EN.docx" download><b>Reviewer Companion — English</b><span>.docx · public boundary · three-model defence · recovery method</span><em>DOWNLOAD ↓</em></a>
-        <a href="/downloads/CHINAIMO_PROJECT_CONTROLS_QA_JAPANESE_REVIEWER_COMPANION.docx" download><b>Reviewer Companion — 日本語</b><span>.docx · reviewer-convenience Japanese companion</span><em>DOWNLOAD ↓</em></a>
-        {assessment.models.map(model=><a href={`/downloads/${model.file}`} download key={model.id}><b>{model.name} — Microsoft Project</b><span>.mpp · {model.finish}</span><em>DOWNLOAD MPP ↓</em></a>)}
+    <section className="panel downloads" id="submission">
+      <div className="downloadIntro"><span className="sectionNo">04 · FORMAL ATTACHMENT SET</span><h2>Exactly six files</h2><p>The website is presentation-only. The authoritative working files are supplied directly with the application.</p></div>
+      <div className="authorityGrid">
+        <div><span className="authorityTool">EXCEL</span><b>Michael_Futol_Chinaimo_Project_Controls.xlsx</b><p>Master controls workbook.</p></div>
+        <div><span className="authorityTool">WORD</span><b>English + 日本語 reviewer companions</b><p>Two concise reviewer defence documents.</p></div>
+        <div><span className="authorityTool">MS PROJECT</span><b>Baseline + Actual Progress + Recovery</b><p>Exactly three native .mpp files.</p></div>
       </div>
     </section>
 
