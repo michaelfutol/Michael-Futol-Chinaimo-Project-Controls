@@ -1,520 +1,108 @@
 {
-    "meta":  {
-                 "title":  "Michael Futol — Chinaimo Project Controls Assessment",
-                 "subtitle":  "Independent Chinaimo project-controls case study",
-                 "dataBoundary":  "Public project scope informs the case context. Quantities, rates, durations, logic, progress and claims are assessment control data. Delay cases are technical-assessment scenario inputs used solely for schedule-impact analysis and are not represented as actual project delay records.",
-                 "projectStart":  "2026-09-01",
-                 "statusDate":  "2027-08-31",
-                 "baselineFinish":  "2029-01-15",
-                 "scheduleCalendar":  "Monday-Saturday, 8 h/day; Sunday non-working",
-                 "scheduleAuthority":  "Native Microsoft Project recalculation",
-                 "controlValue":  6000000000,
-                 "plannedProgress":  47.0,
-                 "actualProgress":  39.525,
-                 "variance":  -7.475,
-                 "currentGrossClaim":  346000000
-             },
-    "progress":  [
-                     {
-                         "period":  "2026-09",
-                         "planned":  1.0,
-                         "actual":  0.8
-                     },
-                     {
-                         "period":  "2026-10",
-                         "planned":  2.5,
-                         "actual":  1.8
-                     },
-                     {
-                         "period":  "2026-11",
-                         "planned":  4.5,
-                         "actual":  3.2
-                     },
-                     {
-                         "period":  "2026-12",
-                         "planned":  7.0,
-                         "actual":  5.1
-                     },
-                     {
-                         "period":  "2027-01",
-                         "planned":  10.0,
-                         "actual":  7.8
-                     },
-                     {
-                         "period":  "2027-02",
-                         "planned":  14.0,
-                         "actual":  11.1
-                     },
-                     {
-                         "period":  "2027-03",
-                         "planned":  18.0,
-                         "actual":  15.0
-                     },
-                     {
-                         "period":  "2027-04",
-                         "planned":  23.0,
-                         "actual":  19.3
-                     },
-                     {
-                         "period":  "2027-05",
-                         "planned":  29.0,
-                         "actual":  24.0
-                     },
-                     {
-                         "period":  "2027-06",
-                         "planned":  35.0,
-                         "actual":  29.0
-                     },
-                     {
-                         "period":  "2027-07",
-                         "planned":  41.0,
-                         "actual":  33.7583333333
-                     },
-                     {
-                         "period":  "2027-08",
-                         "planned":  47.0,
-                         "actual":  39.525
-                     },
-                     {
-                         "period":  "2027-09",
-                         "planned":  53.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2027-10",
-                         "planned":  59.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2027-11",
-                         "planned":  65.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2027-12",
-                         "planned":  71.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-01",
-                         "planned":  76.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-02",
-                         "planned":  81.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-03",
-                         "planned":  86.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-04",
-                         "planned":  90.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-05",
-                         "planned":  93.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-06",
-                         "planned":  95.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-07",
-                         "planned":  97.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-08",
-                         "planned":  98.5,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-09",
-                         "planned":  99.3,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-10",
-                         "planned":  99.7,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-11",
-                         "planned":  100.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2028-12",
-                         "planned":  100.0,
-                         "actual":  null
-                     },
-                     {
-                         "period":  "2029-01",
-                         "planned":  100.0,
-                         "actual":  null
-                     }
-                 ],
-    "boq":  [
-                {
-                    "id":  "PREL-001",
-                    "wbs":  "1.0",
-                    "description":  "Preliminaries / Temporary Works",
-                    "unit":  "LS",
-                    "contractQty":  1,
-                    "rate":  300000000,
-                    "amount":  300000000,
-                    "previousQty":  1,
-                    "currentQty":  0,
-                    "cumulativeQty":  1,
-                    "balanceQty":  0,
-                    "progress":  1,
-                    "previousAmount":  300000000,
-                    "currentAmount":  0,
-                    "cumulativeAmount":  300000000,
-                    "remainingAmount":  0
-                },
-                {
-                    "id":  "CIV-001",
-                    "wbs":  "3.0/4.0/7.0",
-                    "description":  "Earthworks / Excavation / Dewatering",
-                    "unit":  "m³",
-                    "contractQty":  185000,
-                    "rate":  2000,
-                    "amount":  370000000,
-                    "previousQty":  175750,
-                    "currentQty":  9250,
-                    "cumulativeQty":  185000,
-                    "balanceQty":  0,
-                    "progress":  1,
-                    "previousAmount":  351500000,
-                    "currentAmount":  18500000,
-                    "cumulativeAmount":  370000000,
-                    "remainingAmount":  0
-                },
-                {
-                    "id":  "RC-001",
-                    "wbs":  "3.0/4.0/7.0",
-                    "description":  "Structural Concrete",
-                    "unit":  "m³",
-                    "contractQty":  45000,
-                    "rate":  30000,
-                    "amount":  1350000000,
-                    "previousQty":  20250,
-                    "currentQty":  4500,
-                    "cumulativeQty":  24750,
-                    "balanceQty":  20250,
-                    "progress":  0.55,
-                    "previousAmount":  607500000,
-                    "currentAmount":  135000000,
-                    "cumulativeAmount":  742500000,
-                    "remainingAmount":  607500000
-                },
-                {
-                    "id":  "RB-001",
-                    "wbs":  "3.0/4.0/7.0",
-                    "description":  "Reinforcement Steel",
-                    "unit":  "t",
-                    "contractQty":  7500,
-                    "rate":  120000,
-                    "amount":  900000000,
-                    "previousQty":  3225,
-                    "currentQty":  675,
-                    "cumulativeQty":  3900,
-                    "balanceQty":  3600,
-                    "progress":  0.52,
-                    "previousAmount":  387000000,
-                    "currentAmount":  81000000,
-                    "cumulativeAmount":  468000000,
-                    "remainingAmount":  432000000
-                },
-                {
-                    "id":  "FW-001",
-                    "wbs":  "3.0/4.0/7.0",
-                    "description":  "Formwork",
-                    "unit":  "m²",
-                    "contractQty":  170000,
-                    "rate":  2000,
-                    "amount":  340000000,
-                    "previousQty":  85000,
-                    "currentQty":  17000,
-                    "cumulativeQty":  102000,
-                    "balanceQty":  68000,
-                    "progress":  0.6,
-                    "previousAmount":  170000000,
-                    "currentAmount":  34000000,
-                    "cumulativeAmount":  204000000,
-                    "remainingAmount":  136000000
-                },
-                {
-                    "id":  "WPF-001",
-                    "wbs":  "3.0/4.0",
-                    "description":  "Waterproofing / Protective Coating",
-                    "unit":  "m²",
-                    "contractQty":  85000,
-                    "rate":  2000,
-                    "amount":  170000000,
-                    "previousQty":  4250,
-                    "currentQty":  4250,
-                    "cumulativeQty":  8500,
-                    "balanceQty":  76500,
-                    "progress":  0.1,
-                    "previousAmount":  8500000,
-                    "currentAmount":  8500000,
-                    "cumulativeAmount":  17000000,
-                    "remainingAmount":  153000000
-                },
-                {
-                    "id":  "MECH-001",
-                    "wbs":  "6.0",
-                    "description":  "Process Piping / Mechanical",
-                    "unit":  "LS",
-                    "contractQty":  1,
-                    "rate":  550000000,
-                    "amount":  550000000,
-                    "previousQty":  0,
-                    "currentQty":  0,
-                    "cumulativeQty":  0,
-                    "balanceQty":  1,
-                    "progress":  0,
-                    "previousAmount":  0,
-                    "currentAmount":  0,
-                    "cumulativeAmount":  0,
-                    "remainingAmount":  550000000
-                },
-                {
-                    "id":  "PMP-001",
-                    "wbs":  "6.0",
-                    "description":  "Pumps / Major Mechanical Equipment",
-                    "unit":  "LS",
-                    "contractQty":  1,
-                    "rate":  500000000,
-                    "amount":  500000000,
-                    "previousQty":  0,
-                    "currentQty":  0,
-                    "cumulativeQty":  0,
-                    "balanceQty":  1,
-                    "progress":  0,
-                    "previousAmount":  0,
-                    "currentAmount":  0,
-                    "cumulativeAmount":  0,
-                    "remainingAmount":  500000000
-                },
-                {
-                    "id":  "CHEM-001",
-                    "wbs":  "5.0/6.0",
-                    "description":  "Chemical Dosing Systems",
-                    "unit":  "LS",
-                    "contractQty":  1,
-                    "rate":  240000000,
-                    "amount":  240000000,
-                    "previousQty":  0,
-                    "currentQty":  0,
-                    "cumulativeQty":  0,
-                    "balanceQty":  1,
-                    "progress":  0,
-                    "previousAmount":  0,
-                    "currentAmount":  0,
-                    "cumulativeAmount":  0,
-                    "remainingAmount":  240000000
-                },
-                {
-                    "id":  "ELEC-001",
-                    "wbs":  "6.0",
-                    "description":  "Electrical / MCC / Cabling",
-                    "unit":  "LS",
-                    "contractQty":  1,
-                    "rate":  420000000,
-                    "amount":  420000000,
-                    "previousQty":  0.05,
-                    "currentQty":  0.05,
-                    "cumulativeQty":  0.1,
-                    "balanceQty":  0.9,
-                    "progress":  0.1,
-                    "previousAmount":  21000000,
-                    "currentAmount":  21000000,
-                    "cumulativeAmount":  42000000,
-                    "remainingAmount":  378000000
-                },
-                {
-                    "id":  "SCADA-001",
-                    "wbs":  "6.0",
-                    "description":  "Instrumentation / SCADA",
-                    "unit":  "LS",
-                    "contractQty":  1,
-                    "rate":  270000000,
-                    "amount":  270000000,
-                    "previousQty":  0,
-                    "currentQty":  0,
-                    "cumulativeQty":  0,
-                    "balanceQty":  1,
-                    "progress":  0,
-                    "previousAmount":  0,
-                    "currentAmount":  0,
-                    "cumulativeAmount":  0,
-                    "remainingAmount":  270000000
-                },
-                {
-                    "id":  "PWR-001",
-                    "wbs":  "8.0",
-                    "description":  "22-kV Off-site Power Works",
-                    "unit":  "LS",
-                    "contractQty":  1,
-                    "rate":  240000000,
-                    "amount":  240000000,
-                    "previousQty":  0.35,
-                    "currentQty":  0.1,
-                    "cumulativeQty":  0.45,
-                    "balanceQty":  0.55,
-                    "progress":  0.45,
-                    "previousAmount":  84000000,
-                    "currentAmount":  24000000,
-                    "cumulativeAmount":  108000000,
-                    "remainingAmount":  132000000
-                },
-                {
-                    "id":  "BLDG-001",
-                    "wbs":  "5.0",
-                    "description":  "Administration / Lab / Support Buildings",
-                    "unit":  "LS",
-                    "contractQty":  1,
-                    "rate":  240000000,
-                    "amount":  240000000,
-                    "previousQty":  0.4,
-                    "currentQty":  0.1,
-                    "cumulativeQty":  0.5,
-                    "balanceQty":  0.5,
-                    "progress":  0.5,
-                    "previousAmount":  96000000,
-                    "currentAmount":  24000000,
-                    "cumulativeAmount":  120000000,
-                    "remainingAmount":  120000000
-                },
-                {
-                    "id":  "COMM-001",
-                    "wbs":  "9.0",
-                    "description":  "Testing / Commissioning / Handover",
-                    "unit":  "LS",
-                    "contractQty":  1,
-                    "rate":  110000000,
-                    "amount":  110000000,
-                    "previousQty":  0,
-                    "currentQty":  0,
-                    "cumulativeQty":  0,
-                    "balanceQty":  1,
-                    "progress":  0,
-                    "previousAmount":  0,
-                    "currentAmount":  0,
-                    "cumulativeAmount":  0,
-                    "remainingAmount":  110000000
-                }
-            ],
-    "scenarios":  [
-                      {
-                          "id":  "A",
-                          "name":  "Critical Activity Delay",
-                          "activity":  "WTP-CIV-060 — Rapid Sand Filter Structure",
-                          "reportedDelay":  10,
-                          "baselineCritical":  "Yes",
-                          "baselineFinish":  "2029-01-15",
-                          "forecastFinish":  "2029-01-26",
-                          "netImpact":  10,
-                          "result":  "Project completion moves by 10 working days.",
-                          "why":  "Native Microsoft Project recalculation confirms that the delayed filter-structure activity remains on the controlling path and the added duration propagates through downstream process installation and commissioning.",
-                          "planningResponse":  "Protect the filter-to-process-piping interface, test permissible overlap/resequencing of downstream preparation, review resource acceleration options, and monitor the controlling chain at each update. Any recovery commitment should be supported by a recalculated programme rather than an assumed offset.",
-                          "residualRisk":  "Completion remains exposed until recovery on the controlling path is demonstrated in the updated schedule."
-                      },
-                      {
-                          "id":  "B",
-                          "name":  "Non-Critical Delay",
-                          "activity":  "BLDG-030 — Administration \u0026 Laboratory Building",
-                          "reportedDelay":  15,
-                          "baselineCritical":  "No",
-                          "baselineFinish":  "2029-01-15",
-                          "forecastFinish":  "2029-01-15",
-                          "netImpact":  0,
-                          "result":  "No change to project completion.",
-                          "why":  "Native Microsoft Project recalculation shows the delay remains within available float / parallel-path flexibility and does not control the completion milestone.",
-                          "planningResponse":  "Record and monitor the consumed float, protect interfaces with building finishes/MEP and avoid allowing repeated slippage to convert the path into a near-critical constraint.",
-                          "residualRisk":  "No current completion impact, but remaining float should be tracked rather than treated as free time."
-                      },
-                      {
-                          "id":  "C",
-                          "name":  "Multiple Concurrent Delays",
-                          "activity":  "WTP-CIV-060 +10 wd; BLDG-030 +15 wd",
-                          "reportedDelay":  25,
-                          "baselineCritical":  "Mixed",
-                          "baselineFinish":  "2029-01-15",
-                          "forecastFinish":  "2029-01-26",
-                          "netImpact":  10,
-                          "result":  "25 reported delay-days do not equal 25 project-delay days; net completion impact is 10 working days.",
-                          "why":  "The controlling-path delay governs the forecast finish while the concurrent building delay remains within its parallel-path float. Delay events therefore cannot simply be added arithmetically.",
-                          "planningResponse":  "Manage each event on its own logic path, focus recovery effort on the controlling WTP/process chain, and separately monitor float erosion on the building path.",
-                          "residualRisk":  "A later change in logic, float consumption or interface dates can alter which path controls completion."
-                      },
-                      {
-                          "id":  "D",
-                          "name":  "Procurement Watch",
-                          "activity":  "PROC-030 — Electrical / Receiving Equipment",
-                          "reportedDelay":  10,
-                          "baselineCritical":  "No",
-                          "baselineFinish":  "2029-01-15",
-                          "forecastFinish":  "2029-01-15",
-                          "netImpact":  0,
-                          "result":  "Float is consumed; completion remains unchanged in this test case.",
-                          "why":  "The procurement delay does not yet move the receiving-equipment delivery far enough to control energization or the downstream commissioning path in the native recalculation.",
-                          "planningResponse":  "Track required-on-site dates, approvals, manufacturing/shipping milestones and energization interfaces. Escalate before procurement float is exhausted rather than waiting for a critical-path conversion.",
-                          "residualRisk":  "Procurement can become critical rapidly if delivery slips into the energization or commissioning window."
-                      }
-                  ],
-    "criticalPath":  [
-                         "PREL-010",
-                         "PREL-020",
-                         "PREL-030",
-                         "WTP-CIV-010",
-                         "WTP-CIV-020",
-                         "WTP-CIV-030",
-                         "WTP-CIV-040",
-                         "WTP-CIV-050",
-                         "WTP-CIV-060",
-                         "WTP-CIV-070",
-                         "WTP-CIV-080",
-                         "WTP-CIV-090",
-                         "ME-010",
-                         "ME-060",
-                         "COMM-020",
-                         "COMM-030",
-                         "COMM-040",
-                         "COMM-050",
-                         "COMM-060",
-                         "COMM-080"
-                     ],
-    "sources":  [
-                    {
-                        "label":  "Kubota Construction official project announcement",
-                        "url":  "https://www.kubota-const.co.jp/news/2025/news_02.html",
-                        "use":  "Primary public source for project scope, capacities, 30-month duration and approximate contract value"
-                    },
-                    {
-                        "label":  "Kubota corporate project announcement",
-                        "url":  "https://www.kubota.co.jp/news/2025/management-20250829.html",
-                        "use":  "Corporate confirmation of public project scope and order of magnitude"
-                    },
-                    {
-                        "label":  "JICA project information",
-                        "url":  "https://www.jica.go.jp/english/about/policy/environment/id/asia/southeast/a_b_fi/laos/c8h0vm00009368pw.html",
-                        "use":  "Vientiane water-supply expansion context"
-                    },
-                    {
-                        "label":  "Japan Water Research Center / NewTap",
-                        "url":  "https://www.jwrc-net.or.jp/english/newtap/report/NewTap_007.pdf",
-                        "use":  "Public treatment-process reference"
-                    }
-                ]
+  "meta": {
+    "title": "Michael Futol — Chinaimo Project Controls Recovery Assessment",
+    "subtitle": "Baseline → Actual Progress → Recovery",
+    "dataBoundary": "Public project facts anchor the assessment. Detailed activity durations, logic, task-level status, BOQ allocation and recovery actions are assessment-derived and are not represented as Kubota Construction internal records.",
+    "projectStart": "2025-10-01",
+    "projectStartBasis": "Modeling convention; public records state construction start in October 2025.",
+    "statusDate": "2026-05-05",
+    "publishedDurationMonths": 30,
+    "publicProgress": 4.19,
+    "publicPackageValue": 6478257873,
+    "originalPublicCompletion": "Early 2028 / 2028",
+    "baselineFinish": "2028-02-15",
+    "publicCurrentCompletion": "July 2028",
+    "currentForecast": "2028-07-31",
+    "recoveryForecast": "2028-05-22",
+    "currentDifferenceWorkingDays": 143,
+    "recoveryGainWorkingDays": 60,
+    "residualDifferenceWorkingDays": 83,
+    "assessmentControlValue": 6000000000,
+    "scheduleCalendar": "Monday-Saturday, 8 h/day; Sunday non-working",
+    "scheduleAuthority": "Native Microsoft Project recalculation"
+  },
+  "models": [
+    {
+      "id": "baseline",
+      "name": "Baseline",
+      "anchor": "01-Oct-2025",
+      "finish": "15-Feb-2028",
+      "delta": "0 wd",
+      "file": "Michael_Futol_Chinaimo_Baseline.mpp",
+      "purpose": "Preserved assessment CPM reference."
+    },
+    {
+      "id": "actual",
+      "name": "Actual Progress",
+      "anchor": "05-May-2026",
+      "finish": "31-Jul-2028",
+      "delta": "+143 wd vs baseline",
+      "file": "Michael_Futol_Chinaimo_Actual_Progress.mpp",
+      "purpose": "Current status / forecast model aligned to the public July-2028 target."
+    },
+    {
+      "id": "recovery",
+      "name": "Recovery",
+      "anchor": "05-May-2026",
+      "finish": "22-May-2028",
+      "delta": "60 wd recovered; 83 wd residual",
+      "file": "Michael_Futol_Chinaimo_Recovery.mpp",
+      "purpose": "Partial recovery test subject to field validation."
+    }
+  ],
+  "recoveryActions": [
+    {
+      "activity": "WTP-CIV-050",
+      "workfront": "Sedimentation Basin",
+      "gain": 20,
+      "action": "Sectional workfronts / tighter release sequence",
+      "gate": "Drawings, access, rebar/formwork cycle, QA hold points"
+    },
+    {
+      "activity": "WTP-CIV-060",
+      "workfront": "Rapid Sand Filter Structure",
+      "gain": 15,
+      "action": "Earlier interface release / parallel preparatory work",
+      "gate": "IFC/submittals/materials/inspection readiness"
+    },
+    {
+      "activity": "WTP-CIV-070",
+      "workfront": "Internal Channels / Pipe Galleries",
+      "gain": 10,
+      "action": "Zone-by-zone handover",
+      "gate": "Access, waterproofing interfaces, inspection sequence"
+    },
+    {
+      "activity": "ME-010",
+      "workfront": "Process Piping",
+      "gain": 10,
+      "action": "Area handover + spool/support readiness",
+      "gate": "Approved drawings, materials, lifting/access plan"
+    },
+    {
+      "activity": "COMM-060",
+      "workfront": "Punch List / Rectification",
+      "gain": 5,
+      "action": "Progressive punch closure",
+      "gate": "Turnover dossiers / test packs / quality closeout"
+    }
+  ],
+  "sources": [
+    {
+      "label": "KPL — Kubota agreement / Oct-2025 start / 30 months",
+      "url": "https://kpl.gov.la/en/detail.aspx?id=94243"
+    },
+    {
+      "label": "Vientiane Times — package value / 30-month period",
+      "url": "https://vientianetimes.org.la/freefreenews/freecontent_159_city_y25.php"
+    },
+    {
+      "label": "KPL — groundbreaking / early-2028 context",
+      "url": "https://kpl.gov.la/en/detail.aspx?id=94793"
+    },
+    {
+      "label": "Vientiane Times — 4.19% on 05-May-2026 / July-2028 target",
+      "url": "https://www.vientianetimes.org.la/freefreenews/freecontent_82_City_y26.php"
+    }
+  ]
 }
