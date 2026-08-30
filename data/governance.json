@@ -1,131 +1,27 @@
-﻿{
-    "doctrine":  {
-                     "title":  "Project Controls Doctrine",
-                     "summary":  "One controlled model, preserved baseline, traceable measurement, schedule logic before appearance, and calm management reporting using Fact -\u003e Implication -\u003e Action.",
-                     "principles":  [
-                                        "Excel is the quantity/commercial/progress authority; Microsoft Project is the schedule/CPM authority; Web/PDF are presentation layers.",
-                                        "The baseline is preserved. Routine status updates do not silently overwrite it.",
-                                        "Actual progress stops at the Data Date; anything beyond the Data Date is forecast.",
-                                        "Measured quantities drive progress and payment claims, with reconciliation and overclaim checks.",
-                                        "Delay-days are not automatically project-delay days; controlling-path impact governs forecast completion.",
-                                        "Management reporting is concise: Fact -\u003e Implication -\u003e Action, with evidence available for audit."
-                                    ]
-                 },
-    "documentControl":  {
-                            "documentId":  "MF-CPC-TA-001",
-                            "revision":  "A",
-                            "status":  "Technical Assessment / Illustrative",
-                            "preparedBy":  "Michael Futol",
-                            "dataDate":  "2027-08-31",
-                            "scheduleCalendar":  "Monday-Saturday, 8 h/day; Sunday non-working",
-                            "controlNote":  "This presentation is ISO-management-system compatible in structure but does not claim Kubota Construction procedure compliance or certification."
-                        },
-    "isoAlignment":  [
-                         {
-                             "standard":  "ISO 9001",
-                             "theme":  "Quality management",
-                             "assessmentControls":  "Document ID/revision/status, traceable WBS/Activity/BOQ IDs, measurement verification, baseline/change history, reconciliation checks and review evidence."
-                         },
-                         {
-                             "standard":  "ISO 14001",
-                             "theme":  "Environmental management",
-                             "assessmentControls":  "Environmental/permit constraints can be registered as schedule interfaces or hold points, with ownership, dates and evidence traceable to WBS/activity records."
-                         },
-                         {
-                             "standard":  "ISO 45001",
-                             "theme":  "Occupational health \u0026 safety",
-                             "assessmentControls":  "Safety permits, method statements and prerequisite controls can be represented as readiness gates; resequencing must not bypass required safety controls."
-                         }
-                     ],
-    "publicFacts":  [
-                        {
-                            "fact":  "Contract Package 1 is part of the Vientiane Capital Water Supply Expansion Project and includes Chinaimo WTP expansion and related facilities.",
-                            "value":  "CP-1",
-                            "sourceLabel":  "Kubota Construction official project announcement",
-                            "sourceUrl":  "https://www.kubota-const.co.jp/news/2025/news_02.html"
-                        },
-                        {
-                            "fact":  "Chinaimo water-treatment facility expansion capacity.",
-                            "value":  "40,000 m3/day",
-                            "sourceLabel":  "Kubota Construction official project announcement",
-                            "sourceUrl":  "https://www.kubota-const.co.jp/news/2025/news_02.html"
-                        },
-                        {
-                            "fact":  "Chinaimo reservoir capacity.",
-                            "value":  "10,000 m3",
-                            "sourceLabel":  "Kubota Construction official project announcement",
-                            "sourceUrl":  "https://www.kubota-const.co.jp/news/2025/news_02.html"
-                        },
-                        {
-                            "fact":  "Salakham reservoir capacity.",
-                            "value":  "7,100 m3",
-                            "sourceLabel":  "Kubota Construction official project announcement",
-                            "sourceUrl":  "https://www.kubota-const.co.jp/news/2025/news_02.html"
-                        },
-                        {
-                            "fact":  "Off-site transmission-line scope.",
-                            "value":  "22 kV, approximately 8 km",
-                            "sourceLabel":  "Kubota Construction official project announcement",
-                            "sourceUrl":  "https://www.kubota-const.co.jp/news/2025/news_02.html"
-                        },
-                        {
-                            "fact":  "Publicly stated construction period.",
-                            "value":  "30 months",
-                            "sourceLabel":  "Kubota Construction official project announcement",
-                            "sourceUrl":  "https://www.kubota-const.co.jp/news/2025/news_02.html"
-                        },
-                        {
-                            "fact":  "Publicly stated approximate contract value.",
-                            "value":  "approximately JPY 6.0 billion",
-                            "sourceLabel":  "Kubota Construction official project announcement",
-                            "sourceUrl":  "https://www.kubota-const.co.jp/news/2025/news_02.html"
-                        }
-                    ],
-    "sourceRegister":  [
-                           {
-                               "label":  "Kubota Construction - official CP-1 project announcement",
-                               "url":  "https://www.kubota-const.co.jp/news/2025/news_02.html",
-                               "use":  "Primary public source for project identity, 30-month period, WTP capacity, reservoir capacities, buildings/equipment, 22-kV line and approximate contract value."
-                           },
-                           {
-                               "label":  "Kubota Corporation - corporate CP-1 announcement",
-                               "url":  "https://www.kubota.co.jp/news/2025/management-20250829.html",
-                               "use":  "Independent corporate confirmation of CP-1 scope and public order-of-magnitude information."
-                           },
-                           {
-                               "label":  "JICA - Vientiane Capital Water Supply Expansion Project",
-                               "url":  "https://www.jica.go.jp/english/about/policy/environment/id/asia/southeast/a_b_fi/laos/c8h0vm00009368pw.html",
-                               "use":  "Public project / environmental context for the Vientiane water-supply expansion."
-                           },
-                           {
-                               "label":  "Japan Water Research Center / NewTap - Chinaimo WTP reference",
-                               "url":  "https://www.jwrc-net.or.jp/english/newtap/report/NewTap_007.pdf",
-                               "use":  "Public treatment-process reference used only to make the illustrative WBS technically realistic."
-                           },
-                           {
-                               "label":  "Kubota Construction - company profile / ISO certifications",
-                               "url":  "https://www.kubota-const.co.jp/information/company_profile.html",
-                               "use":  "Public confirmation that Kubota Construction lists ISO 14001, ISO 9001 and ISO 45001 certifications."
-                           },
-                           {
-                               "label":  "Kubota Construction - ISO 9001 certificate",
-                               "url":  "https://www.kubota-const.co.jp/pdf/ISO9001_e.pdf",
-                               "use":  "Public quality-management-system certificate reference."
-                           },
-                           {
-                               "label":  "Kubota Construction - ISO 14001 certificate",
-                               "url":  "https://www.kubota-const.co.jp/pdf/ISO14001_e.pdf",
-                               "use":  "Public environmental-management-system certificate reference."
-                           },
-                           {
-                               "label":  "Kubota Construction - ISO 45001 certificate",
-                               "url":  "https://www.kubota-const.co.jp/pdf/ISO45001_e.pdf",
-                               "use":  "Public occupational-health-and-safety management-system certificate reference."
-                           }
-                       ],
-    "assessmentBoundary":  {
-                               "public":  "Project identity, broad facility scope/capacities, reported contract period/value and public treatment-process context only.",
-                               "illustrative":  "WBS coding, activity durations, dependencies, working calendar selection, BOQ quantities, unit rates, monthly progress, claim values and recovery logic are assessment control data. Delay cases are treated only as technical-assessment scenario inputs used to demonstrate CPM impact analysis.",
-                               "confidentiality":  "No Kubota Construction confidential programme, BOQ, rates, claims, tender information or internal procedures are represented as source data."
-                           }
+{
+  "doctrine": {
+    "title": "Lean Project Controls Doctrine",
+    "summary": "Preserve the baseline, status one current forecast, and test recovery separately.",
+    "principles": [
+      "Public fact and assessment simulation are explicitly separated.",
+      "Baseline → Actual Progress → Recovery is the reviewer-facing schedule governance chain.",
+      "No manpower hours, wage rates or productivity data are fabricated.",
+      "Recovery remains conditional on Construction, Engineering, Procurement, QA/QC, HSE and Commercial validation.",
+      "Forecast difference is not automatically contractual delay or entitlement."
+    ]
+  },
+  "documentControl": {
+    "documentId": "MF-CPC-TA-002",
+    "revision": "B — Lean Recovery Submission",
+    "status": "Technical Assessment / Illustrative",
+    "preparedBy": "Michael Futol",
+    "dataDate": "2026-05-05",
+    "scheduleCalendar": "Monday-Saturday, 8 h/day; Sunday non-working",
+    "controlNote": "Public project facts anchor the case; detailed control logic remains assessment-derived."
+  },
+  "assessmentBoundary": {
+    "public": "October-2025 start month, 30-month published period, public package value, 4.19% progress at 05-May-2026, July-2028 current completion target.",
+    "illustrative": "Exact model start day, 49-activity schedule logic, task-level status allocation, BOQ/control budget, remaining-duration placement and recovery actions.",
+    "confidentiality": "No Kubota Construction confidential programme, BOQ, rates, claims, tender information or internal procedures are represented."
+  }
 }
