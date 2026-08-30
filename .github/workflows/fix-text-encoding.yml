@@ -18,33 +18,22 @@ jobs:
           fetch-depth: 0
 
       - name: Repair known mojibake sequences
-        shell: python
         run: |
+          python - <<'PY'
           from pathlib import Path
 
           replacements = {
-              'mÂ³': 'm³',
-              'mÂ²': 'm²',
-              'â€”': '—',
-              'â€“': '–',
-              'â†’': '→',
-              'â†“': '↓',
-              'â†—': '↗',
-              'â‰¤': '≤',
-              'â‰¥': '≥',
-              'Â¥': '¥',
-              'â€¦': '…',
-              'â€œ': '“',
-              'â€': '”',
-              'â€˜': '‘',
-              'â€™': '’',
+              'm\u00c2\u00b3': 'm\u00b3',
+              'm\u00c2\u00b2': 'm\u00b2',
+              '\u00e2\u20ac\u201d': '\u2014',
+              '\u00e2\u20ac\u201c': '\u2013',
+              '\u00c2\u00a5': '\u00a5',
           }
 
-          roots = [Path('data'), Path('app')]
           files = [Path('README.md')]
-          for root in roots:
+          for root in (Path('data'), Path('app')):
               if root.exists():
-                  files.extend(p for p in root.rglob('*') if p.suffix.lower() in {'.json','.ts','.tsx','.md','.css'})
+                  files.extend(p for p in root.rglob('*') if p.suffix.lower() in {'.json', '.ts', '.tsx', '.md', '.css'})
 
           changed = []
           for path in files:
@@ -58,19 +47,18 @@ jobs:
                   path.write_text(text, encoding='utf-8')
                   changed.append(str(path))
 
-          print('Changed files:')
-          for path in changed:
-              print(' -', path)
+          print('Changed:', changed)
 
           leftovers = []
           for path in files:
               if not path.exists() or not path.is_file():
                   continue
               text = path.read_text(encoding='utf-8')
-              if 'Â' in text or 'â€' in text or 'â†' in text or 'â‰' in text:
+              if '\u00c2\u00b3' in text or '\u00c2\u00b2' in text or '\u00e2\u20ac\u201d' in text:
                   leftovers.append(str(path))
           if leftovers:
-              raise SystemExit('Unresolved mojibake remains in: ' + ', '.join(leftovers))
+              raise SystemExit('Known mojibake remains in: ' + ', '.join(leftovers))
+          PY
 
       - name: Commit repaired text
         run: |
@@ -83,5 +71,3 @@ jobs:
           git add data app README.md
           git commit -m "fix: normalize reviewer-facing UTF-8 text"
           git push
-
-      # Trigger marker: 2026-08-30 final submission QA
