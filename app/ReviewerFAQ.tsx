@@ -28,6 +28,10 @@ const questions = [
     a: <>The separate recovery test targets downstream critical work after the delayed filter structure: <code>WTP-CIV-070</code> Internal Channels / Pipe Galleries and <code>WTP-CIV-080</code> Waterproofing / Protective Coating, with an illustrative five-working-day duration recovery target on each. Possible implementation methods include resequencing, selective safe fast-tracking and targeted resource increases. Those methods are not assumed to be automatically feasible; they require constructability, resource, safety, quality and cost validation by the project team before commitment.</>
   },
   {
+    q: 'Why not simply shorten the delayed activity itself?',
+    a: <>Because the delay may already have occurred or may represent a condition that cannot realistically be reversed. Recovery planning should examine the remaining controlling chain rather than rewrite the historical event that caused the delay. In this assessment, intervention is tested on downstream critical work where sequencing, interfaces or resources may provide a genuine opportunity to regain time.</>
+  },
+  {
     q: 'Why is the Recovery Programme separate from the approved baseline?',
     a: <>Because the baseline is the approved reference against which performance and change are measured. A recovery proposal should not erase the evidence of the original commitment or the current forecast. This assessment therefore preserves the baseline, keeps the delay scenario as a separate test case and develops recovery as a separate programme that can be recalculated, reviewed and accepted or rejected without rewriting history.</>
   },
@@ -41,7 +45,7 @@ const questions = [
   },
   {
     q: 'Is the Microsoft Project file a contractual cost-loaded or manpower-loaded programme?',
-    a: <>No. BOQ-linked control values are mirrored into native Project custom cost fields for reconciliation and reviewer inspection; they are not represented as incurred accounting cost. Resources prefixed <code>CTRL -</code> are normalized schedule-derived control workstreams so that native Work / Resource Usage views are meaningful. They are not a manpower histogram, staffing commitment or productivity promise.</>
+    a: <>No. BOQ-linked control values are mirrored into native Project custom cost fields for reconciliation and reviewer inspection; they are not represented as incurred accounting cost. Resources prefixed <code>CTRL -</code> are normalized schedule-derived control workstreams so that native Work / Resource Usage views are meaningful. Their Work is a schedule-derived control quantity based on task duration, with zero rates; it is not a manpower histogram, staffing commitment or productivity promise.</>
   },
   {
     q: 'Why use native Microsoft Project instead of only showing a static Gantt chart?',
