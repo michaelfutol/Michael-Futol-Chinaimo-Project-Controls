@@ -45,7 +45,7 @@ const questions = [
   },
   {
     q: 'Is the Microsoft Project file a contractual cost-loaded or manpower-loaded programme?',
-    a: <>No. BOQ-linked control values are mirrored into native Project custom cost fields for reconciliation and reviewer inspection; they are not represented as incurred accounting cost. Resources prefixed <code>CTRL -</code> are normalized schedule-derived control workstreams so that native Work / Resource Usage views are meaningful. Their Work is a schedule-derived control quantity based on task duration, with zero rates; it is not a manpower histogram, staffing commitment or productivity promise.</>
+    a: <>No. BOQ-linked control values are mirrored into native Project custom cost fields for reconciliation and reviewer inspection; they are not represented as incurred accounting cost. Resources prefixed <code>CTRL -</code> are schedule-derived workstream classification labels used for reconciliation and navigation. No manpower hours, staffing levels, productivity commitments or resource rates are fabricated in this assessment; the programme is therefore not presented as manpower-loaded.</>
   },
   {
     q: 'Why use native Microsoft Project instead of only showing a static Gantt chart?',
