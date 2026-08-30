@@ -83,3 +83,5 @@ jobs:
           git add data app README.md
           git commit -m "fix: normalize reviewer-facing UTF-8 text"
           git push
+
+      # Trigger marker: 2026-08-30 final submission QA
