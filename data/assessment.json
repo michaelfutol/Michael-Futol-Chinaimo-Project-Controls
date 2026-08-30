@@ -1,6 +1,6 @@
-﻿{
+{
     "meta":  {
-                 "title":  "Michael Futol â€” Chinaimo Project Controls Assessment",
+                 "title":  "Michael Futol — Chinaimo Project Controls Assessment",
                  "subtitle":  "Independent Chinaimo project-controls case study",
                  "dataBoundary":  "Public project scope informs the case context. Quantities, rates, durations, logic, progress and claims are assessment control data. Delay cases are technical-assessment scenario inputs used solely for schedule-impact analysis and are not represented as actual project delay records.",
                  "projectStart":  "2026-09-01",
@@ -184,7 +184,7 @@
                     "id":  "CIV-001",
                     "wbs":  "3.0/4.0/7.0",
                     "description":  "Earthworks / Excavation / Dewatering",
-                    "unit":  "mÂ³",
+                    "unit":  "m³",
                     "contractQty":  185000,
                     "rate":  2000,
                     "amount":  370000000,
@@ -202,7 +202,7 @@
                     "id":  "RC-001",
                     "wbs":  "3.0/4.0/7.0",
                     "description":  "Structural Concrete",
-                    "unit":  "mÂ³",
+                    "unit":  "m³",
                     "contractQty":  45000,
                     "rate":  30000,
                     "amount":  1350000000,
@@ -238,7 +238,7 @@
                     "id":  "FW-001",
                     "wbs":  "3.0/4.0/7.0",
                     "description":  "Formwork",
-                    "unit":  "mÂ²",
+                    "unit":  "m²",
                     "contractQty":  170000,
                     "rate":  2000,
                     "amount":  340000000,
@@ -256,7 +256,7 @@
                     "id":  "WPF-001",
                     "wbs":  "3.0/4.0",
                     "description":  "Waterproofing / Protective Coating",
-                    "unit":  "mÂ²",
+                    "unit":  "m²",
                     "contractQty":  85000,
                     "rate":  2000,
                     "amount":  170000000,
@@ -419,7 +419,7 @@
                       {
                           "id":  "A",
                           "name":  "Critical Activity Delay",
-                          "activity":  "WTP-CIV-060 â€” Rapid Sand Filter Structure",
+                          "activity":  "WTP-CIV-060 — Rapid Sand Filter Structure",
                           "reportedDelay":  10,
                           "baselineCritical":  "Yes",
                           "baselineFinish":  "2029-01-15",
@@ -433,7 +433,7 @@
                       {
                           "id":  "B",
                           "name":  "Non-Critical Delay",
-                          "activity":  "BLDG-030 â€” Administration \u0026 Laboratory Building",
+                          "activity":  "BLDG-030 — Administration \u0026 Laboratory Building",
                           "reportedDelay":  15,
                           "baselineCritical":  "No",
                           "baselineFinish":  "2029-01-15",
@@ -461,7 +461,7 @@
                       {
                           "id":  "D",
                           "name":  "Procurement Watch",
-                          "activity":  "PROC-030 â€” Electrical / Receiving Equipment",
+                          "activity":  "PROC-030 — Electrical / Receiving Equipment",
                           "reportedDelay":  10,
                           "baselineCritical":  "No",
                           "baselineFinish":  "2029-01-15",
