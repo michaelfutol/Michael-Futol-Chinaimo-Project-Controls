@@ -1,0 +1,57 @@
+name: Publish Final Office Binaries
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.binary-staging/final/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and verify exact Office files
+        shell: python
+        run: |
+          from pathlib import Path
+          import base64, hashlib
+
+          specs = {
+            'excel': ('Michael_Futol_Chinaimo_Project_Controls.xlsx', 57387, 'c74d05c2efbb33ee8c36b24f3a6285df4e16a643a3f1bc625ca8b18aff39c529'),
+            'en': ('CHINAIMO_PROJECT_CONTROLS_QA_FINAL_REVIEWED_EN.docx', 18789, '02967610b290bf583886151066eb8b98ec6a5a8e4fe9269d1fef1b1e94a52530'),
+            'jp': ('CHINAIMO_PROJECT_CONTROLS_QA_JAPANESE_REVIEWER_COMPANION.docx', 20021, '4b987ffd9df186a9b97fe3eb3a6b50e407094ade1ba5439e05196fa70ac59eb9'),
+          }
+          src = Path('.binary-staging/final')
+          out = Path('public/downloads')
+          out.mkdir(parents=True, exist_ok=True)
+          for key, (name, expected_size, expected_sha) in specs.items():
+              parts = sorted(src.glob(f'{key}.part*'))
+              if not parts:
+                  raise SystemExit(f'No staged parts for {key}')
+              encoded = ''.join(p.read_text(encoding='ascii').strip() for p in parts)
+              data = base64.b64decode(encoded, validate=True)
+              actual_sha = hashlib.sha256(data).hexdigest()
+              if len(data) != expected_size:
+                  raise SystemExit(f'{name}: size {len(data)} != {expected_size}')
+              if actual_sha != expected_sha:
+                  raise SystemExit(f'{name}: sha256 {actual_sha} != {expected_sha}')
+              (out / name).write_bytes(data)
+              print(f'VERIFIED {name}: {len(data)} bytes sha256={actual_sha}')
+
+      - name: Commit exact binaries and clean staging
+        shell: bash
+        run: |
+          rm -rf .binary-staging/final
+          rm -f .github/workflows/publish-final-office.yml
+          git config user.name "FutolTech Submission QA"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "deliverables: publish exact final Excel and bilingual reviewer Word files"
+          git push
