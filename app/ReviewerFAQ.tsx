@@ -45,7 +45,11 @@ const questions = [
   },
   {
     q: 'Is the Microsoft Project file a contractual cost-loaded or manpower-loaded programme?',
-    a: <>No. BOQ-linked control values are mirrored into native Project custom cost fields for reconciliation and reviewer inspection; they are not represented as incurred accounting cost. Resources prefixed <code>CTRL -</code> are schedule-derived workstream classification labels used for reconciliation and navigation. No manpower hours, staffing levels, productivity commitments or resource rates are fabricated in this assessment; the programme is therefore not presented as manpower-loaded.</>
+    a: <>No. BOQ-linked control values are mirrored into native Project custom cost fields for reconciliation and reviewer inspection; they are not represented as incurred accounting cost. Resources prefixed <code>CTRL -</code> are control-workstream classification labels, not crews. Resource Sheet and Resource Usage may therefore show zero resource rates and <code>0 hrs</code> by design: no labour hours, staffing levels, productivity commitments or resource rates have been invented for this assessment. Any Max Units value on these classification resources is not a headcount commitment. Unused continuation rows in the Resource Usage grid are normal Microsoft Project view rows and do not represent additional assignments.</>
+  },
+  {
+    q: 'Why are six separate Microsoft Project models submitted instead of one file?',
+    a: <>The six files form an auditable assessment evidence set: Baseline; Scenario A — Critical Delay; Scenario B — Non-Critical Delay; Scenario C — Concurrent Delays; Scenario D — Procurement Watch; and Recovery Programme. Keeping them separate lets a reviewer open and recalculate each case independently without one scenario overwriting the baseline or another scenario. On a live project, this does not mean maintaining six operational schedules: the normal control structure would preserve the approved baseline, maintain the current statused forecast, and use controlled recovery or what-if copies when needed.</>
   },
   {
     q: 'Why use native Microsoft Project instead of only showing a static Gantt chart?',
