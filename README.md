@@ -2,16 +2,26 @@
 
 Auditable project-controls case study built around publicly available Chinaimo / Vientiane water-supply project context. The repository is the technical audit trail; the deployed webpage is the reviewer-facing project-controls workspace.
 
+## Primary schedule-control story
+
+The submission is organized around **three controlled schedule states**:
+
+1. **Baseline Programme** — the fixed reference commitment. It preserves the original logic, dates and completion milestone and is never overwritten by later status or recovery work.
+2. **Running / Current Schedule** — the live status model at the Data Date, carrying actual progress/status, remaining work, current forecast and variance against the preserved baseline.
+3. **Recovery Programme** — a separate forward-looking recovery model used to test practical measures for restoring or protecting the completion target without rewriting the baseline.
+
+The critical, non-critical, concurrent-delay and procurement-watch cases remain supporting CPM analysis evidence. They are not presented as four additional primary programmes and are not represented as actual Chinaimo project delay records.
+
 ## Reviewer path
 
 1. **Overview** — project status, Data Date, Planned vs Actual, baseline finish and current claim.
 2. **Progress Control** — cumulative S-Curve, monthly production and variance.
 3. **BOQ / Measurement** — quantities, rates, previous/current/cumulative measurement and remaining balance.
-4. **Planning / CPM** — 49-activity WBS, durations, dependencies, tracking Gantt, critical path and float/slack health.
-5. **Delay Analysis** — critical, non-critical, concurrent and procurement-watch scenarios with baseline vs forecast results.
+4. **Planning / CPM** — Baseline → Running / Current → Recovery, supported by 49-activity WBS, dependencies, tracking Gantt, critical path and float/slack health.
+5. **Delay Analysis** — supporting critical, non-critical, concurrent and procurement-watch tests explaining why activity delay is not automatically project delay.
 6. **Monthly Payment Claim** — Previous, Current, Cumulative and Remaining quantities/amounts with BOQ QA.
 7. **Management-System Controls** — document control, source boundary and ISO-compatible project-controls concepts.
-8. **Working Files** — native Excel workbook, Microsoft Project schedule package and printable PDF.
+8. **Working Files** — native Excel workbook, Microsoft Project schedule evidence and reviewer documents.
 
 ## Data authority
 
@@ -42,12 +52,12 @@ Exact links are preserved in `data/governance.json` and surfaced in the webpage.
 app/
   page.tsx                 # reviewer workspace
   ProgressExplorer.tsx     # S-Curve / variance / monthly progress
-  ScheduleExplorer.tsx     # baseline + scenario Gantt / CPM views
+  ScheduleExplorer.tsx     # baseline/current/recovery + supporting CPM analysis views
   globals.css              # visual system
   governance.css           # document-control / governance presentation
 
 data/
-  assessment.json          # BOQ, progress, claims and scenarios
+  assessment.json          # BOQ, progress, claims and scenario evidence
   schedule.json            # 49-activity schedule source table
   governance.json          # source register and control basis
 
