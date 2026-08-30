@@ -1,0 +1,554 @@
+/*
+  CHINAIMO REVIEW PACKAGE — EDITORIAL SKIN
+  Visual doctrine: 1990s field magazine / engineering notebook / archival technical report.
+  No brand imitation; yellow is used only as a restrained editorial locator.
+  Data, interaction and document-control logic remain unchanged.
+*/
+
+:root{
+  --paper:#f2eddf;
+  --paper-light:#faf7ee;
+  --paper-deep:#e7dfcd;
+  --ink:#171714;
+  --graphite:#4b4941;
+  --muted:#777165;
+  --rule:#b8af9d;
+  --rule-dark:#2c2b27;
+  --field-yellow:#d9ad16;
+  --field-yellow-soft:#ead47c;
+  --critical:#a5251d;
+  --safe:#315c44;
+}
+
+html{scroll-behavior:smooth;background:var(--paper)}
+body{
+  background:
+    linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.04)),
+    repeating-linear-gradient(0deg,rgba(62,55,39,.018) 0,rgba(62,55,39,.018) 1px,transparent 1px,transparent 5px),
+    var(--paper) !important;
+  color:var(--ink) !important;
+  font-family:Arial,Helvetica,sans-serif !important;
+  letter-spacing:.002em;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:linear-gradient(90deg,rgba(255,255,255,.16),transparent 18%,transparent 82%,rgba(55,48,35,.025));
+}
+
+main{
+  max-width:1480px !important;
+  margin:0 auto !important;
+  padding:70px 34px 54px !important;
+}
+
+/* Language / concept index — like a magazine folio, not a floating SaaS pill. */
+.languageRibbon{
+  position:fixed;
+  z-index:1000;
+  top:0;
+  left:0;
+  right:0;
+  min-height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:14px;
+  padding:0 28px;
+  background:rgba(242,237,223,.97);
+  border-bottom:1px solid var(--rule-dark);
+  color:var(--ink);
+  font:700 10px/1 Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.languageRibbon:before{
+  content:"REVIEWER EDITION  ·  CHINAIMO";
+  margin-right:auto;
+  font-family:"Courier New",monospace;
+  font-weight:400;
+  letter-spacing:.11em;
+  color:var(--graphite);
+}
+.languageRibbon a{color:inherit;text-decoration:none;padding:13px 0 10px;border-bottom:3px solid transparent}
+.languageRibbon a:hover{border-bottom-color:var(--field-yellow)}
+.languageRibbon .sep{opacity:.38}
+
+/* Existing faux-application chrome becomes a technical folio / document strip. */
+.projectChrome{
+  margin:0 0 18px !important;
+  border:0 !important;
+  border-top:5px solid var(--ink) !important;
+  border-bottom:1px solid var(--ink) !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.projectTitleBar{
+  min-height:58px !important;
+  padding:11px 0 9px !important;
+  background:transparent !important;
+  color:var(--ink) !important;
+}
+.projectTitleBar b{
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:18px !important;
+  font-weight:700 !important;
+  letter-spacing:.005em !important;
+}
+.projectTitleBar small{color:var(--graphite) !important;font:10px/1.35 "Courier New",monospace !important;letter-spacing:.06em !important}
+.projectAppMark{
+  width:31px !important;height:31px !important;
+  border-radius:0 !important;
+  background:var(--field-yellow) !important;
+  color:var(--ink) !important;
+  border:1px solid var(--ink) !important;
+  box-shadow:3px 3px 0 var(--ink) !important;
+}
+.projectState{
+  border:1px solid var(--ink) !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  color:var(--ink) !important;
+  font-family:"Courier New",monospace !important;
+  letter-spacing:.08em !important;
+}
+.projectRibbon{
+  padding:8px 0 !important;
+  border-top:1px solid var(--rule) !important;
+  background:transparent !important;
+  color:var(--graphite) !important;
+  font-size:9px !important;
+  letter-spacing:.12em !important;
+}
+.projectRibbon b{margin-left:auto;color:var(--ink) !important;font-family:"Courier New",monospace !important;font-weight:400 !important}
+
+/* Hero — editorial opening spread. */
+.hero{
+  position:relative;
+  display:grid !important;
+  grid-template-columns:minmax(0,1.45fr) minmax(310px,.55fr) !important;
+  gap:58px !important;
+  margin:0 !important;
+  padding:54px 0 48px !important;
+  background:transparent !important;
+  color:var(--ink) !important;
+  border:0 !important;
+  border-bottom:2px solid var(--ink) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+.hero:before{
+  content:"01";
+  position:absolute;
+  left:-3px;
+  top:16px;
+  padding-left:11px;
+  border-left:7px solid var(--field-yellow);
+  font:700 10px/1 "Courier New",monospace;
+  letter-spacing:.12em;
+  color:var(--graphite);
+}
+.hero:after{
+  content:"TECHNICAL FIELD NOTE  /  PROJECT CONTROLS";
+  position:absolute;
+  right:0;
+  bottom:10px;
+  color:var(--muted);
+  font:9px/1 "Courier New",monospace;
+  letter-spacing:.12em;
+}
+.eyebrow,
+.sectionNo,
+.deliverableLabel{
+  color:var(--graphite) !important;
+  font:700 10px/1.25 "Courier New",monospace !important;
+  letter-spacing:.13em !important;
+}
+.hero h1{
+  max-width:820px;
+  margin:14px 0 14px !important;
+  color:var(--ink) !important;
+  font:700 clamp(54px,7vw,104px)/.88 Georgia,"Times New Roman",serif !important;
+  letter-spacing:-.055em !important;
+}
+.heroLead{
+  max-width:760px !important;
+  margin:0 0 27px !important;
+  color:var(--graphite) !important;
+  font:italic 20px/1.48 Georgia,"Times New Roman",serif !important;
+}
+.heroTags{gap:0 !important;border-top:1px solid var(--rule) !important;border-bottom:1px solid var(--rule) !important;padding:7px 0 !important}
+.heroTags span{
+  background:transparent !important;
+  border:0 !important;
+  border-right:1px solid var(--rule) !important;
+  border-radius:0 !important;
+  color:var(--graphite) !important;
+  padding:5px 12px 5px 0 !important;
+  margin-right:12px !important;
+  font:700 9px/1.2 Arial,Helvetica,sans-serif !important;
+  letter-spacing:.07em !important;
+  text-transform:uppercase !important;
+}
+.heroAction{
+  align-self:end;
+  padding:22px 0 4px 26px !important;
+  border-left:1px solid var(--ink) !important;
+  background:transparent !important;
+}
+.primaryBtn,.secondaryBtn,.miniDownload{
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+.primaryBtn{
+  background:var(--ink) !important;
+  color:var(--paper-light) !important;
+  border:1px solid var(--ink) !important;
+  border-left:8px solid var(--field-yellow) !important;
+}
+.primaryBtn:hover{transform:none !important;background:#2a2924 !important}
+.primaryBtn span{color:#d8d1c1 !important}
+.secondaryBtn,.miniDownload{
+  background:transparent !important;
+  color:var(--ink) !important;
+  border:1px solid var(--ink) !important;
+}
+.secondaryBtn:hover,.miniDownload:hover{background:var(--field-yellow-soft) !important}
+.textLink{color:var(--ink) !important;text-decoration:underline !important;text-underline-offset:3px}
+
+/* Navigation — ruled contents index. */
+.navBar{
+  position:sticky !important;
+  top:38px !important;
+  z-index:80 !important;
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:0 !important;
+  margin:0 0 26px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-bottom:1px solid var(--ink) !important;
+  border-radius:0 !important;
+  background:rgba(242,237,223,.96) !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+}
+.navBar a{
+  padding:10px 12px 9px 0 !important;
+  margin-right:14px !important;
+  color:var(--graphite) !important;
+  border:0 !important;
+  border-bottom:3px solid transparent !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  font-size:9px !important;
+  font-weight:700 !important;
+  letter-spacing:.075em !important;
+  text-transform:uppercase !important;
+}
+.navBar a:hover{color:var(--ink) !important;border-bottom-color:var(--field-yellow) !important}
+
+.notice{
+  margin:0 0 18px !important;
+  padding:11px 0 11px 18px !important;
+  border:0 !important;
+  border-left:5px solid var(--field-yellow) !important;
+  border-top:1px solid var(--rule) !important;
+  border-bottom:1px solid var(--rule) !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  color:var(--graphite) !important;
+  font:13px/1.5 Georgia,"Times New Roman",serif !important;
+}
+.notice b{color:var(--ink)}
+
+.docControlBar{
+  display:grid !important;
+  grid-template-columns:repeat(5,1fr) !important;
+  gap:0 !important;
+  margin:0 0 36px !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:1px solid var(--ink) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+.docControlBar>div{padding:10px 12px !important;border-right:1px solid var(--rule) !important}
+.docControlBar>div:last-child{border-right:0 !important}
+.docControlBar small{color:var(--muted) !important;font:8px/1 "Courier New",monospace !important;letter-spacing:.12em !important}
+.docControlBar b{color:var(--ink) !important;font:700 11px/1.4 Arial,Helvetica,sans-serif !important}
+
+.reviewPath{
+  display:grid !important;
+  grid-template-columns:repeat(5,1fr) !important;
+  gap:0 !important;
+  margin:0 0 40px !important;
+  border-top:2px solid var(--ink) !important;
+  border-bottom:1px solid var(--ink) !important;
+}
+.reviewStep{
+  min-height:92px !important;
+  padding:15px 14px 14px 0 !important;
+  margin-right:15px !important;
+  border:0 !important;
+  border-right:1px solid var(--rule) !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.reviewStep:last-child{border-right:0 !important}
+.reviewStep>span{
+  background:transparent !important;
+  color:var(--field-yellow) !important;
+  border:0 !important;
+  border-radius:0 !important;
+  font:700 24px/1 Georgia,"Times New Roman",serif !important;
+}
+.reviewStep b{font-family:Georgia,"Times New Roman",serif !important;font-size:14px !important}
+.reviewStep small{color:var(--muted) !important}
+
+/* KPI band — numbers as editorial data, not cards. */
+.kpis,.claimKpis{
+  display:grid !important;
+  gap:0 !important;
+  background:transparent !important;
+  border-top:1px solid var(--ink) !important;
+  border-bottom:1px solid var(--ink) !important;
+  margin:0 0 50px !important;
+}
+.kpis{grid-template-columns:repeat(4,1fr) !important}
+.claimKpis{grid-template-columns:repeat(4,1fr) !important}
+.kpi{
+  min-height:108px !important;
+  padding:17px 16px 14px 0 !important;
+  margin-right:16px !important;
+  background:transparent !important;
+  border:0 !important;
+  border-right:1px solid var(--rule) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+.kpi:nth-child(4n){border-right:0 !important}
+.kpi small{color:var(--muted) !important;font:700 8px/1.3 "Courier New",monospace !important;letter-spacing:.09em !important;text-transform:uppercase !important}
+.kpi b{display:block;margin-top:8px;color:var(--ink) !important;font:700 clamp(22px,2.3vw,36px)/1 Georgia,"Times New Roman",serif !important;letter-spacing:-.03em !important}
+.kpi.bad b,.negative{color:var(--critical) !important}
+
+/* Main chapters — flat editorial spreads. */
+.panel{
+  position:relative;
+  margin:0 0 66px !important;
+  padding:34px 0 44px !important;
+  background:transparent !important;
+  border:0 !important;
+  border-top:3px solid var(--ink) !important;
+  border-bottom:1px solid var(--rule) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+.panel:before{
+  content:"";
+  position:absolute;
+  top:-3px;
+  left:0;
+  width:78px;
+  height:3px;
+  background:var(--field-yellow);
+}
+.sectionHead{align-items:flex-start !important;margin-bottom:30px !important;border:0 !important;padding:0 !important}
+.sectionHead>div{max-width:850px}
+.sectionHead h2,.downloadIntro h2{
+  margin:7px 0 9px !important;
+  color:var(--ink) !important;
+  font:700 clamp(30px,4vw,54px)/1 Georgia,"Times New Roman",serif !important;
+  letter-spacing:-.035em !important;
+}
+.sectionHead p,.downloadIntro p{max-width:800px;color:var(--graphite) !important;font:15px/1.6 Georgia,"Times New Roman",serif !important}
+.sectionNo{display:inline-block;padding-left:10px;border-left:5px solid var(--field-yellow)}
+.statusPill,.criticalPill{
+  background:transparent !important;
+  border:1px solid var(--ink) !important;
+  border-radius:0 !important;
+  color:var(--ink) !important;
+  font:700 8px/1 "Courier New",monospace !important;
+  letter-spacing:.1em !important;
+}
+.criticalPill{border-color:var(--critical) !important;color:var(--critical) !important}
+
+/* Interactive elements keep functionality but look like instrument panels / notebook inserts. */
+.viewTabs,.coverageGroup,.chartCard,.ganttShell,.networkCard,.scenarioSummary,.resultBanner,.resultStrip,
+.solutionBox,.doctrineCard,.controlRule,.commentaryRule,.reconcileStrip,.details,.controlNote{
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+.viewTabs,.coverageGroup{
+  padding:0 0 8px !important;
+  background:transparent !important;
+  border:0 !important;
+  border-bottom:1px solid var(--rule) !important;
+}
+.viewTabs button,.coverageGroup button{
+  border-radius:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-right:1px solid var(--rule) !important;
+  color:var(--graphite) !important;
+  font-size:10px !important;
+  letter-spacing:.06em !important;
+  text-transform:uppercase !important;
+}
+.viewTabs button.active,.coverageGroup button.active{
+  background:var(--field-yellow) !important;
+  color:var(--ink) !important;
+}
+.chartCard,.ganttShell,.networkCard{
+  background:rgba(250,247,238,.48) !important;
+  border:1px solid var(--rule-dark) !important;
+}
+.chartCard:before,.ganttShell:before,.networkCard:before{
+  content:"FIGURE  /  CONTROL EVIDENCE";
+  display:block;
+  padding:7px 9px;
+  border-bottom:1px solid var(--rule);
+  color:var(--muted);
+  font:8px/1 "Courier New",monospace;
+  letter-spacing:.11em;
+}
+
+.resultStrip,.scenarioDates,.controlRule,.commentaryRule,.reconcileStrip{
+  background:transparent !important;
+  border:1px solid var(--rule-dark) !important;
+}
+.resultStrip>div,.scenarioDates>div{border-right:1px solid var(--rule) !important}
+.resultStrip small,.scenarioDates small,.solutionBox small{font-family:"Courier New",monospace !important;letter-spacing:.09em !important;color:var(--muted) !important}
+
+/* Tables — archival report rules. */
+.tableScroll{
+  background:rgba(250,247,238,.38) !important;
+  border:1px solid var(--rule-dark) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+table{border-collapse:collapse !important;background:transparent !important}
+th{
+  background:var(--ink) !important;
+  color:var(--paper-light) !important;
+  border-color:#4a483f !important;
+  font:700 8px/1.25 "Courier New",monospace !important;
+  letter-spacing:.07em !important;
+  text-transform:uppercase !important;
+}
+td{background:transparent !important;color:var(--ink) !important;border-color:var(--rule) !important;font-size:11px !important}
+tbody tr:nth-child(even) td{background:rgba(255,255,255,.19) !important}
+tbody tr:hover td{background:rgba(217,173,22,.13) !important}
+code{background:transparent !important;color:var(--ink) !important;border:0 !important;padding:0 !important;font-family:"Courier New",monospace !important}
+.criticalRow td{background:rgba(165,37,29,.055) !important}
+.qaOk{color:var(--safe) !important;font-family:"Courier New",monospace !important;font-weight:700 !important}
+.progressCell{background:transparent !important;border:1px solid var(--rule) !important;border-radius:0 !important}
+.progressCell i{background:var(--field-yellow) !important;opacity:.55 !important}
+
+/* Delay cases — numbered case files, not cards. */
+.scenarioGrid{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:28px 34px !important}
+.scenario{
+  position:relative;
+  padding:22px 0 26px 22px !important;
+  background:transparent !important;
+  border:0 !important;
+  border-left:1px solid var(--ink) !important;
+  border-top:1px solid var(--ink) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+.scenario:before{content:"";position:absolute;left:-1px;top:-1px;width:7px;height:38px;background:var(--field-yellow)}
+.scenarioTop{font-family:"Courier New",monospace !important;letter-spacing:.08em !important}
+.scenario h3{font:700 24px/1.05 Georgia,"Times New Roman",serif !important;color:var(--ink) !important}
+.activityName{font-family:"Courier New",monospace !important;color:var(--graphite) !important}
+.impactBad{color:var(--critical) !important}.impactOk{color:var(--safe) !important}
+.solutionBox{background:transparent !important;border:0 !important;border-top:1px solid var(--rule) !important;border-bottom:1px solid var(--rule) !important;padding:12px 0 !important}
+.scenario details,.details{background:transparent !important;border:0 !important;border-top:1px dashed var(--rule) !important}
+summary{color:var(--ink) !important;font-family:Georgia,"Times New Roman",serif !important}
+
+/* Governance / authority blocks. */
+.doctrineCard{
+  background:transparent !important;
+  border:1px solid var(--ink) !important;
+  border-left:8px solid var(--field-yellow) !important;
+}
+.isoGrid,.authorityGrid,.downloadGrid,.sourceGrid,.boundaryGrid{gap:0 !important;border-top:1px solid var(--ink) !important;border-bottom:1px solid var(--ink) !important}
+.isoGrid>article,.authorityGrid>div,.downloadGrid>a,.sourceGrid>*,.boundaryGrid>*{
+  background:transparent !important;
+  border:0 !important;
+  border-right:1px solid var(--rule) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+.isoGrid>article:last-child,.authorityGrid>div:last-child,.downloadGrid>a:last-child{border-right:0 !important}
+.isoGrid h3,.authorityGrid b,.downloadGrid b{font-family:Georgia,"Times New Roman",serif !important;color:var(--ink) !important}
+.isoGrid span,.authorityTool{color:var(--muted) !important;font-family:"Courier New",monospace !important;letter-spacing:.07em !important}
+.authorityTool{background:var(--field-yellow) !important;border-radius:0 !important;color:var(--ink) !important}
+
+/* FAQ becomes a ruled interview notebook. */
+#reviewer-qa article,
+.faqItem{
+  background:transparent !important;
+  border:0 !important;
+  border-top:1px solid var(--rule) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+#reviewer-qa h3,.faqItem h3,.faqItem summary{font-family:Georgia,"Times New Roman",serif !important;color:var(--ink) !important}
+#reviewer-qa p,.faqItem p{font-family:Georgia,"Times New Roman",serif !important;color:var(--graphite) !important;line-height:1.65 !important}
+
+/* Downloads — evidence catalogue. */
+.downloads{padding-top:38px !important}
+.downloadGrid a{padding:24px 20px 24px 0 !important;color:var(--ink) !important}
+.downloadGrid a:hover{background:rgba(217,173,22,.12) !important;transform:none !important}
+.downloadGrid em{color:var(--critical) !important;font:700 9px/1 "Courier New",monospace !important;letter-spacing:.08em !important}
+
+footer{
+  margin-top:70px !important;
+  padding:22px 0 0 !important;
+  border-top:4px solid var(--ink) !important;
+  background:transparent !important;
+  color:var(--graphite) !important;
+  font-family:"Courier New",monospace !important;
+  font-size:9px !important;
+  letter-spacing:.05em !important;
+}
+footer:before{content:"FIELD RECORD  ·  AUDITABLE PROJECT CONTROLS";display:block;width:max-content;margin-bottom:16px;padding:7px 10px;background:var(--field-yellow);color:var(--ink);font-weight:700;letter-spacing:.1em}
+
+/* Japanese typography: keep editorial hierarchy but never sacrifice readability. */
+html[lang="ja"] body,.jaPage{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",Arial,sans-serif !important}
+html[lang="ja"] h1,html[lang="ja"] h2,html[lang="ja"] h3,.jaPage h1,.jaPage h2,.jaPage h3{font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",Georgia,serif !important;letter-spacing:-.015em !important}
+
+@media(max-width:980px){
+  main{padding:62px 20px 40px !important}
+  .hero{grid-template-columns:1fr !important;gap:28px !important}
+  .heroAction{border-left:0 !important;border-top:1px solid var(--ink) !important;padding:20px 0 0 !important}
+  .kpis{grid-template-columns:repeat(2,1fr) !important}
+  .kpi:nth-child(2n){border-right:0 !important}
+  .reviewPath{grid-template-columns:repeat(2,1fr) !important}
+  .scenarioGrid{grid-template-columns:1fr !important}
+  .docControlBar{grid-template-columns:repeat(2,1fr) !important}
+  .languageRibbon:before{display:none}
+}
+
+@media(max-width:640px){
+  .languageRibbon{justify-content:flex-start;gap:8px;padding:0 12px;font-size:8px;overflow-x:auto;white-space:nowrap}
+  main{padding:54px 14px 30px !important}
+  .projectRibbon{overflow-x:auto;white-space:nowrap}
+  .hero{padding-top:42px !important}
+  .hero h1{font-size:50px !important}
+  .heroLead{font-size:17px !important}
+  .kpis,.claimKpis,.reviewPath,.docControlBar{grid-template-columns:1fr !important}
+  .kpi,.reviewStep,.docControlBar>div{border-right:0 !important;border-bottom:1px solid var(--rule) !important;margin-right:0 !important}
+  .navBar{top:38px !important;overflow-x:auto !important;flex-wrap:nowrap !important;white-space:nowrap !important}
+  .sectionHead{display:block !important}
+  .statusPill,.criticalPill,.miniDownload{display:inline-block;margin-top:12px}
+  .isoGrid,.authorityGrid,.downloadGrid{display:block !important}
+  .isoGrid>article,.authorityGrid>div,.downloadGrid>a{border-right:0 !important;border-bottom:1px solid var(--rule) !important}
+}
