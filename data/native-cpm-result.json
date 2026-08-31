@@ -1,0 +1,169 @@
+﻿{
+    "status":  "PASS",
+    "timestamp_utc":  "2026-08-31T04:22:12.6368945Z",
+    "message":  "Native CPM PASS. Baseline 15-Feb-2028; Current 23-Jun-2028; Recovery 14-Apr-2028. Three MPPs plus five A2 PDFs generated.",
+    "models":  {
+                   "baseline":  {
+                                    "finish":  "2028-02-15",
+                                    "bytes":  360448,
+                                    "critical":  [
+                                                     "PREL-010",
+                                                     "PREL-020",
+                                                     "PREL-030",
+                                                     "WTP-CIV-010",
+                                                     "WTP-CIV-020",
+                                                     "WTP-CIV-030",
+                                                     "WTP-CIV-040",
+                                                     "WTP-CIV-050",
+                                                     "WTP-CIV-060",
+                                                     "WTP-CIV-070",
+                                                     "WTP-CIV-080",
+                                                     "WTP-CIV-090",
+                                                     "ME-010",
+                                                     "ME-060",
+                                                     "COMM-020",
+                                                     "COMM-030",
+                                                     "COMM-040",
+                                                     "COMM-050",
+                                                     "COMM-060",
+                                                     "COMM-080"
+                                                 ]
+                                },
+                   "actual":  {
+                                  "finish":  "2028-06-23",
+                                  "difference_working_days":  111,
+                                  "public_target":  "July 2028",
+                                  "bytes":  425984,
+                                  "critical":  [
+                                                   "DES-020",
+                                                   "WTP-CIV-030",
+                                                   "WTP-CIV-050",
+                                                   "WTP-CIV-060",
+                                                   "WTP-CIV-070",
+                                                   "WTP-CIV-080",
+                                                   "WTP-CIV-090",
+                                                   "RES-020",
+                                                   "RES-030",
+                                                   "BLDG-030",
+                                                   "ME-010",
+                                                   "ME-060",
+                                                   "PWR-020",
+                                                   "COMM-020",
+                                                   "COMM-030",
+                                                   "COMM-040",
+                                                   "COMM-050",
+                                                   "COMM-060",
+                                                   "COMM-080"
+                                               ]
+                              },
+                   "recovery":  {
+                                    "finish":  "2028-04-14",
+                                    "gain_vs_current_working_days":  60,
+                                    "residual_vs_baseline_working_days":  51,
+                                    "bytes":  425984,
+                                    "critical":  [
+                                                     "DES-020",
+                                                     "WTP-CIV-030",
+                                                     "WTP-CIV-050",
+                                                     "WTP-CIV-060",
+                                                     "WTP-CIV-070",
+                                                     "WTP-CIV-080",
+                                                     "WTP-CIV-090",
+                                                     "RES-020",
+                                                     "RES-030",
+                                                     "BLDG-030",
+                                                     "ME-010",
+                                                     "ME-060",
+                                                     "PWR-020",
+                                                     "COMM-020",
+                                                     "COMM-030",
+                                                     "COMM-040",
+                                                     "COMM-050",
+                                                     "COMM-060",
+                                                     "COMM-080"
+                                                 ],
+                                    "applied_actions":  [
+                                                            {
+                                                                "activity":  "WTP-CIV-050",
+                                                                "before_wd":  75,
+                                                                "after_wd":  55,
+                                                                "planned_reduction_wd":  20
+                                                            },
+                                                            {
+                                                                "activity":  "WTP-CIV-060",
+                                                                "before_wd":  80,
+                                                                "after_wd":  65,
+                                                                "planned_reduction_wd":  15
+                                                            },
+                                                            {
+                                                                "activity":  "WTP-CIV-070",
+                                                                "before_wd":  45,
+                                                                "after_wd":  35,
+                                                                "planned_reduction_wd":  10
+                                                            },
+                                                            {
+                                                                "activity":  "ME-010",
+                                                                "before_wd":  100,
+                                                                "after_wd":  90,
+                                                                "planned_reduction_wd":  10
+                                                            },
+                                                            {
+                                                                "activity":  "COMM-060",
+                                                                "before_wd":  30,
+                                                                "after_wd":  25,
+                                                                "planned_reduction_wd":  5
+                                                            }
+                                                        ]
+                                }
+               },
+    "printouts":  {
+                      "baseline_gantt":  {
+                                             "file":  "Michael_Futol_Chinaimo_Baseline_Gantt_A2.pdf",
+                                             "bytes":  208593,
+                                             "view":  "Gantt Chart",
+                                             "table":  "Entry",
+                                             "filter":  "All Tasks",
+                                             "paper":  "A2",
+                                             "orientation":  "Landscape"
+                                         },
+                      "actual_tracking":  {
+                                              "file":  "Michael_Futol_Chinaimo_Actual_Tracking_Gantt_A2.pdf",
+                                              "bytes":  222981,
+                                              "view":  "Tracking Gantt",
+                                              "table":  "Tracking",
+                                              "filter":  "All Tasks",
+                                              "paper":  "A2",
+                                              "orientation":  "Landscape"
+                                          },
+                      "actual_critical":  {
+                                              "file":  "Michael_Futol_Chinaimo_Actual_Critical_Path_A2.pdf",
+                                              "bytes":  193521,
+                                              "view":  "Tracking Gantt",
+                                              "table":  "Schedule",
+                                              "filter":  "Critical",
+                                              "paper":  "A2",
+                                              "orientation":  "Landscape"
+                                          },
+                      "recovery_tracking":  {
+                                                "file":  "Michael_Futol_Chinaimo_Recovery_Tracking_Gantt_A2.pdf",
+                                                "bytes":  222978,
+                                                "view":  "Tracking Gantt",
+                                                "table":  "Tracking",
+                                                "filter":  "All Tasks",
+                                                "paper":  "A2",
+                                                "orientation":  "Landscape"
+                                            },
+                      "recovery_critical":  {
+                                                "file":  "Michael_Futol_Chinaimo_Recovery_Critical_Path_A2.pdf",
+                                                "bytes":  194082,
+                                                "view":  "Tracking Gantt",
+                                                "table":  "Schedule",
+                                                "filter":  "Critical",
+                                                "paper":  "A2",
+                                                "orientation":  "Landscape"
+                                            }
+                  },
+    "warnings":  [
+
+                 ]
+}

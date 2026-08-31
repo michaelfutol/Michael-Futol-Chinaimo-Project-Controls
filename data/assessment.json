@@ -1,111 +1,111 @@
-{
-  "meta": {
-    "title": "Michael Futol — Chinaimo Project Controls Recovery Assessment",
-    "subtitle": "Baseline → Actual Progress → Recovery",
-    "dataBoundary": "Public project facts anchor the assessment. Detailed activity durations, logic, task-level status, BOQ allocation and recovery actions are assessment-derived and are not represented as Kubota Construction internal records.",
-    "projectStart": "2025-10-01",
-    "projectStartBasis": "Modeling convention; public records state construction start in October 2025.",
-    "statusDate": "2026-08-31",
-    "publishedDurationMonths": 30,
-    "publicProgress": 4.19,
-    "publicPackageValue": 6478257873,
-    "originalPublicCompletion": "Early 2028 / 2028",
-    "baselineFinish": "2028-02-15",
-    "publicCurrentCompletion": "July 2028",
-    "currentForecast": "2028-07-31",
-    "recoveryForecast": "2028-05-22",
-    "currentDifferenceWorkingDays": 143,
-    "recoveryGainWorkingDays": 60,
-    "residualDifferenceWorkingDays": 83,
-    "assessmentControlValue": 6000000000,
-    "scheduleCalendar": "Monday-Saturday, 8 h/day; Sunday non-working",
-    "scheduleAuthority": "Native Microsoft Project recalculation",
-    "publicProgressCheckpointDate": "2026-05-05",
-    "assessmentProgress": 12.095,
-    "assessmentProgressBasis": "BOQ/value-weighted assessment simulation at 31-Aug-2026; not a public or Kubota-reported progress figure."
-  },
-  "models": [
-    {
-      "id": "baseline",
-      "name": "Baseline",
-      "anchor": "01-Oct-2025",
-      "finish": "15-Feb-2028",
-      "delta": "0 wd",
-      "file": "Michael_Futol_Chinaimo_Baseline.mpp",
-      "purpose": "Preserved assessment CPM reference."
-    },
-    {
-      "id": "actual",
-      "name": "Actual Progress",
-      "anchor": "31-Aug-2026",
-      "finish": "31-Jul-2028",
-      "delta": "+143 wd vs baseline",
-      "file": "Michael_Futol_Chinaimo_Actual_Progress.mpp",
-      "purpose": "Current status / forecast model aligned to the public July-2028 target."
-    },
-    {
-      "id": "recovery",
-      "name": "Recovery",
-      "anchor": "31-Aug-2026",
-      "finish": "22-May-2028",
-      "delta": "60 wd recovered; 83 wd residual",
-      "file": "Michael_Futol_Chinaimo_Recovery.mpp",
-      "purpose": "Partial recovery test subject to field validation."
-    }
-  ],
-  "recoveryActions": [
-    {
-      "activity": "WTP-CIV-050",
-      "workfront": "Sedimentation Basin",
-      "gain": 20,
-      "action": "Sectional workfronts / tighter release sequence",
-      "gate": "Drawings, access, rebar/formwork cycle, QA hold points"
-    },
-    {
-      "activity": "WTP-CIV-060",
-      "workfront": "Rapid Sand Filter Structure",
-      "gain": 15,
-      "action": "Earlier interface release / parallel preparatory work",
-      "gate": "IFC/submittals/materials/inspection readiness"
-    },
-    {
-      "activity": "WTP-CIV-070",
-      "workfront": "Internal Channels / Pipe Galleries",
-      "gain": 10,
-      "action": "Zone-by-zone handover",
-      "gate": "Access, waterproofing interfaces, inspection sequence"
-    },
-    {
-      "activity": "ME-010",
-      "workfront": "Process Piping",
-      "gain": 10,
-      "action": "Area handover + spool/support readiness",
-      "gate": "Approved drawings, materials, lifting/access plan"
-    },
-    {
-      "activity": "COMM-060",
-      "workfront": "Punch List / Rectification",
-      "gain": 5,
-      "action": "Progressive punch closure",
-      "gate": "Turnover dossiers / test packs / quality closeout"
-    }
-  ],
-  "sources": [
-    {
-      "label": "KPL — Kubota agreement / Oct-2025 start / 30 months",
-      "url": "https://kpl.gov.la/en/detail.aspx?id=94243"
-    },
-    {
-      "label": "Vientiane Times — package value / 30-month period",
-      "url": "https://vientianetimes.org.la/freefreenews/freecontent_159_city_y25.php"
-    },
-    {
-      "label": "KPL — groundbreaking / early-2028 context",
-      "url": "https://kpl.gov.la/en/detail.aspx?id=94793"
-    },
-    {
-      "label": "Vientiane Times — 4.19% on 05-May-2026 / July-2028 target",
-      "url": "https://www.vientianetimes.org.la/freefreenews/freecontent_82_City_y26.php"
-    }
-  ]
+﻿{
+    "meta":  {
+                 "title":  "Michael Futol â€” Chinaimo Project Controls Recovery Assessment",
+                 "subtitle":  "Baseline â†’ Actual Progress â†’ Recovery",
+                 "dataBoundary":  "Public project facts anchor the assessment. Detailed activity durations, logic, task-level status, BOQ allocation and recovery actions are assessment-derived and are not represented as Kubota Construction internal records.",
+                 "projectStart":  "2025-10-01",
+                 "projectStartBasis":  "Modeling convention; public records state construction start in October 2025.",
+                 "statusDate":  "2026-08-31",
+                 "publishedDurationMonths":  30,
+                 "publicProgress":  4.19,
+                 "publicPackageValue":  6478257873,
+                 "originalPublicCompletion":  "Early 2028 / 2028",
+                 "baselineFinish":  "2028-02-15",
+                 "publicCurrentCompletion":  "July 2028",
+                 "currentForecast":  "2028-06-23",
+                 "recoveryForecast":  "2028-04-14",
+                 "currentDifferenceWorkingDays":  111,
+                 "recoveryGainWorkingDays":  60,
+                 "residualDifferenceWorkingDays":  51,
+                 "assessmentControlValue":  6000000000,
+                 "scheduleCalendar":  "Monday-Saturday, 8 h/day; Sunday non-working",
+                 "scheduleAuthority":  "Native Microsoft Project recalculation â€” QA PASS",
+                 "publicProgressCheckpointDate":  "2026-05-05",
+                 "assessmentProgress":  12.095,
+                 "assessmentProgressBasis":  "BOQ/value-weighted assessment simulation at 31-Aug-2026; not a public or Kubota-reported progress figure."
+             },
+    "models":  [
+                   {
+                       "id":  "baseline",
+                       "name":  "Assessment Baseline Rev 0",
+                       "anchor":  "01-Oct-2025",
+                       "finish":  "15-Feb-2028",
+                       "delta":  "0 wd",
+                       "file":  "Michael_Futol_Chinaimo_Baseline.mpp",
+                       "purpose":  "Preserved Original Assessment Baseline Rev 0."
+                   },
+                   {
+                       "id":  "actual",
+                       "name":  "Actual Progress / Current Forecast",
+                       "anchor":  "31-Aug-2026",
+                       "finish":  "23-Jun-2028",
+                       "delta":  "+111 wd vs baseline",
+                       "file":  "Michael_Futol_Chinaimo_Actual_Progress.mpp",
+                       "purpose":  "Statused 31-Aug-2026 assessment model; native CPM forecast. July 2028 remains a separate public target reference."
+                   },
+                   {
+                       "id":  "recovery",
+                       "name":  "Partial Recovery",
+                       "anchor":  "31-Aug-2026",
+                       "finish":  "14-Apr-2028",
+                       "delta":  "60 wd recovered; 51 wd residual",
+                       "file":  "Michael_Futol_Chinaimo_Recovery.mpp",
+                       "purpose":  "Partial recovery test derived from the current model and subject to field validation."
+                   }
+               ],
+    "recoveryActions":  [
+                            {
+                                "activity":  "WTP-CIV-050",
+                                "workfront":  "Sedimentation Basin",
+                                "gain":  20,
+                                "action":  "Sectional workfronts / tighter release sequence",
+                                "gate":  "Drawings, access, rebar/formwork cycle, QA hold points"
+                            },
+                            {
+                                "activity":  "WTP-CIV-060",
+                                "workfront":  "Rapid Sand Filter Structure",
+                                "gain":  15,
+                                "action":  "Earlier interface release / parallel preparatory work",
+                                "gate":  "IFC/submittals/materials/inspection readiness"
+                            },
+                            {
+                                "activity":  "WTP-CIV-070",
+                                "workfront":  "Internal Channels / Pipe Galleries",
+                                "gain":  10,
+                                "action":  "Zone-by-zone handover",
+                                "gate":  "Access, waterproofing interfaces, inspection sequence"
+                            },
+                            {
+                                "activity":  "ME-010",
+                                "workfront":  "Process Piping",
+                                "gain":  10,
+                                "action":  "Area handover + spool/support readiness",
+                                "gate":  "Approved drawings, materials, lifting/access plan"
+                            },
+                            {
+                                "activity":  "COMM-060",
+                                "workfront":  "Punch List / Rectification",
+                                "gain":  5,
+                                "action":  "Progressive punch closure",
+                                "gate":  "Turnover dossiers / test packs / quality closeout"
+                            }
+                        ],
+    "sources":  [
+                    {
+                        "label":  "KPL â€” Kubota agreement / Oct-2025 start / 30 months",
+                        "url":  "https://kpl.gov.la/en/detail.aspx?id=94243"
+                    },
+                    {
+                        "label":  "Vientiane Times â€” package value / 30-month period",
+                        "url":  "https://vientianetimes.org.la/freefreenews/freecontent_159_city_y25.php"
+                    },
+                    {
+                        "label":  "KPL â€” groundbreaking / early-2028 context",
+                        "url":  "https://kpl.gov.la/en/detail.aspx?id=94793"
+                    },
+                    {
+                        "label":  "Vientiane Times â€” 4.19% on 05-May-2026 / July-2028 target",
+                        "url":  "https://www.vientianetimes.org.la/freefreenews/freecontent_82_City_y26.php"
+                    }
+                ]
 }
