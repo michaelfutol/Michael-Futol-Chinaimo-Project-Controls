@@ -1,5 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
+import Telemetry from './Telemetry';
 
 export const metadata: Metadata = {
   title: 'Michael Futol - Chinaimo Project Controls Assessment',
@@ -7,5 +9,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}</body></html>;
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <Telemetry />
+        <Analytics />
+      </body>
+    </html>
+  );
 }
