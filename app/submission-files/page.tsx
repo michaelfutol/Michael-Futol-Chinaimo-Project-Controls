@@ -1,20 +1,21 @@
+import Link from 'next/link';
+import assessment from '../../data/assessment.json';
+
 export default function SubmissionFilesPage(){
+  const m=assessment.meta;
   return <main className="page-shell" style={{maxWidth:'980px',margin:'48px auto',padding:'0 24px'}}>
     <p className="eyebrow">SUBMISSION FILE INTEGRITY</p>
-    <h1>Native Office files are issued with the formal application package</h1>
-    <p>The audited Excel workbook and the English and Japanese Word reviewer documents are supplied as the formal application attachments. This preserves the exact certified native binaries rather than serving an unverified web copy.</p>
-    <p>The website remains the reviewer-facing presentation layer. Excel remains the quantity/commercial authority; Microsoft Project remains the schedule/CPM authority.</p>
+    <h1>Five core files, one optional Japanese reviewer dossier</h1>
+    <p>The formal application package is deliberately lean: one reconciled master Excel workbook, one English reviewer companion, and exactly three native Microsoft Project files. The Japanese dossier is supporting reviewer communication, not a sixth control authority.</p>
+    <p>Excel remains the quantity/commercial authority. Microsoft Project remains the schedule/CPM authority. The QA-passed native schedule result is Baseline 15-Feb-2028, Current Forecast 23-Jun-2028 (+{m.currentDifferenceWorkingDays} working days), and Partial Recovery 14-Apr-2028 ({m.recoveryGainWorkingDays} working days recovered; {m.residualDifferenceWorkingDays} working days residual).</p>
     <div className="notice" style={{marginTop:'24px'}}>
-      <b>Primary schedule-control structure:</b> Baseline Programme → Running / Current Schedule with actual status → Recovery Programme. The delay scenarios are supporting CPM analysis evidence, not separate primary programmes.
+      <b>Public-target boundary:</b> July 2028 is retained as the latest public completion target reference. It is not forced into the native Microsoft Project current forecast.
     </div>
     <div className="notice" style={{marginTop:'16px'}}>
-      <b>Reviewer note:</b> Please use the Excel and Word files attached to the application email/submission package. The certified Microsoft Project evidence package remains available below.
+      <b>Baseline governance:</b> Original Assessment Baseline Rev 0 stays frozen. Monthly actual/status updates and recovery tests do not overwrite it; an approved revised baseline is issued only after formal authorization where rebaselining is genuinely required.
     </div>
-    <p style={{marginTop:'28px'}}><a className="button" href="/downloads/Michael_Futol_Chinaimo_MSProject_Package.zip">Download certified MS Project package</a></p>
-    <p><a href="/">← Return to English assessment</a> · <a href="/ja">日本語ページ</a></p>
-    <hr style={{margin:'40px 0 28px'}} />
-    <h2>日本語</h2>
-    <p>監査済みの Excel ワークブック、英語版 Word 文書、日本語レビュー用 Word 文書は、完全性を保つため正式な応募添付ファイルとして提出されています。ウェブサイトはレビュー用のプレゼンテーション層です。Excel は数量・商務管理の基準、Microsoft Project は工程・CPM の基準です。</p>
-    <p><b>主要な工程管理構成:</b> Baseline Programme → 実績を反映した Running / Current Schedule → Recovery Programme。遅延シナリオはCPM分析の補足証拠であり、主要工程表とは位置付けません。</p>
+    <p style={{marginTop:'28px'}}><Link className="primaryBtn" href="/#native-files"><b>Open native schedule files</b><span>3 MPPs + 5 A2 supporting printouts</span></Link></p>
+    <p><Link className="secondaryBtn" href="/dossier-jp">Open native-CPM reconciled Japanese dossier</Link></p>
+    <p style={{marginTop:'28px'}}><Link href="/">← Return to English assessment</Link></p>
   </main>;
 }
