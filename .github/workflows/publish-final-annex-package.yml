@@ -1,0 +1,95 @@
+name: Publish Final Annex and Submission Package
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.binary-staging/annex/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and verify final annex
+        shell: python
+        run: |
+          from pathlib import Path
+          import base64, hashlib
+          src = Path('.binary-staging/annex')
+          encoded = ''.join(p.read_text(encoding='ascii').strip() for p in sorted(src.glob('annex.part*')))
+          data = base64.b64decode(encoded, validate=True)
+          expected_size = 19554
+          expected_sha = 'c7ee8583e9a5eea50b8af5e8aa540f79a399691a696fc467f282b69823786d28'
+          assert len(data) == expected_size, (len(data), expected_size)
+          assert hashlib.sha256(data).hexdigest() == expected_sha
+          out = Path('public/downloads')
+          out.mkdir(parents=True, exist_ok=True)
+          path = out / 'Michael_Futol_Chinaimo_Schedule_Logic_Progress_SCurve_ANNEX_FINAL_2026-08-31.xlsx'
+          path.write_bytes(data)
+          print(f'VERIFIED {path}: {len(data)} bytes sha256={expected_sha}')
+
+      - name: Build and verify final submission ZIP
+        shell: python
+        run: |
+          from pathlib import Path
+          import zipfile, hashlib
+          root = Path('public/downloads')
+          zip_path = root / 'Michael_Futol_Chinaimo_Project_Controls_FINAL_SUBMISSION_2026-08-31.zip'
+          files = [
+              ('01_Core_Documents/Michael_Futol_Chinaimo_Project_Controls_FINAL_BEAUTIFIED_NATIVE_CPM_2026-08-31.xlsx', root/'Michael_Futol_Chinaimo_Project_Controls_FINAL_BEAUTIFIED_NATIVE_CPM_2026-08-31.xlsx'),
+              ('01_Core_Documents/CHINAIMO_PROJECT_CONTROLS_REVIEWER_COMPANION_EN_FINAL_NATIVE_CPM_2026-08-31.docx', root/'CHINAIMO_PROJECT_CONTROLS_REVIEWER_COMPANION_EN_FINAL_NATIVE_CPM_2026-08-31.docx'),
+              ('01_Core_Documents/Michael_Futol_Chinaimo_Schedule_Logic_Progress_SCurve_ANNEX_FINAL_2026-08-31.xlsx', root/'Michael_Futol_Chinaimo_Schedule_Logic_Progress_SCurve_ANNEX_FINAL_2026-08-31.xlsx'),
+              ('02_Native_MS_Project/Michael_Futol_Chinaimo_Baseline.mpp', root/'Michael_Futol_Chinaimo_Baseline.mpp'),
+              ('02_Native_MS_Project/Michael_Futol_Chinaimo_Actual_Progress.mpp', root/'Michael_Futol_Chinaimo_Actual_Progress.mpp'),
+              ('02_Native_MS_Project/Michael_Futol_Chinaimo_Recovery.mpp', root/'Michael_Futol_Chinaimo_Recovery.mpp'),
+              ('03_A2_Printouts/Michael_Futol_Chinaimo_Baseline_Gantt_A2.pdf', root/'printouts/Michael_Futol_Chinaimo_Baseline_Gantt_A2.pdf'),
+              ('03_A2_Printouts/Michael_Futol_Chinaimo_Actual_Tracking_Gantt_A2.pdf', root/'printouts/Michael_Futol_Chinaimo_Actual_Tracking_Gantt_A2.pdf'),
+              ('03_A2_Printouts/Michael_Futol_Chinaimo_Actual_Critical_Path_A2.pdf', root/'printouts/Michael_Futol_Chinaimo_Actual_Critical_Path_A2.pdf'),
+              ('03_A2_Printouts/Michael_Futol_Chinaimo_Recovery_Tracking_Gantt_A2.pdf', root/'printouts/Michael_Futol_Chinaimo_Recovery_Tracking_Gantt_A2.pdf'),
+              ('03_A2_Printouts/Michael_Futol_Chinaimo_Recovery_Critical_Path_A2.pdf', root/'printouts/Michael_Futol_Chinaimo_Recovery_Critical_Path_A2.pdf'),
+          ]
+          for arc, src in files:
+              assert src.is_file() and src.stat().st_size > 0, src
+          readme = '''MICHAEL FUTOL — CHINAIMO PROJECT CONTROLS TECHNICAL ASSESSMENT
+Website: https://michael-futol-chinaimo-project-cont.vercel.app/
+
+Assessment Data Date: 31-Aug-2026
+Native CPM: Baseline 15-Feb-2028 | Current Forecast 23-Jun-2028 (+111 wd) | Partial Recovery 14-Apr-2028 (60 wd recovered; 51 wd residual)
+Public July-2028 completion target is a separate public reference.
+Public progress checkpoint: 4.19% at 05-May-2026.
+12.095% at 31-Aug-2026 is assessment-simulated and is not represented as Kubota actual progress.
+
+Authority:
+- Native MPPs govern schedule logic / CPM dates.
+- Final Master Excel governs assessment BOQ/value/progress/recovery/IPC control.
+- Schedule Logic & S-Curve Annex supports predecessor logic and comparative curves.
+- English Word is reviewer explanatory support.
+'''
+          with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as z:
+              z.writestr('README_SUBMISSION.txt', readme)
+              for arc, src in files:
+                  z.write(src, arc)
+          with zipfile.ZipFile(zip_path, 'r') as z:
+              assert z.testzip() is None
+              names = z.namelist()
+              assert len(names) == 12, names
+          digest = hashlib.sha256(zip_path.read_bytes()).hexdigest()
+          print(f'VERIFIED {zip_path}: {zip_path.stat().st_size} bytes sha256={digest}')
+
+      - name: Commit exact annex and ZIP, clean staging
+        shell: bash
+        run: |
+          rm -rf .binary-staging/annex
+          rm -f .github/workflows/publish-final-annex-package.yml
+          git config user.name "FutolTech Submission QA"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "deliverables: publish final schedule annex and submission package"
+          git push
