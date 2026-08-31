@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { track } from '@vercel/analytics';
 
 type TelemetryPayload = {
@@ -15,6 +15,7 @@ type TelemetryPayload = {
 };
 
 const ANALYTICS_URL = 'https://vercel.com/ikel-eidras-projects/michael-futol-chinaimo-project-controls/analytics';
+const CLASSIC_URL = 'https://michael-futol-chinaimo-project-controls-8hhdsow8z.vercel.app/';
 const ADMIN_SEQUENCE = [1, 3, 7] as const;
 
 function makeId(prefix: string) {
@@ -50,11 +51,13 @@ function send(payload: TelemetryPayload) {
 export default function Telemetry() {
   const gateStep = useRef(0);
   const gateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [adminUnlocked, setAdminUnlocked] = useState(false);
 
   useEffect(() => {
     const visitorId = getStoredId(localStorage, 'chinaimo_visitor_id', 'v');
     const sessionId = getStoredId(sessionStorage, 'chinaimo_session_id', 's');
     const source = new URLSearchParams(window.location.search).get('ref') || undefined;
+    setAdminUnlocked(sessionStorage.getItem('chinaimo_admin_unlocked') === '1');
 
     const base = { visitorId, sessionId, source };
     send({ event: 'page_view', path: window.location.pathname, ...base });
@@ -65,7 +68,7 @@ export default function Telemetry() {
         source: source || 'direct',
       });
     } catch {
-      // Runtime-log telemetry remains the fallback if Web Analytics is not enabled yet.
+      // Runtime-log telemetry remains the fallback.
     }
 
     const onClick = (event: MouseEvent) => {
@@ -111,6 +114,12 @@ export default function Telemetry() {
     return () => document.removeEventListener('click', onClick, true);
   }, []);
 
+  const adminEvent = (event: string) => {
+    const visitorId = getStoredId(localStorage, 'chinaimo_visitor_id', 'v');
+    const sessionId = getStoredId(sessionStorage, 'chinaimo_session_id', 's');
+    send({ event, path: window.location.pathname, visitorId, sessionId });
+  };
+
   const onGateTile = (tile: number) => {
     if (gateTimer.current) clearTimeout(gateTimer.current);
 
@@ -118,14 +127,9 @@ export default function Telemetry() {
     if (tile === expected) {
       gateStep.current += 1;
       if (gateStep.current === ADMIN_SEQUENCE.length) {
-        const visitorId = getStoredId(localStorage, 'chinaimo_visitor_id', 'v');
-        const sessionId = getStoredId(sessionStorage, 'chinaimo_session_id', 's');
-        send({
-          event: 'admin_analytics_gate_open',
-          path: window.location.pathname,
-          visitorId,
-          sessionId,
-        });
+        adminEvent('admin_analytics_gate_open');
+        sessionStorage.setItem('chinaimo_admin_unlocked', '1');
+        setAdminUnlocked(true);
         gateStep.current = 0;
         window.open(ANALYTICS_URL, '_blank', 'noopener,noreferrer');
         return;
@@ -139,34 +143,65 @@ export default function Telemetry() {
     }, 4500);
   };
 
+  const openClassic = () => {
+    adminEvent('admin_classic_checkpoint_open');
+    window.open(CLASSIC_URL, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <div
-      aria-hidden="true"
-      style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        gap: 7,
-        padding: '2px 0 7px',
-        opacity: 0.18,
-        userSelect: 'none',
-      }}
-    >
-      {Array.from({ length: 10 }, (_, i) => i + 1).map((tile) => (
-        <span
-          key={tile}
-          data-a-tile={tile}
-          onClick={() => onGateTile(tile)}
+    <>
+      {adminUnlocked && (
+        <button
+          type="button"
+          onClick={openClassic}
+          title="Open exact pre-redesign production checkpoint"
           style={{
-            width: 7,
-            height: 7,
-            display: 'block',
-            borderRadius: 2,
-            background: '#68747b',
-            cursor: 'default',
+            position: 'fixed',
+            right: 12,
+            bottom: 12,
+            zIndex: 9999,
+            height: 26,
+            padding: '0 8px',
+            border: '1px solid #7e8587',
+            background: '#f4f3ee',
+            color: '#4e575a',
+            font: '700 10px/1 Courier New, monospace',
+            letterSpacing: '.04em',
+            opacity: 0.34,
+            cursor: 'pointer',
           }}
-        />
-      ))}
-    </div>
+        >
+          ↶ CLASSIC
+        </button>
+      )}
+      <div
+        aria-hidden="true"
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 7,
+          padding: '3px 0 8px',
+          opacity: 0.14,
+          userSelect: 'none',
+        }}
+      >
+        {Array.from({ length: 10 }, (_, i) => i + 1).map((tile) => (
+          <span
+            key={tile}
+            data-a-tile={tile}
+            onClick={() => onGateTile(tile)}
+            style={{
+              width: 10,
+              height: 10,
+              display: 'block',
+              borderRadius: 1,
+              background: '#68747b',
+              cursor: 'default',
+            }}
+          />
+        ))}
+      </div>
+    </>
   );
 }
