@@ -35,8 +35,9 @@ export default function Page(){
       </div>
       <div className="heroAction">
         <div className="deliverableLabel">FORMAL SUBMISSION</div>
-        <div className="notice" style={{margin:0}}><b>Five core files only.</b><br/>1 master Excel - 1 English reviewer companion - 3 native Microsoft Project files.</div>
+        <div className="notice" style={{margin:0}}><b>Five core files only.</b><br/>1 master Excel - 1 English reviewer companion - 3 native Microsoft Project files.<br/><small>Optional: native-CPM reconciled Japanese web dossier.</small></div>
         <a className="primaryBtn" href="#native-files"><b>Open native schedule files</b><span>3 QA-passed MPPs + 5 supporting A2 printouts</span></a>
+        <a className="secondaryBtn" href="/dossier-jp">Open Japanese reviewer dossier</a>
       </div>
     </section>
 
@@ -96,8 +97,17 @@ export default function Page(){
       </div>
     </section>
 
+    <section className="panel downloads" id="dossier">
+      <div className="downloadIntro"><span className="sectionNo">07 - OPTIONAL JAPANESE REVIEWER DOSSIER</span><h2>Six-section web dossier, reconciled to native CPM</h2><p>The uploaded Japanese dossier was strong as a reviewer communication piece, but its old schedule graphic used the provisional 31-Jul-2028 / +143 / 22-May-2028 / 83-day state. The web dossier now reads directly from the reconciled control data: current 23-Jun-2028 (+111 wd), recovery 14-Apr-2028 (60 wd recovered / 51 wd residual). It is supporting presentation only and does not replace the Excel or MPP authority.</p></div>
+      <div className="authorityGrid">
+        <div><span className="authorityTool">日本語</span><b>Japanese Reviewer Dossier</b><p>Technical brief · schedule governance · statusing · baseline/change control · IPC · recovery/onboarding.</p><a className="miniDownload" href="/dossier-jp">Open reconciled web dossier</a></div>
+        <div><span className="authorityTool">CONTROL</span><b>Authority remains unchanged</b><p>Master Excel for quantity/commercial logic. Native Microsoft Project for schedule/CPM dates and critical path.</p></div>
+        <div><span className="authorityTool">PUBLIC TARGET</span><b>July 2028 stays visible</b><p>Kept as a public target reference, never substituted for the Microsoft Project-calculated current finish.</p></div>
+      </div>
+    </section>
+
     <section className="panel downloads" id="submission">
-      <div className="downloadIntro"><span className="sectionNo">07 - FORMAL ATTACHMENT SET</span><h2>Five core files</h2><p>The website is a reviewer presentation layer. The master Excel and English Word companion are supplied directly with the application; the native MPPs above are also available here for convenience.</p></div>
+      <div className="downloadIntro"><span className="sectionNo">08 - FORMAL ATTACHMENT SET</span><h2>Five core files</h2><p>The website is a reviewer presentation layer. The reconciled master Excel and English Word companion are supplied directly with the application; the native MPPs above are also available here for convenience. The Japanese dossier is optional supporting material.</p></div>
       <div className="authorityGrid">
         <div><span className="authorityTool">EXCEL</span><b>Master Project Controls Workbook</b><p>Monthly status, BOQ/value-weighted assessment progress, recovery control and one sample IPC.</p></div>
         <div><span className="authorityTool">WORD</span><b>English Reviewer Companion</b><p>Concise FAQ, control basis, data boundary, baseline governance and IPC rationale.</p></div>
@@ -106,7 +116,7 @@ export default function Page(){
     </section>
 
     <section className="panel" id="sources">
-      <div className="sectionHead"><div><span className="sectionNo">08 - SOURCES</span><h2>Public facts are traceable</h2><p>Public project anchors are separated from assessment-derived data. Public package value: JPY {money(m.publicPackageValue)}.</p></div></div>
+      <div className="sectionHead"><div><span className="sectionNo">09 - SOURCES</span><h2>Public facts are traceable</h2><p>Public project anchors are separated from assessment-derived data. Public package value: JPY {money(m.publicPackageValue)}.</p></div></div>
       <div className="sourceList">{assessment.sources.map(s=><a href={s.url} target="_blank" rel="noreferrer" key={s.url}>{s.label}</a>)}</div>
     </section>
 
