@@ -5,7 +5,7 @@
     "dataBoundary": "Public project facts anchor the assessment. Detailed activity durations, logic, task-level status, BOQ allocation and recovery actions are assessment-derived and are not represented as Kubota Construction internal records.",
     "projectStart": "2025-10-01",
     "projectStartBasis": "Modeling convention; public records state construction start in October 2025.",
-    "statusDate": "2026-05-05",
+    "statusDate": "2026-08-31",
     "publishedDurationMonths": 30,
     "publicProgress": 4.19,
     "publicPackageValue": 6478257873,
@@ -19,7 +19,10 @@
     "residualDifferenceWorkingDays": 83,
     "assessmentControlValue": 6000000000,
     "scheduleCalendar": "Monday-Saturday, 8 h/day; Sunday non-working",
-    "scheduleAuthority": "Native Microsoft Project recalculation"
+    "scheduleAuthority": "Native Microsoft Project recalculation",
+    "publicProgressCheckpointDate": "2026-05-05",
+    "assessmentProgress": 12.095,
+    "assessmentProgressBasis": "BOQ/value-weighted assessment simulation at 31-Aug-2026; not a public or Kubota-reported progress figure."
   },
   "models": [
     {
@@ -34,7 +37,7 @@
     {
       "id": "actual",
       "name": "Actual Progress",
-      "anchor": "05-May-2026",
+      "anchor": "31-Aug-2026",
       "finish": "31-Jul-2028",
       "delta": "+143 wd vs baseline",
       "file": "Michael_Futol_Chinaimo_Actual_Progress.mpp",
@@ -43,7 +46,7 @@
     {
       "id": "recovery",
       "name": "Recovery",
-      "anchor": "05-May-2026",
+      "anchor": "31-Aug-2026",
       "finish": "22-May-2028",
       "delta": "60 wd recovered; 83 wd residual",
       "file": "Michael_Futol_Chinaimo_Recovery.mpp",
