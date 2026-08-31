@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en"><body>
-      <div className="languageRibbon" aria-label="Language navigation"><a href="/">English</a><span className="sep">·</span><a href="/ja">日本語</a></div>
+      <div className="languageRibbon" aria-label="Language navigation"><a href="/">English</a><span className="sep">·</span><a href="/dossier-jp">日本語 Dossier</a></div>
       {children}
       <SubmissionFileGuard />
     </body></html>
