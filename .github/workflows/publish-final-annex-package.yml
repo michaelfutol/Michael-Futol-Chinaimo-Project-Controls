@@ -24,15 +24,35 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import base64, hashlib, zipfile
+          import base64, binascii, hashlib, zipfile
 
+          EXPECTED_SIZE = 19554
+          EXPECTED_SHA = 'c7ee8583e9a5eea50b8af5e8aa540f79a399691a696fc467f282b69823786d28'
           root = Path('public/downloads')
           root.mkdir(parents=True, exist_ok=True)
           stage = Path('.binary-staging/annex')
           encoded = ''.join(p.read_text(encoding='ascii').strip() for p in sorted(stage.glob('annex.part*')))
-          data = base64.b64decode(encoded, validate=True)
-          assert len(data) == 19554
-          assert hashlib.sha256(data).hexdigest() == 'c7ee8583e9a5eea50b8af5e8aa540f79a399691a696fc467f282b69823786d28'
+
+          def verified_decode(s):
+              try:
+                  data = base64.b64decode(s, validate=True)
+              except binascii.Error:
+                  return None
+              if len(data) == EXPECTED_SIZE and hashlib.sha256(data).hexdigest() == EXPECTED_SHA:
+                  return data
+              return None
+
+          data = verified_decode(encoded)
+          if data is None and len(encoded) == 26073:
+              # One staging character was introduced in transit. Remove one character at a time;
+              # accept ONLY the candidate matching the exact original size and SHA-256.
+              for i in range(len(encoded)):
+                  data = verified_decode(encoded[:i] + encoded[i+1:])
+                  if data is not None:
+                      print(f'Self-healed one staging character at index {i}')
+                      break
+          if data is None:
+              raise SystemExit('Unable to reconstruct exact verified annex bytes')
 
           annex = root / 'Michael_Futol_Chinaimo_Schedule_Logic_Progress_SCurve_ANNEX_FINAL_2026-08-31.xlsx'
           annex.write_bytes(data)
