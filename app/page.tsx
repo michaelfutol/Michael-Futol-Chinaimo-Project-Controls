@@ -48,12 +48,19 @@ export default function Page(){
 
       <section className={styles.section}>
         <h2>Downloads</h2>
+        <p className={styles.sectionIntro}>Core assessment documents</p>
+        <div className={styles.downloadGrid}>
+          <a className={styles.downloadButton} href="/downloads/Michael_Futol_Chinaimo_Project_Controls_FINAL_BEAUTIFIED_NATIVE_CPM_2026-08-31.xlsx">Final Master Excel</a>
+          <a className={styles.downloadButton} href="/downloads/CHINAIMO_PROJECT_CONTROLS_REVIEWER_COMPANION_EN_FINAL_NATIVE_CPM_2026-08-31.docx">English Reviewer Companion</a>
+        </div>
+        <p className={styles.sectionIntro} style={{marginTop:24}}>Native Microsoft Project models</p>
         <div className={styles.downloadGrid}>
           <a className={styles.downloadButton} href="/downloads/Michael_Futol_Chinaimo_Baseline.mpp">Baseline MPP</a>
           <a className={styles.downloadButton} href="/downloads/Michael_Futol_Chinaimo_Actual_Progress.mpp">Actual Progress MPP</a>
           <a className={styles.downloadButton} href="/downloads/Michael_Futol_Chinaimo_Recovery.mpp">Recovery MPP</a>
         </div>
-        <div className={styles.downloadGrid} style={{marginTop:12}}>
+        <p className={styles.sectionIntro} style={{marginTop:24}}>A2 schedule printouts</p>
+        <div className={styles.downloadGrid}>
           {printouts.map(([label,href])=><a key={href} className={styles.downloadButtonLight} href={href}>{label}</a>)}
         </div>
         <a className={styles.jpLink} href="/dossier-jp">
