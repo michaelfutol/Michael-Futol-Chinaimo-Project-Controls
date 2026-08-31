@@ -1,16 +1,30 @@
 import type { Metadata } from 'next';
+import styles from './page.module.css';
 import assessment from '../data/assessment.json';
 
 export const metadata: Metadata = {
-  title: 'Michael Futol - Chinaimo Recovery Controls Assessment',
-  description: 'Lean project-controls assessment: Assessment Baseline, Actual Progress / Current Forecast, and Partial Recovery, anchored to public Chinaimo project records.'
+  title: 'Michael Futol - Chinaimo Project Controls Assessment',
+  description: 'Project controls technical assessment for the Chinaimo Water Treatment Plant project.'
 };
 
-const money=(n:number)=>new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(n);
-const pct=(n:number)=>`${n.toFixed(2)}%`;
-const prettyDate=(s:string)=>new Date(`${s}T00:00:00`).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}).replace(/ /g,'-');
+const boq = [
+  ['PREL-001','Preliminaries / Temporary Works','JPY 300,000,000','5.00%'],
+  ['CIV-001','Earthworks / Excavation / Dewatering','JPY 370,000,000','6.17%'],
+  ['RC-001','Structural Concrete','JPY 1,350,000,000','22.50%'],
+  ['RB-001','Reinforcement Steel','JPY 900,000,000','15.00%'],
+  ['FW-001','Formwork','JPY 340,000,000','5.67%'],
+  ['WPF-001','Waterproofing / Protective Coating','JPY 170,000,000','2.83%'],
+  ['MECH-001','Process Piping / Mechanical','JPY 550,000,000','9.17%'],
+  ['PMP-001','Pumps / Major Mechanical Equipment','JPY 500,000,000','8.33%'],
+  ['CHEM-001','Chemical Dosing Systems','JPY 240,000,000','4.00%'],
+  ['ELEC-001','Electrical / MCC / Cabling','JPY 420,000,000','7.00%'],
+  ['SCADA-001','Instrumentation / SCADA','JPY 270,000,000','4.50%'],
+  ['PWR-001','22-kV Off-site Power Works','JPY 240,000,000','4.00%'],
+  ['BLDG-001','Administration / Lab / Support Buildings','JPY 240,000,000','4.00%'],
+  ['COMM-001','Testing / Commissioning / Handover','JPY 110,000,000','1.83%']
+] as const;
 
-const printouts=[
+const printouts = [
   ['Baseline Gantt - A2','/downloads/printouts/Michael_Futol_Chinaimo_Baseline_Gantt_A2.pdf'],
   ['Actual Tracking Gantt - A2','/downloads/printouts/Michael_Futol_Chinaimo_Actual_Tracking_Gantt_A2.pdf'],
   ['Actual Critical Path - A2','/downloads/printouts/Michael_Futol_Chinaimo_Actual_Critical_Path_A2.pdf'],
@@ -19,109 +33,80 @@ const printouts=[
 ] as const;
 
 export default function Page(){
-  const m=assessment.meta;
-  return <main id="top">
-    <div className="projectChrome" aria-label="Project controls workspace header">
-      <div className="projectTitleBar"><span className="projectAppMark">P</span><div><b>Project Controls Recovery Workspace</b><small>Chinaimo Technical Assessment - Michael Futol</small></div><span className="projectState">LEAN REVIEW</span></div>
-      <div className="projectRibbon"><span>BASELINE</span><span>STATUS</span><span>RECOVERY</span><b>{m.scheduleAuthority}</b></div>
-    </div>
+  const m = assessment.meta;
+  return <main className={styles.page}>
+    <article className={styles.paper}>
+      <header className={styles.header}>
+        <p className={styles.name}>MICHAEL FUTOL · CIVIL ENGINEER · PROJECT CONTROLS · QS · PLANNING</p>
+        <h1 className={styles.title}>Chinaimo Project Controls Technical Assessment</h1>
+        <p className={styles.purpose}>Purpose: demonstrate a simple, auditable project-controls workflow using a preserved baseline, a statused current forecast, a partial recovery model, BOQ/value-based progress control, and a sample interim payment certificate.</p>
+        <div className={styles.metaLine}>
+          <span>Assessment Data Date: 31-Aug-2026</span>
+          <span>Native Microsoft Project CPM: QA PASS</span>
+        </div>
+      </header>
 
-    <section className="hero">
-      <div className="heroCopy">
-        <div className="eyebrow">MICHAEL FUTOL - PROJECT CONTROLS TECHNICAL ASSESSMENT</div>
-        <h1>Chinaimo Recovery Controls</h1>
-        <p className="heroLead">Public facts stay public. Assessment assumptions stay visible. The submission shows only the controls needed to explain the preserved baseline, current forecast, measurement logic and partial recovery.</p>
-        <div className="heroTags"><span>Baseline - Current Forecast - Partial Recovery</span><span>Assessment Data Date - 31-Aug-2026</span><span>Simulated BOQ Progress - {pct(m.assessmentProgress)}</span><span>Public checkpoint - {pct(m.publicProgress)} @ 05-May-2026</span></div>
-      </div>
-      <div className="heroAction">
-        <div className="deliverableLabel">FORMAL SUBMISSION</div>
-        <div className="notice" style={{margin:0}}><b>Five core files only.</b><br/>1 master Excel - 1 English reviewer companion - 3 native Microsoft Project files.<br/><small>Optional: native-CPM reconciled Japanese web dossier.</small></div>
-        <a className="primaryBtn" href="#native-files"><b>Open native schedule files</b><span>3 QA-passed MPPs + 5 supporting A2 printouts</span></a>
-        <a className="secondaryBtn" href="/dossier-jp">Open Japanese reviewer dossier</a>
-      </div>
-    </section>
+      <section className={styles.section}>
+        <h2>Downloads</h2>
+        <div className={styles.downloadGrid}>
+          <a className={styles.downloadButton} href="/downloads/Michael_Futol_Chinaimo_Baseline.mpp">Baseline MPP</a>
+          <a className={styles.downloadButton} href="/downloads/Michael_Futol_Chinaimo_Actual_Progress.mpp">Actual Progress MPP</a>
+          <a className={styles.downloadButton} href="/downloads/Michael_Futol_Chinaimo_Recovery.mpp">Recovery MPP</a>
+        </div>
+        <div className={styles.downloadGrid} style={{marginTop:12}}>
+          {printouts.map(([label,href])=><a key={href} className={styles.downloadButtonLight} href={href}>{label}</a>)}
+        </div>
+        <a className={styles.jpLink} href="/dossier-jp">
+          <span className={styles.jpMain}>日本語 技術評価資料を見る</span>
+          <span className={styles.jpSub}>チャイナイモ・プロジェクト工程リカバリー評価</span>
+        </a>
+      </section>
 
-    <section className="notice"><b>Assessment boundary:</b> {m.dataBoundary}</section>
+      <section className={styles.section}>
+        <h2>Project Information</h2>
+        <div className={styles.infoGrid}>
+          <div className={styles.infoRow}><span>Public construction start</span><strong>October 2025</strong></div>
+          <div className={styles.infoRow}><span>Published implementation period</span><strong>30 months</strong></div>
+          <div className={styles.infoRow}><span>Public progress checkpoint</span><strong>4.19% at 05-May-2026</strong></div>
+          <div className={styles.infoRow}><span>Assessment data date</span><strong>31-Aug-2026</strong></div>
+          <div className={styles.infoRow}><span>Assessment progress</span><strong>12.095% simulated</strong></div>
+          <div className={styles.infoRow}><span>Public completion target</span><strong>July 2028</strong></div>
+          <div className={styles.infoRow}><span>Baseline finish</span><strong>15-Feb-2028</strong></div>
+          <div className={styles.infoRow}><span>Native current forecast</span><strong>23-Jun-2028 (+111 wd)</strong></div>
+          <div className={styles.infoRow}><span>Native partial recovery</span><strong>14-Apr-2028 (60 wd recovered; 51 wd residual)</strong></div>
+          <div className={styles.infoRow}><span>Public package value</span><strong>JPY 6,478,257,873</strong></div>
+          <div className={styles.infoRow}><span>Assessment control value</span><strong>JPY 6,000,000,000</strong></div>
+          <div className={styles.infoRow}><span>Schedule calendar</span><strong>{m.scheduleCalendar}</strong></div>
+        </div>
+      </section>
 
-    <section className="kpis">
-      <Kpi label="Assessment Progress - 31-Aug-2026" value={pct(m.assessmentProgress)}/>
-      <Kpi label="Native Current Forecast" value={prettyDate(m.currentForecast)}/>
-      <Kpi label="Native Partial Recovery" value={prettyDate(m.recoveryForecast)}/>
-      <Kpi label="Latest Public Target" value={m.publicCurrentCompletion}/>
-    </section>
+      <section className={styles.section}>
+        <h2>Assessment BOQ / Control Budget</h2>
+        <p className={styles.sectionIntro}>Illustrative quantities and rates for method demonstration only. This is not represented as Kubota's contract BOQ.</p>
+        <div className={styles.tableWrap}>
+          <table className={styles.table}>
+            <thead><tr><th>BOQ ID</th><th>Work Package</th><th>Control Amount</th><th>Weight</th></tr></thead>
+            <tbody>
+              {boq.map(([id,work,amount,weight])=><tr key={id}><td>{id}</td><td>{work}</td><td className={styles.amount}>{amount}</td><td className={styles.weight}>{weight}</td></tr>)}
+              <tr><td><strong>TOTAL</strong></td><td></td><td className={styles.amount}><strong>JPY 6,000,000,000</strong></td><td className={styles.weight}><strong>100.00%</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-    <section className="panel">
-      <div className="sectionHead"><div><span className="sectionNo">01 - PUBLIC FACTS + ASSESSMENT STATUS</span><h2>Use the public record without pretending it is live project data</h2><p>Public reporting placed construction from October 2025 over a 30-month implementation period. The latest public Chinaimo-specific checkpoint used here is {pct(m.publicProgress)} overall progress on 05-May-2026, with completion reported for {m.publicCurrentCompletion}. For this employment assessment, the working data date is 31-Aug-2026 and BOQ/value-weighted progress is simulated at {pct(m.assessmentProgress)}.</p></div><span className="statusPill muted">BOUNDARY CONTROL</span></div>
-      <div className="commentaryRule"><b>Interpretation</b><span><strong>Public fact:</strong> {pct(m.publicProgress)} at 05-May-2026.</span><span><strong>Assessment simulation:</strong> {pct(m.assessmentProgress)} at 31-Aug-2026.</span><span><strong>Native CPM:</strong> current forecast {prettyDate(m.currentForecast)}; public July 2028 remains a separate target reference.</span><span><strong>Not claimed:</strong> Kubota internal task actuals, causes, responsibility, entitlement or confidential commercial records.</span></div>
-    </section>
+      <section className={styles.section}>
+        <h2>Assessment Baseline Gantt Chart</h2>
+        <p className={styles.sectionIntro}>Native Microsoft Project baseline printout · A2 landscape.</p>
+        <iframe className={styles.ganttFrame} title="Chinaimo Baseline Gantt Chart" src="/downloads/printouts/Michael_Futol_Chinaimo_Baseline_Gantt_A2.pdf#toolbar=0&navpanes=0" />
+        <div className={styles.ganttActions}>
+          <a className={styles.downloadButton} href="/downloads/printouts/Michael_Futol_Chinaimo_Baseline_Gantt_A2.pdf">Open / Download Baseline Gantt PDF</a>
+          <a className={styles.downloadButtonLight} href="/downloads/Michael_Futol_Chinaimo_Baseline.mpp">Download Baseline MPP</a>
+        </div>
+      </section>
 
-    <section className="panel">
-      <div className="sectionHead"><div><span className="sectionNo">02 - THREE-MODEL GOVERNANCE</span><h2>Assessment Baseline Rev 0 - Actual Progress / Current Forecast - Partial Recovery</h2><p>The original assessment baseline is preserved. Periodic updates record actuals and remaining forecast without rewriting history. A revised baseline would only be created after a formally approved change that genuinely requires rebaselining.</p></div><span className="statusPill">NATIVE CPM QA PASS</span></div>
-      <div className="scenarioGrid">
-        {assessment.models.map((model,index)=><article className="scenario" key={model.id}>
-          <div className="scenarioTop"><span>{String(index+1).padStart(2,'0')}</span><b className={model.id==='actual'?'impactBad':'impactOk'}>{model.delta}</b></div>
-          <h3>{model.name}</h3><p className="activityName">Anchor: {model.anchor}</p>
-          <div className="scenarioDates"><div><small>NATIVE CPM FINISH</small><b>{model.finish}</b></div></div>
-          <div className="solutionBox"><small>CONTROL PURPOSE</small><strong>{model.purpose}</strong></div>
-          <a className="miniDownload" href={`/downloads/${model.file}`}>Download native .mpp</a>
-        </article>)}
-      </div>
-      <p className="controlNote"><b>Contract boundary:</b> the +{m.currentDifferenceWorkingDays}-working-day current-forecast variance is a difference between assessment states. It is not automatically an EOT, compensable delay or responsibility determination.</p>
-    </section>
-
-    <section className="panel">
-      <div className="sectionHead"><div><span className="sectionNo">03 - RECOVERY TEST</span><h2>Recover what can be defended, not what looks impressive</h2><p>Native Microsoft Project recalculation moves the assessment current finish from {prettyDate(m.currentForecast)} to {prettyDate(m.recoveryForecast)} after the targeted recovery changes: {m.recoveryGainWorkingDays} working days recovered, with {m.residualDifferenceWorkingDays} working days still remaining versus Rev 0.</p></div><span className="statusPill">FIELD-VALIDATE</span></div>
-      <div className="tableScroll"><table><thead><tr><th>Activity</th><th>Workfront</th><th>Gain target</th><th>Assessment action</th><th>Execution gate</th></tr></thead><tbody>
-        {assessment.recoveryActions.map(r=><tr key={r.activity}><td><code>{r.activity}</code></td><td>{r.workfront}</td><td>{r.gain} wd</td><td>{r.action}</td><td>{r.gate}</td></tr>)}
-      </tbody></table></div>
-      <div className="controlRule"><b>Recovery approval gate</b><span>Construction</span><span>Engineering</span><span>Procurement</span><span>QA/QC</span><span>HSE</span><span>Commercial</span></div>
-      <p className="controlNote"><b>Network rule:</b> action-level duration reductions are planning assumptions; the resulting native CPM network forecast governs the actual recovery gain.</p>
-    </section>
-
-    <section className="panel">
-      <div className="sectionHead"><div><span className="sectionNo">04 - MONTHLY CONTROL / IPC</span><h2>Simple periodic control chain</h2><p>The assessment uses monthly reporting as a transparent working convention: measurement - earned progress - current forecast - sample interim payment certificate. Exact billing cut-off, retention, advance recovery, taxes and certification terms remain subject to the actual Contract Particular Conditions.</p></div></div>
-      <div className="commentaryRule"><b>Baseline governance</b><span><strong>Rev 0:</strong> preserve the original assessment baseline.</span><span><strong>Monthly update:</strong> record actuals, remaining durations and forecast.</span><span><strong>Revised baseline:</strong> create only after formal approval when an authorized change genuinely requires it.</span></div>
-    </section>
-
-    <section className="panel downloads" id="native-files">
-      <div className="downloadIntro"><span className="sectionNo">05 - NATIVE SCHEDULE FILES</span><h2>Three reviewer-facing Microsoft Project models</h2><p>These are the QA-passed native schedule models. The current and recovery finishes are calculated by Microsoft Project, not forced to the public July 2028 target.</p></div>
-      <div className="authorityGrid">
-        {assessment.models.map(model=><div key={model.id}><span className="authorityTool">MS PROJECT</span><b>{model.name}</b><p>{model.finish} - {model.delta}</p><a className="miniDownload" href={`/downloads/${model.file}`}>Download {model.file}</a></div>)}
-      </div>
-    </section>
-
-    <section className="panel downloads" id="printouts">
-      <div className="downloadIntro"><span className="sectionNo">06 - SUPPORTING PRINTOUTS</span><h2>Five A2 landscape reviewer PDFs</h2><p>Supporting evidence only - not additional schedule models. Baseline uses Gantt Chart; Current and Recovery use Tracking Gantt, with separate critical-path views for the two statused states.</p></div>
-      <div className="authorityGrid">
-        {printouts.map(([label,href])=><div key={href}><span className="authorityTool">A2 PDF</span><b>{label}</b><p>Generated directly from the corresponding native Microsoft Project model.</p><a className="miniDownload" href={href}>Open / download PDF</a></div>)}
-      </div>
-    </section>
-
-    <section className="panel downloads" id="dossier">
-      <div className="downloadIntro"><span className="sectionNo">07 - OPTIONAL JAPANESE REVIEWER DOSSIER</span><h2>Six-section web dossier, reconciled to native CPM</h2><p>The uploaded Japanese dossier was strong as a reviewer communication piece, but its old schedule graphic used the provisional 31-Jul-2028 / +143 / 22-May-2028 / 83-day state. The web dossier now reads directly from the reconciled control data: current 23-Jun-2028 (+111 wd), recovery 14-Apr-2028 (60 wd recovered / 51 wd residual). It is supporting presentation only and does not replace the Excel or MPP authority.</p></div>
-      <div className="authorityGrid">
-        <div><span className="authorityTool">日本語</span><b>Japanese Reviewer Dossier</b><p>Technical brief · schedule governance · statusing · baseline/change control · IPC · recovery/onboarding.</p><a className="miniDownload" href="/dossier-jp">Open reconciled web dossier</a></div>
-        <div><span className="authorityTool">CONTROL</span><b>Authority remains unchanged</b><p>Master Excel for quantity/commercial logic. Native Microsoft Project for schedule/CPM dates and critical path.</p></div>
-        <div><span className="authorityTool">PUBLIC TARGET</span><b>July 2028 stays visible</b><p>Kept as a public target reference, never substituted for the Microsoft Project-calculated current finish.</p></div>
-      </div>
-    </section>
-
-    <section className="panel downloads" id="submission">
-      <div className="downloadIntro"><span className="sectionNo">08 - FORMAL ATTACHMENT SET</span><h2>Five core files</h2><p>The website is a reviewer presentation layer. The reconciled master Excel and English Word companion are supplied directly with the application; the native MPPs above are also available here for convenience. The Japanese dossier is optional supporting material.</p></div>
-      <div className="authorityGrid">
-        <div><span className="authorityTool">EXCEL</span><b>Master Project Controls Workbook</b><p>Monthly status, BOQ/value-weighted assessment progress, recovery control and one sample IPC.</p></div>
-        <div><span className="authorityTool">WORD</span><b>English Reviewer Companion</b><p>Concise FAQ, control basis, data boundary, baseline governance and IPC rationale.</p></div>
-        <div><span className="authorityTool">MS PROJECT</span><b>3 native MPP files</b><p>Assessment Baseline Rev 0 + Actual Progress / Current Forecast + Partial Recovery.</p></div>
-      </div>
-    </section>
-
-    <section className="panel" id="sources">
-      <div className="sectionHead"><div><span className="sectionNo">09 - SOURCES</span><h2>Public facts are traceable</h2><p>Public project anchors are separated from assessment-derived data. Public package value: JPY {money(m.publicPackageValue)}.</p></div></div>
-      <div className="sourceList">{assessment.sources.map(s=><a href={s.url} target="_blank" rel="noreferrer" key={s.url}>{s.label}</a>)}</div>
-    </section>
-
-    <footer><div><b>Michael Futol</b><span>Chinaimo Project Controls Recovery Assessment</span></div><a href="#top">Back to top</a></footer>
+      <footer className={styles.footer}>
+        <strong>Michael Futol</strong> · Chinaimo Project Controls Technical Assessment · 31-Aug-2026
+      </footer>
+    </article>
   </main>
 }
-
-function Kpi({label,value}:{label:string,value:string}){return <div className="kpi"><small>{label}</small><strong>{value}</strong></div>}
