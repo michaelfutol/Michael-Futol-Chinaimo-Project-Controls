@@ -18,36 +18,11 @@ const jpHeadings: Record<string,string> = {
 };
 
 const ganttViews = [
-  {
-    label:'Baseline Gantt',
-    jp:'ベースライン工程表',
-    src:'/downloads/printouts/Michael_Futol_Chinaimo_Baseline_Gantt_A2.pdf',
-    note:'Preserved baseline programme. Use this as the reference schedule for planned dates and subsequent variance comparison.'
-  },
-  {
-    label:'Actual Tracking',
-    jp:'進捗追跡工程表',
-    src:'/downloads/printouts/Michael_Futol_Chinaimo_Actual_Tracking_Gantt_A2.pdf',
-    note:'Statused current-forecast view at the assessment data date. Baseline remains preserved for direct comparison.'
-  },
-  {
-    label:'Actual Critical Path',
-    jp:'現況クリティカルパス',
-    src:'/downloads/printouts/Michael_Futol_Chinaimo_Actual_Critical_Path_A2.pdf',
-    note:'Critical-filtered current programme showing the activities that control the forecast completion path.'
-  },
-  {
-    label:'Recovery Tracking',
-    jp:'回復工程追跡表',
-    src:'/downloads/printouts/Michael_Futol_Chinaimo_Recovery_Tracking_Gantt_A2.pdf',
-    note:'Partial-recovery programme compared against the preserved baseline and current forecast.'
-  },
-  {
-    label:'Recovery Critical Path',
-    jp:'回復クリティカルパス',
-    src:'/downloads/printouts/Michael_Futol_Chinaimo_Recovery_Critical_Path_A2.pdf',
-    note:'Critical-filtered recovery programme showing the residual path controlling the recovery finish.'
-  }
+  {label:'Baseline Gantt',jp:'ベースライン工程表',src:'/downloads/printouts/Michael_Futol_Chinaimo_Baseline_Gantt_A2.pdf',note:'Preserved baseline programme. Use this as the reference schedule for planned dates and subsequent variance comparison.'},
+  {label:'Actual Tracking',jp:'進捗追跡工程表',src:'/downloads/printouts/Michael_Futol_Chinaimo_Actual_Tracking_Gantt_A2.pdf',note:'Statused current-forecast view at the assessment data date. Baseline remains preserved for direct comparison.'},
+  {label:'Actual Critical Path',jp:'現況クリティカルパス',src:'/downloads/printouts/Michael_Futol_Chinaimo_Actual_Critical_Path_A2.pdf',note:'Critical-filtered current programme showing the activities that control the forecast completion path.'},
+  {label:'Recovery Tracking',jp:'回復工程追跡表',src:'/downloads/printouts/Michael_Futol_Chinaimo_Recovery_Tracking_Gantt_A2.pdf',note:'Partial-recovery programme compared against the preserved baseline and current forecast.'},
+  {label:'Recovery Critical Path',jp:'回復クリティカルパス',src:'/downloads/printouts/Michael_Futol_Chinaimo_Recovery_Critical_Path_A2.pdf',note:'Critical-filtered recovery programme showing the residual path controlling the recovery finish.'}
 ] as const;
 
 type SvgPoint = { x:number; y:number; color:string; label:string; value:number };
@@ -62,7 +37,6 @@ export default function Enhancements(){
   useEffect(() => {
     const cleanups: Array<() => void> = [];
 
-    // Bilingual major headings. English remains primary; Japanese is a restrained technical subtitle.
     document.querySelectorAll('main article section h2').forEach((heading) => {
       const h = heading as HTMLElement;
       if (h.querySelector('.jp-heading')) return;
@@ -85,7 +59,6 @@ export default function Enhancements(){
       title.insertAdjacentElement('afterend', jp);
     }
 
-    // Convert the existing baseline-only PDF viewer into a five-view schedule gallery.
     const sections = Array.from(document.querySelectorAll('main article section')) as HTMLElement[];
     const ganttSection = sections.find((s) => (s.querySelector('h2')?.textContent || '').includes('Assessment Baseline Gantt Chart'));
     if (ganttSection && !ganttSection.querySelector('[data-gantt-tabs]')) {
@@ -94,12 +67,8 @@ export default function Enhancements(){
       const frame = ganttSection.querySelector('iframe') as HTMLIFrameElement | null;
       const actions = ganttSection.querySelector('div:last-child') as HTMLElement | null;
       if (heading && frame && actions) {
-        // Keep the generated section number pseudo-element; replace only visible heading content.
-        heading.childNodes.forEach((node) => {
-          if (node.nodeType === Node.TEXT_NODE) node.textContent = '';
-        });
-        const en = document.createTextNode('Schedule View Gallery');
-        heading.insertBefore(en, heading.firstChild);
+        heading.childNodes.forEach((node) => { if (node.nodeType === Node.TEXT_NODE) node.textContent = ''; });
+        heading.insertBefore(document.createTextNode('Schedule View Gallery'), heading.firstChild);
         const oldJp = heading.querySelector('.jp-heading');
         if (oldJp) oldJp.textContent = '工程表ビュー';
         if (intro) intro.textContent = 'Five A2 native Microsoft Project schedule views. Select a tab to inspect the baseline, current tracking, critical path, and recovery evidence.';
@@ -123,10 +92,7 @@ export default function Enhancements(){
           frame.src = `${item.src}#toolbar=0&navpanes=0&view=FitH`;
           guide.innerHTML = `<strong>${item.label}</strong><span lang="ja">${item.jp}</span><p>${item.note}</p>`;
           tabs.querySelectorAll('button').forEach((b,i) => b.classList.toggle('active', i === index));
-          if (primary) {
-            primary.href = item.src;
-            primary.textContent = `Open / Download ${item.label} PDF`;
-          }
+          if (primary) { primary.href = item.src; primary.textContent = `Open / Download ${item.label} PDF`; }
           if (secondary) {
             const isRecovery = index >= 3;
             secondary.href = isRecovery ? '/downloads/Michael_Futol_Chinaimo_Recovery.mpp' : (index === 0 ? '/downloads/Michael_Futol_Chinaimo_Baseline.mpp' : '/downloads/Michael_Futol_Chinaimo_Actual_Progress.mpp');
@@ -146,7 +112,6 @@ export default function Enhancements(){
       }
     }
 
-    // Interactive S-curve inspection: monthly snap on X, free Y crosshair, curve glow only when the cursor reaches a curve.
     const svg = document.querySelector('svg[aria-label="Baseline, current forecast and recovery S-curve"]') as SVGSVGElement | null;
     if (svg && !svg.querySelector('[data-crosshair-layer]')) {
       const left=72, right=976, top=28, bottom=368, plotW=904, plotH=340;
@@ -194,7 +159,7 @@ export default function Enhancements(){
         const local = pt.matrixTransform(ctm.inverse());
         if(local.x < left || local.x > right || local.y < top || local.y > bottom){ layer.setAttribute('visibility','hidden'); return; }
         layer.setAttribute('visibility','visible');
-        const idx = Math.max(0,Math.min(28,Math.round(((local.x-left)/plotW)*32)));
+        const idx = Math.max(0,Math.min(32,Math.round(((local.x-left)/plotW)*32)));
         const sx = xForIndex(idx);
         let sy = Math.max(top,Math.min(bottom,local.y));
         let nearest:SvgPoint|null = null;
@@ -215,12 +180,12 @@ export default function Enhancements(){
         yText.setAttribute('y',String(Math.max(top+16,Math.min(bottom-7,sy+5)))); yText.textContent=`${(((bottom-sy)/plotH)*100).toFixed(1)}%`;
         if(isHit && nearest){
           glow.setAttribute('visibility','visible'); hit.setAttribute('visibility','visible'); hitLabel.setAttribute('visibility','visible');
-          glow.setAttribute('cx',String(nearest.x));glow.setAttribute('cy',String(nearest.y));glow.setAttribute('fill',nearest.color);glow.setAttribute('filter','url(#curveGlow)');
-          hit.setAttribute('cx',String(nearest.x));hit.setAttribute('cy',String(nearest.y));hit.setAttribute('fill',nearest.color);
-          hitLabel.setAttribute('x',String(Math.min(right-145,nearest.x+11)));hitLabel.setAttribute('y',String(Math.max(top+14,nearest.y-10));
+          glow.setAttribute('cx',String(nearest.x)); glow.setAttribute('cy',String(nearest.y)); glow.setAttribute('fill',nearest.color); glow.setAttribute('filter','url(#curveGlow)');
+          hit.setAttribute('cx',String(nearest.x)); hit.setAttribute('cy',String(nearest.y)); hit.setAttribute('fill',nearest.color);
+          hitLabel.setAttribute('x',String(Math.min(right-145,nearest.x+11))); hitLabel.setAttribute('y',String(Math.max(top+14,nearest.y-10)));
           hitLabel.textContent=`${nearest.label} ${(nearest.value*100).toFixed(nearest.value<.2?3:1)}%`;
         }else{
-          glow.setAttribute('visibility','hidden');hit.setAttribute('visibility','hidden');hitLabel.setAttribute('visibility','hidden');
+          glow.setAttribute('visibility','hidden'); hit.setAttribute('visibility','hidden'); hitLabel.setAttribute('visibility','hidden');
         }
       };
       const onLeave = () => layer.setAttribute('visibility','hidden');
