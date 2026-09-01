@@ -80,6 +80,12 @@ svg[aria-label="Baseline, current forecast and recovery S-curve"] { cursor: cros
 .curve-hit-dot { stroke:#f8f6ee; stroke-width:1.8; }
 .curve-hit-label { fill:#28383f !important; font:700 11px/1 'Courier New',monospace !important; paint-order:stroke; stroke:#f8f6ee; stroke-width:4px; stroke-linejoin:round; }
 
+/* Fresh technical-paper pass: keep the warm matte character, but move it closer to clean white stock. */
+main { background-color:#eeeeea !important; }
+main article { background-color:#faf9f6 !important; }
+main article div[class*="curveWrap"] { background:#fcfbf8 !important; }
+main article svg[aria-label="Baseline, current forecast and recovery S-curve"] rect { fill:#fcfbf8 !important; }
+
 @media (max-width: 820px) {
   body a[href="/dossier-jp"] { width: 100% !important; padding-top: 11px !important; padding-bottom: 11px !important; }
   main article { font-size:16px; }
