@@ -94,9 +94,13 @@ export default function SCurvePrecision() {
         line.setAttribute('opacity', '.43');
       });
 
+      const primaryCurves = Array.from(svg.querySelectorAll('polyline')).slice(0, 3) as SVGPolylineElement[];
+      const baseline = primaryCurves[0];
+      const current = primaryCurves[1];
+      const recovery = primaryCurves[2];
+
       // Make the baseline visually originate at 0% without changing any Annex value.
       // The first Annex control point remains Oct-25 = 1%; this is only a commencement anchor.
-      const baseline = svg.querySelector('polyline') as SVGPolylineElement | null;
       if (baseline && baseline.dataset.originAnchored !== '1') {
         const existing = (baseline.getAttribute('points') || '').trim();
         if (existing) baseline.setAttribute('points', `${left},${bottom} ${existing}`);
@@ -107,10 +111,24 @@ export default function SCurvePrecision() {
         anchor.setAttribute('cy', String(bottom));
         anchor.setAttribute('r', '2.8');
         anchor.setAttribute('fill', '#263b49');
-        anchor.setAttribute('stroke', '#f9f8f3');
+        anchor.setAttribute('stroke', '#fbfaf7');
         anchor.setAttribute('stroke-width', '1.2');
         anchor.setAttribute('data-baseline-origin', '1');
         baseline.insertAdjacentElement('afterend', anchor);
+      }
+
+      // Complete the two forecast curves to their native CPM finish anchors at 100%.
+      // No intermediate monthly values are created after the Annex series ends in Feb-2028:
+      // each curve simply connects its last Annex point directly to its known CPM completion date.
+      if (recovery && recovery.dataset.completionAnchored !== '1') {
+        const existing = (recovery.getAttribute('points') || '').trim();
+        if (existing) recovery.setAttribute('points', `${existing} ${xForIndex(30).toFixed(1)},${top}`);
+        recovery.dataset.completionAnchored = '1';
+      }
+      if (current && current.dataset.completionAnchored !== '1') {
+        const existing = (current.getAttribute('points') || '').trim();
+        if (existing) current.setAttribute('points', `${existing} ${xForIndex(32).toFixed(1)},${top}`);
+        current.dataset.completionAnchored = '1';
       }
 
       // Ground the known progress evidence in the published project commencement.
@@ -136,7 +154,7 @@ export default function SCurvePrecision() {
         startRing.setAttribute('cx', String(p0.x));
         startRing.setAttribute('cy', String(p0.y));
         startRing.setAttribute('r', '5.2');
-        startRing.setAttribute('fill', '#f9f8f3');
+        startRing.setAttribute('fill', '#fbfaf7');
         startRing.setAttribute('stroke', '#617b61');
         startRing.setAttribute('stroke-width', '1.7');
         startRing.setAttribute('class', 'evidence-start-ring');
@@ -171,12 +189,12 @@ export default function SCurvePrecision() {
         reportedLegend.dataset.traceLegend = '1';
       }
 
-      // Clarify the visual connector so no reviewer can mistake it for invented monthly actuals.
+      // Clarify the evidence and forecast-tail treatment so no reviewer can mistake either for invented monthly data.
       const note = Array.from(document.querySelectorAll('p')).find((p) =>
         (p.textContent || '').startsWith('The plotted monthly curve values reproduce the S-Curve Annex')
       ) as HTMLParagraphElement | undefined;
       if (note && note.dataset.evidenceNote !== '1') {
-        note.textContent = `${note.textContent} The thin green dashed connector joins only the published project start, the 4.19% public checkpoint, and the 12.095% assessment status anchor; it is not an interpolated monthly actual-progress series.`;
+        note.textContent = `${note.textContent} The thin green dashed connector joins only the published project start, the 4.19% public checkpoint, and the 12.095% assessment status anchor; it is not an interpolated monthly actual-progress series. After Feb-2028, the Current and Recovery curves connect directly from their last Annex point to the native CPM 100% finish anchor, without invented intermediate monthly values.`;
         note.dataset.evidenceNote = '1';
       }
 
@@ -213,13 +231,13 @@ export default function SCurvePrecision() {
             animation: chinaimoCurvePointBreath 1.05s ease-in-out infinite;
           }
           ${SVG_SELECTOR} .curve-hit-dot {
-            stroke: #f9f8f3 !important;
+            stroke: #fbfaf7 !important;
             stroke-width: 2.2 !important;
             vector-effect: non-scaling-stroke;
           }
           ${SVG_SELECTOR} .curve-hit-label {
             paint-order: stroke fill;
-            stroke: rgba(249,248,243,.94);
+            stroke: rgba(251,250,247,.96);
             stroke-width: 3px;
             stroke-linejoin: round;
           }
