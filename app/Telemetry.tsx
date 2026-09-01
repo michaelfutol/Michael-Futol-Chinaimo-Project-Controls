@@ -18,6 +18,14 @@ const ANALYTICS_URL = 'https://vercel.com/ikel-eidras-projects/michael-futol-chi
 const CLASSIC_URL = 'https://michael-futol-chinaimo-project-controls-8hhdsow8z.vercel.app/';
 const ADMIN_SEQUENCE = [1, 3, 7] as const;
 
+const METALLIC_FINISHES = [
+  'linear-gradient(112deg,#f1f3f2 0%,#bcc4c6 18%,#6c787d 40%,#eef1ef 57%,#7e898d 76%,#d7dcda 100%)',
+  'linear-gradient(112deg,#f3ead7 0%,#cbb992 19%,#827052 41%,#eee1c5 58%,#99846a 77%,#d8c6a5 100%)',
+  'linear-gradient(112deg,#c9ced0 0%,#7d878b 20%,#3f494e 42%,#b8c0c2 58%,#596469 78%,#929b9e 100%)',
+  'linear-gradient(112deg,#ead8c6 0%,#bf9677 19%,#7a5542 41%,#ddc0aa 58%,#966d55 77%,#cba88d 100%)',
+  'linear-gradient(112deg,#e8edf0 0%,#aebcc3 18%,#63747d 40%,#dce5e8 58%,#768892 77%,#c4d0d5 100%)',
+] as const;
+
 function makeId(prefix: string) {
   const id = typeof crypto !== 'undefined' && 'randomUUID' in crypto
     ? crypto.randomUUID()
@@ -132,58 +140,51 @@ export default function Telemetry() {
       <style>{`
         .chinaimo-shimmer-strip{
           width:100%;display:flex;justify-content:center;align-items:flex-start;gap:4px;
-          padding:7px 0 12px;perspective:180px;user-select:none;
+          padding:7px 0 12px;perspective:220px;user-select:none;
         }
         .chinaimo-shimmer-tile{
           position:relative;width:13px;height:15px;display:block;overflow:hidden;
-          border:1px solid rgba(63,71,75,.42);border-radius:1px 1px 2px 2px;
-          background:
-            linear-gradient(112deg,rgba(255,255,255,.84) 0%,rgba(210,216,217,.58) 16%,rgba(88,99,104,.72) 39%,rgba(239,241,239,.88) 55%,rgba(103,113,117,.72) 75%,rgba(222,225,224,.62) 100%);
-          box-shadow:inset 0 0 0 1px rgba(255,255,255,.13),0 1px 1px rgba(31,38,41,.18);
-          opacity:.31;transform-origin:50% 1px;backface-visibility:hidden;
+          border:1px solid rgba(63,71,75,.38);border-radius:1px 1px 2px 2px;
+          box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 1px 1px rgba(31,38,41,.15);
+          opacity:.36;transform-origin:50% 1px;backface-visibility:hidden;
           animation-name:chinaimoShimmerWind,chinaimoShimmerLight;
           animation-timing-function:ease-in-out,ease-in-out;
           animation-iteration-count:infinite,infinite;
-          will-change:transform,filter,opacity,box-shadow;
+          will-change:transform,filter,opacity;
           cursor:default;
         }
         .chinaimo-shimmer-tile:before{
           content:'';position:absolute;z-index:2;top:1px;left:50%;width:2px;height:2px;
-          margin-left:-1px;border-radius:50%;background:rgba(42,49,52,.76);
-          box-shadow:0 0 0 1px rgba(255,255,255,.22);
+          margin-left:-1px;border-radius:50%;background:rgba(42,49,52,.65);
+          box-shadow:0 0 0 1px rgba(255,255,255,.20);
         }
         .chinaimo-shimmer-tile:after{
           content:'';position:absolute;inset:-5px;
-          background:linear-gradient(105deg,transparent 31%,rgba(255,255,255,.92) 47%,transparent 61%);
+          background:linear-gradient(105deg,transparent 34%,rgba(255,255,255,.82) 49%,transparent 64%);
           transform:translateX(-135%);opacity:0;
         }
         .chinaimo-shimmer-tile:hover{
-          opacity:.72;
-          animation-duration:.78s,.52s !important;
-          box-shadow:inset 0 0 0 1px rgba(255,255,255,.28),0 0 5px rgba(120,132,136,.46),0 0 15px rgba(120,132,136,.23);
+          opacity:.64;
+          box-shadow:inset 0 0 0 1px rgba(255,255,255,.24),0 0 4px rgba(120,132,136,.30),0 0 11px rgba(120,132,136,.14);
         }
         .chinaimo-shimmer-tile:hover:after{
-          animation:chinaimoShimmerSweep .72s ease-out 1;
+          animation:chinaimoShimmerSweep 1.15s ease-out 1;
         }
         @keyframes chinaimoShimmerWind{
-          0%,100%{transform:perspective(95px) rotateX(-2deg) rotateY(-8deg) translateY(0)}
-          14%{transform:perspective(95px) rotateX(5deg) rotateY(15deg) translateY(.2px)}
-          29%{transform:perspective(95px) rotateX(-7deg) rotateY(4deg) translateY(-.3px)}
-          47%{transform:perspective(95px) rotateX(2deg) rotateY(-18deg) translateY(.35px)}
-          63%{transform:perspective(95px) rotateX(8deg) rotateY(8deg) translateY(-.15px)}
-          81%{transform:perspective(95px) rotateX(-4deg) rotateY(20deg) translateY(.25px)}
+          0%,100%{transform:perspective(120px) rotateX(-1deg) rotateY(-4deg)}
+          24%{transform:perspective(120px) rotateX(2deg) rotateY(5deg)}
+          51%{transform:perspective(120px) rotateX(-2deg) rotateY(2deg)}
+          76%{transform:perspective(120px) rotateX(1deg) rotateY(-6deg)}
         }
         @keyframes chinaimoShimmerLight{
-          0%,100%{filter:brightness(.72) contrast(1.02)}
-          18%{filter:brightness(1.34) contrast(1.08)}
-          32%{filter:brightness(.8) contrast(1.06)}
-          49%{filter:brightness(1.58) contrast(1.12)}
-          67%{filter:brightness(.78) contrast(1.04)}
-          82%{filter:brightness(1.24) contrast(1.08)}
+          0%,100%{filter:brightness(.88) contrast(1.02)}
+          27%{filter:brightness(1.08) contrast(1.04)}
+          53%{filter:brightness(.94) contrast(1.03)}
+          79%{filter:brightness(1.16) contrast(1.05)}
         }
         @keyframes chinaimoShimmerSweep{
           0%{transform:translateX(-135%);opacity:0}
-          28%{opacity:.78}
+          34%{opacity:.56}
           100%{transform:translateX(135%);opacity:0}
         }
         @media (prefers-reduced-motion:reduce){
@@ -205,8 +206,8 @@ export default function Telemetry() {
       )}
       <div aria-hidden="true" className="chinaimo-shimmer-strip">
         {Array.from({ length: 10 }, (_, i) => i + 1).map((tile) => {
-          const windDuration = 3.25 + (tile % 4) * .43;
-          const lightDuration = 2.15 + (tile % 5) * .31;
+          const windDuration = 8.4 + (tile % 4) * 1.15;
+          const lightDuration = 7.2 + (tile % 5) * .95;
           return (
             <span
               key={tile}
@@ -214,8 +215,9 @@ export default function Telemetry() {
               onClick={() => onGateTile(tile)}
               className="chinaimo-shimmer-tile"
               style={{
+                background: METALLIC_FINISHES[(tile - 1) % METALLIC_FINISHES.length],
                 animationDuration: `${windDuration}s, ${lightDuration}s`,
-                animationDelay: `${-tile * .37}s, ${-tile * .23}s`,
+                animationDelay: `${-tile * .71}s, ${-tile * .47}s`,
               }}
             />
           );
