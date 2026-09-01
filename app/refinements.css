@@ -18,6 +18,28 @@ main article section table { font-size: 15px !important; }
 main article section table th { font-size: 13px !important; }
 main article a[href^="/downloads/"] { font-size: 13.5px !important; }
 
+/* Restrained vintage display layer: high-contrast old-print character only where hierarchy benefits from it.
+   Uses local/system serif faces so the reviewer page does not depend on an external font service. */
+main article header:has(.jp-main-title) h1 {
+  font-family:"Bodoni MT","Bodoni 72",Didot,"Baskerville","Book Antiqua","Palatino Linotype",Georgia,serif !important;
+  font-weight:700 !important;
+  letter-spacing:.006em !important;
+  color:#26363d !important;
+}
+main article header:has(.jp-main-title) > p:first-child {
+  font-family:"Baskerville","Bodoni MT","Book Antiqua","Palatino Linotype",Georgia,serif !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+  font-variant-caps:small-caps;
+  letter-spacing:.14em !important;
+  color:#4e585b !important;
+}
+main article section h2 {
+  font-family:"Bodoni MT","Bodoni 72",Didot,"Baskerville","Book Antiqua","Palatino Linotype",Georgia,serif !important;
+  font-weight:700 !important;
+  letter-spacing:.018em !important;
+}
+
 .jp-main-title {
   margin-top: 7px;
   color: #6c7173;
@@ -91,6 +113,7 @@ main article svg[aria-label="Baseline, current forecast and recovery S-curve"] r
   main article { font-size:16px; }
   main article header h1 { font-size: 37px !important; }
   main article section h2 { font-size:25px !important; }
+  main article header:has(.jp-main-title) > p:first-child { font-size:12px !important; letter-spacing:.11em !important; }
   .jp-main-title { font-size:13px; }
   .jp-heading { margin-left:30px; font-size:12px; }
   .gantt-tabs { grid-template-columns:1fr 1fr; }
