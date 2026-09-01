@@ -3,6 +3,7 @@ import './refinements.css';
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import Telemetry from './Telemetry';
+import Enhancements from './Enhancements';
 
 export const metadata: Metadata = {
   title: 'Michael Futol - Chinaimo Project Controls Assessment',
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body>
         {children}
+        <Enhancements />
         <Telemetry />
         <Analytics mode="production" />
       </body>
