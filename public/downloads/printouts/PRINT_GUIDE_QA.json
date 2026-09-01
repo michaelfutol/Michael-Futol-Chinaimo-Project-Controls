@@ -4,49 +4,49 @@
         "mpp":  "Michael_Futol_Chinaimo_Baseline.mpp",
         "view":  "Gantt Chart",
         "filter":  "",
-        "bytes":  414826,
+        "bytes":  414513,
         "footer_guide":  true,
         "native_legend":  true,
-        "legend_text_length":  229
+        "legend_text_length":  75
     },
     {
         "pdf":  "Michael_Futol_Chinaimo_Actual_Tracking_Gantt_A2.pdf",
         "mpp":  "Michael_Futol_Chinaimo_Actual_Progress.mpp",
         "view":  "Tracking Gantt",
         "filter":  "",
-        "bytes":  453230,
+        "bytes":  452953,
         "footer_guide":  true,
         "native_legend":  true,
-        "legend_text_length":  220
+        "legend_text_length":  82
     },
     {
         "pdf":  "Michael_Futol_Chinaimo_Actual_Critical_Path_A2.pdf",
         "mpp":  "Michael_Futol_Chinaimo_Actual_Progress.mpp",
         "view":  "Tracking Gantt",
         "filter":  "Critical",
-        "bytes":  413199,
+        "bytes":  412914,
         "footer_guide":  true,
         "native_legend":  true,
-        "legend_text_length":  229
+        "legend_text_length":  76
     },
     {
         "pdf":  "Michael_Futol_Chinaimo_Recovery_Tracking_Gantt_A2.pdf",
         "mpp":  "Michael_Futol_Chinaimo_Recovery.mpp",
         "view":  "Tracking Gantt",
         "filter":  "",
-        "bytes":  430742,
+        "bytes":  430328,
         "footer_guide":  true,
         "native_legend":  true,
-        "legend_text_length":  228
+        "legend_text_length":  80
     },
     {
         "pdf":  "Michael_Futol_Chinaimo_Recovery_Critical_Path_A2.pdf",
         "mpp":  "Michael_Futol_Chinaimo_Recovery.mpp",
         "view":  "Tracking Gantt",
         "filter":  "Critical",
-        "bytes":  390313,
+        "bytes":  390066,
         "footer_guide":  true,
         "native_legend":  true,
-        "legend_text_length":  220
+        "legend_text_length":  75
     }
 ]
