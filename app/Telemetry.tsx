@@ -52,6 +52,7 @@ export default function Telemetry() {
   const gateStep = useRef(0);
   const gateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [adminUnlocked, setAdminUnlocked] = useState(false);
+  const [hoverTile, setHoverTile] = useState<number | null>(null);
 
   useEffect(() => {
     const visitorId = getStoredId(localStorage, 'chinaimo_visitor_id', 'v');
@@ -67,9 +68,7 @@ export default function Telemetry() {
         path: window.location.pathname,
         source: source || 'direct',
       });
-    } catch {
-      // Runtime-log telemetry remains the fallback.
-    }
+    } catch {}
 
     const onClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
@@ -82,31 +81,14 @@ export default function Telemetry() {
 
       if (sameOrigin && url.pathname.startsWith('/downloads/')) {
         const asset = decodeURIComponent(url.pathname.split('/').pop() || '').slice(0, 160);
-        send({
-          event: 'download_click',
-          path: window.location.pathname,
-          href: url.pathname,
-          label,
-          asset,
-          ...base,
-        });
-        try {
-          track('Reviewer Download', { asset, label: label || asset });
-        } catch {}
+        send({ event: 'download_click', path: window.location.pathname, href: url.pathname, label, asset, ...base });
+        try { track('Reviewer Download', { asset, label: label || asset }); } catch {}
         return;
       }
 
       if (sameOrigin && (url.pathname === '/dossier-jp' || url.pathname.startsWith('/dossier-jp/'))) {
-        send({
-          event: 'japanese_dossier_open',
-          path: window.location.pathname,
-          href: url.pathname,
-          label,
-          ...base,
-        });
-        try {
-          track('Japanese Dossier Open', { from: window.location.pathname });
-        } catch {}
+        send({ event: 'japanese_dossier_open', path: window.location.pathname, href: url.pathname, label, ...base });
+        try { track('Japanese Dossier Open', { from: window.location.pathname }); } catch {}
       }
     };
 
@@ -138,9 +120,7 @@ export default function Telemetry() {
       gateStep.current = tile === ADMIN_SEQUENCE[0] ? 1 : 0;
     }
 
-    gateTimer.current = setTimeout(() => {
-      gateStep.current = 0;
-    }, 4500);
+    gateTimer.current = setTimeout(() => { gateStep.current = 0; }, 4500);
   };
 
   const openClassic = () => {
@@ -156,51 +136,35 @@ export default function Telemetry() {
           onClick={openClassic}
           title="Open exact pre-redesign production checkpoint"
           style={{
-            position: 'fixed',
-            right: 12,
-            bottom: 12,
-            zIndex: 9999,
-            height: 26,
-            padding: '0 8px',
-            border: '1px solid #7e8587',
-            background: '#f4f3ee',
-            color: '#4e575a',
-            font: '700 10px/1 Courier New, monospace',
-            letterSpacing: '.04em',
-            opacity: 0.34,
-            cursor: 'pointer',
+            position: 'fixed', right: 12, bottom: 12, zIndex: 9999, height: 26, padding: '0 8px',
+            border: '1px solid #7e8587', background: '#f4f3ee', color: '#4e575a',
+            font: '700 10px/1 Courier New, monospace', letterSpacing: '.04em', opacity: 0.34, cursor: 'pointer',
           }}
-        >
-          ↶ CLASSIC
-        </button>
+        >↶ CLASSIC</button>
       )}
       <div
         aria-hidden="true"
-        style={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          gap: 7,
-          padding: '3px 0 8px',
-          opacity: 0.14,
-          userSelect: 'none',
-        }}
+        style={{ width:'100%', display:'flex', justifyContent:'center', gap:8, padding:'5px 0 10px', userSelect:'none' }}
       >
-        {Array.from({ length: 10 }, (_, i) => i + 1).map((tile) => (
-          <span
-            key={tile}
-            data-a-tile={tile}
-            onClick={() => onGateTile(tile)}
-            style={{
-              width: 10,
-              height: 10,
-              display: 'block',
-              borderRadius: 1,
-              background: '#68747b',
-              cursor: 'default',
-            }}
-          />
-        ))}
+        {Array.from({ length: 10 }, (_, i) => i + 1).map((tile) => {
+          const hot = hoverTile === tile;
+          return (
+            <span
+              key={tile}
+              data-a-tile={tile}
+              onMouseEnter={() => setHoverTile(tile)}
+              onMouseLeave={() => setHoverTile(null)}
+              onClick={() => onGateTile(tile)}
+              style={{
+                width: 12, height: 12, display:'block', borderRadius:1, background:'#68747b', cursor:'default',
+                opacity: hot ? .62 : .14,
+                transform: hot ? 'scale(1.12)' : 'scale(1)',
+                boxShadow: hot ? '0 0 5px rgba(104,116,123,.55), 0 0 16px rgba(104,116,123,.34)' : 'none',
+                transition: 'opacity .16s ease, transform .16s ease, box-shadow .16s ease',
+              }}
+            />
+          );
+        })}
       </div>
     </>
   );
