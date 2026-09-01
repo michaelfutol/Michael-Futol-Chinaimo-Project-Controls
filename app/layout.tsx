@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/next';
 import Telemetry from './Telemetry';
 import Enhancements from './Enhancements';
 import SCurvePrecision from './SCurvePrecision';
+import GanttViewerControls from './GanttViewerControls';
 
 export const metadata: Metadata = {
   title: 'Michael Futol - Chinaimo Project Controls Assessment',
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         {children}
         <Enhancements />
+        <GanttViewerControls />
         <SCurvePrecision />
         <Telemetry />
         <Analytics mode="production" />
