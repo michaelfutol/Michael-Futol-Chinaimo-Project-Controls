@@ -17,6 +17,7 @@ type TelemetryPayload = {
 const ANALYTICS_URL = 'https://vercel.com/michael-futol-projects/michael-futol-chinaimo-project-controls/analytics';
 const CLASSIC_URL = 'https://michael-futol-chinaimo-project-controls-8hhdsow8z.vercel.app/';
 const ADMIN_SEQUENCE = [1, 3, 7] as const;
+const OWNER_KEY = 'chinaimo_owner_exempt';
 
 function makeId(prefix: string) {
   const id = typeof crypto !== 'undefined' && 'randomUUID' in crypto
@@ -34,7 +35,16 @@ function getStoredId(storage: Storage, key: string, prefix: string) {
   return value;
 }
 
+function isOwnerExempt() {
+  try {
+    return localStorage.getItem(OWNER_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
 function send(payload: TelemetryPayload) {
+  if (isOwnerExempt()) return;
   const body = JSON.stringify(payload);
   if (navigator.sendBeacon) {
     navigator.sendBeacon('/api/telemetry', new Blob([body], { type: 'application/json' }));
@@ -62,12 +72,14 @@ export default function Telemetry() {
     const base = { visitorId, sessionId, source };
     send({ event: 'page_view', path: window.location.pathname, ...base });
 
-    try {
-      track('Reviewer Page View', {
-        path: window.location.pathname,
-        source: source || 'direct',
-      });
-    } catch {}
+    if (!isOwnerExempt()) {
+      try {
+        track('Reviewer Page View', {
+          path: window.location.pathname,
+          source: source || 'direct',
+        });
+      } catch {}
+    }
 
     const onClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
@@ -81,13 +93,17 @@ export default function Telemetry() {
       if (sameOrigin && url.pathname.startsWith('/downloads/')) {
         const asset = decodeURIComponent(url.pathname.split('/').pop() || '').slice(0, 160);
         send({ event: 'download_click', path: window.location.pathname, href: url.pathname, label, asset, ...base });
-        try { track('Reviewer Download', { asset, label: label || asset }); } catch {}
+        if (!isOwnerExempt()) {
+          try { track('Reviewer Download', { asset, label: label || asset }); } catch {}
+        }
         return;
       }
 
       if (sameOrigin && (url.pathname === '/dossier-jp' || url.pathname.startsWith('/dossier-jp/'))) {
         send({ event: 'japanese_dossier_open', path: window.location.pathname, href: url.pathname, label, ...base });
-        try { track('Japanese Dossier Open', { from: window.location.pathname }); } catch {}
+        if (!isOwnerExempt()) {
+          try { track('Japanese Dossier Open', { from: window.location.pathname }); } catch {}
+        }
       }
     };
 
@@ -108,8 +124,9 @@ export default function Telemetry() {
     if (tile === expected) {
       gateStep.current += 1;
       if (gateStep.current === ADMIN_SEQUENCE.length) {
-        adminEvent('admin_analytics_gate_open');
+        localStorage.setItem(OWNER_KEY, '1');
         sessionStorage.setItem('chinaimo_admin_unlocked', '1');
+        adminEvent('admin_analytics_gate_open');
         setAdminUnlocked(true);
         gateStep.current = 0;
         window.open(ANALYTICS_URL, '_blank', 'noopener,noreferrer');
