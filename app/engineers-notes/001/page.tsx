@@ -18,7 +18,7 @@ export default function EngineersNote001(){
   return <main style={{minHeight:'100vh',background:'#efefeb',padding:'28px 16px 44px',color:'#283238',fontFamily:"Arial,'Helvetica Neue','Noto Sans JP',sans-serif"}}>
     <article style={{maxWidth:980,margin:'0 auto',background:'#fbfaf7',border:'1px solid #b9bdb9',boxShadow:'0 8px 30px rgba(35,42,45,.055)'}}>
       <header style={{padding:'38px 52px 30px',borderTop:'4px solid #293a42',borderBottom:'1px solid #bbbeba',textAlign:'center'}}>
-        <div style={{font:"700 10px/1.3 'Courier New',monospace",letterSpacing:'.12em',color:'#8e4539'}}>ENGINEER'S NOTE 001 · VERSION 1.2</div>
+        <div style={{font:"700 10px/1.3 'Courier New',monospace",letterSpacing:'.12em',color:'#8e4539'}}>ENGINEER'S NOTE 001 · VERSION 1.3</div>
         <h1 style={{margin:'13px 0 0',fontFamily:"'Bodoni 72',Didot,'Bodoni MT',Baskerville,'Times New Roman',serif",fontSize:45,lineHeight:1.05,fontWeight:600,color:'#25353c'}}>On Forensic Project Recovery</h1>
         <div style={{marginTop:13,fontFamily:"'Times New Roman',serif",fontStyle:'italic',fontSize:13,letterSpacing:'.11em',color:'#686f72'}}>MENS UNA · INGENIA MULTA</div>
       </header>
@@ -28,7 +28,7 @@ export default function EngineersNote001(){
           <strong>Subject</strong><span>Why substantial delay requires investigation before acceleration</span>
           <strong>Classification</strong><span>Project Controls / Recovery Engineering / Value Recovery</span>
           <strong>Author</strong><span>Michael Futol, Civil Engineer</span>
-          <strong>Version</strong><span>1.2</span>
+          <strong>Version</strong><span>1.3</span>
         </div>
 
         <p style={pStyle}>A project in substantial delay cannot be repaired merely by shortening activity durations, adding logic links, or entering a completion date that happens to suit management. A programme can always be made to show an earlier finish. The more difficult question is whether the work can be made to finish on that date, and whether doing so preserves more value than it consumes.</p>
@@ -77,7 +77,7 @@ export default function EngineersNote001(){
         <NoteSection title="The Use of Computing and Artificial Intelligence">
           <p style={pStyle}>A major delayed project may contain thousands of remaining activities, hundreds of procurement items, and a formidable quantity of daily reports, RFIs, drawings, photographs, correspondence, progress measurements, commercial records, and programme revisions. Within an ordinary reporting period, one planner cannot examine all of this material with equal care.</p>
           <p style={pStyle}>Computer-assisted analysis, including artificial intelligence, is valuable in this setting as an aid to professional judgement. It can help to extract and organise records, compare planned and actual production, correlate events with activities, identify inconsistencies, classify possible causes, estimate ranges, and direct the engineer's attention to recurring constraints. Its purpose is not to replace the engineer, but to extend the quantity of evidence that can be examined in the time available and to expose assumptions that might otherwise remain hidden.</p>
-          <p style={pStyle}>The deterministic work remains equally important. CPM calculation, float analysis, path tracing, resource loading, calendars, quantity--duration checks, productivity limits, scenario testing, cost--time trade-offs, and optimisation are all suited to systematic computation. A machine can search a large field of alternatives. The engineer must still decide which alternatives are safe, buildable, commercially intelligible, and credible.</p>
+          <p style={pStyle}>The deterministic work remains equally important. CPM calculation, float analysis, path tracing, resource loading, calendars, quantity-duration checks, productivity limits, scenario testing, cost-time trade-offs, and optimisation are all suited to systematic computation. Systematic computation can search a large field of alternatives; the engineer still has to decide which alternatives are safe, buildable, commercially intelligible, and credible.</p>
         </NoteSection>
 
         <NoteSection title="The Search for Recovery Options">
@@ -89,11 +89,12 @@ export default function EngineersNote001(){
 
         <NoteSection title="One Mind, Many Intellects">
           <p style={pStyle}>This is the practical meaning of the Munigen principle, <em>Mens una, ingenia multa</em>: one mind, many intellects. The structural engineer may find a useful design modification. The construction specialist may propose a better method. Procurement may reveal the true long-lead constraint. Project controls may identify the governing path, quantity surveying and finance may establish the price and cash consequence of acceleration, and commercial management may identify the value at risk in claims or future work. Artificial intelligence may disclose patterns hidden among thousands of records, while optimisation algorithms may test combinations that no individual planner would have time to examine manually.</p>
-          <p style={pStyle}>These findings should not remain as separate answers from separate disciplines. They must be brought back into one coherent model of the project, where one discipline can challenge the assumptions of another and where the decision remains traceable to evidence. Recovery is not achieved by accumulating specialist opinions. It is achieved by synthesis.</p>
+          <p style={pStyle}>These findings should not remain as separate answers from separate disciplines. Recovery depends on synthesising them into one coherent project model where the assumptions can be challenged across disciplines and every important decision remains traceable to evidence.</p>
         </NoteSection>
 
         <NoteSection title="Control After the Recovery Programme">
           <p style={pStyle}>The issue of a recovery programme is the beginning of the work, not its conclusion. Its assumptions must be tested against actual performance during every reporting cycle. Did the additional crew attain the expected output? Did the expedited material arrive? Was the promised parallel workfront released? Did the critical path move? Was the commercial value expected from acceleration actually preserved? Were the forecast days recovered, or did a new constraint take the place of the old one?</p>
+          <p style={pStyle}>A simple production check can force an uncomfortable correction. If an added crew was assumed to sustain 160 square metres per working day but two reporting cycles show only 118 to 125, the recovery model should be recalibrated. The original acceleration assumption should not survive merely because management has already committed to the date.</p>
           <p style={pStyle}>The proper sequence is continuous:</p>
           <div style={{margin:'22px auto',padding:'18px 16px',maxWidth:790,borderTop:'1px solid #aeb2ae',borderBottom:'1px solid #aeb2ae',textAlign:'center',font:"700 12px/1.75 'Courier New',monospace",letterSpacing:'.04em',color:'#34454c'}}>DIAGNOSE → ENGINEER → VALUE → SIMULATE → APPROVE<br/>→ EXECUTE → MEASURE → REFORECAST → CORRECT</div>
           <p style={pStyle}>The cycle then begins again. The S-curve, programme, productivity records, procurement status, cost and cash data, field evidence, recovery-value assumptions, and, where used, the planned-versus-actual 4D model should all describe the same project reality. If the evidence changes, the forecast and the preferred recovery strategy should be allowed to change with it.</p>
@@ -101,7 +102,7 @@ export default function EngineersNote001(){
 
         <NoteSection title="Final Note">
           <p style={pStyle}>A recovery programme should never be merely a more attractive version of an impossible plan. It should be an executable engineering and management proposition whose value can be explained as clearly as its dates.</p>
-          <p style={pStyle}>Before compressing time, establish where the time went. Before promising recovery, determine what the remaining work can physically produce. Before changing a duration, identify the means by which that duration will be achieved. Before paying for acceleration, establish what value the recovered time is expected to preserve. Once recovery begins, measure the result and compare it honestly with the assumptions.</p>
+          <p style={pStyle}>Before compressing time, establish where the time went and what the remaining work can physically produce. Any shortened duration should be tied to a defined means of achieving it, with its cost, risk, safety implications, and expected value made visible. Once recovery begins, actual performance should be compared honestly with those assumptions and the forecast revised when the evidence changes.</p>
         </NoteSection>
 
         <div style={{marginTop:38,paddingTop:23,borderTop:'1px solid #aeb2ae',textAlign:'center'}}>
