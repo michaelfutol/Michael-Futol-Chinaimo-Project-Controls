@@ -24,7 +24,7 @@ export default function EngineersNote002(){
   return <main style={{minHeight:'100vh',background:'#efefeb',padding:'28px 16px 44px',color:'#283238',fontFamily:"Arial,'Helvetica Neue','Noto Sans JP',sans-serif"}}>
     <article style={{maxWidth:980,margin:'0 auto',background:'#fbfaf7',border:'1px solid #b9bdb9',boxShadow:'0 8px 30px rgba(35,42,45,.055)'}}>
       <header style={{padding:'38px 52px 30px',borderTop:'4px solid #293a42',borderBottom:'1px solid #bbbeba',textAlign:'center'}}>
-        <div style={{font:"700 11.5px/1.3 'Courier New',monospace",letterSpacing:'.11em',color:'#8e4539'}}>ENGINEER'S NOTE 002 · VERSION 1.1</div>
+        <div style={{font:"700 11.5px/1.3 'Courier New',monospace",letterSpacing:'.11em',color:'#8e4539'}}>ENGINEER'S NOTE 002 · VERSION 1.2</div>
         <h1 style={{margin:'13px 0 0',fontFamily:"'Bodoni 72',Didot,'Bodoni MT',Baskerville,'Times New Roman',serif",fontSize:45,lineHeight:1.05,fontWeight:600,color:'#25353c'}}>Value Over Recovery</h1>
         <div style={{marginTop:9,fontFamily:"'Times New Roman',serif",fontSize:17,fontStyle:'italic',color:'#566166'}}>Why the Fastest Recovery Programme Is Not Always the Best Project Decision</div>
         <div style={{marginTop:13,fontFamily:"'Times New Roman',serif",fontStyle:'italic',fontSize:13.5,letterSpacing:'.11em',color:'#686f72'}}>MENS UNA · INGENIA MULTA</div>
@@ -35,7 +35,7 @@ export default function EngineersNote002(){
           <strong>Subject</strong><span>Selecting recovery interventions by defensible project value</span>
           <strong>Classification</strong><span>Project Controls / Recovery Engineering / Value Recovery</span>
           <strong>Author</strong><span>Michael Futol, Civil Engineer</span>
-          <strong>Version / Date</strong><span>1.1 / 3 September 2026</span>
+          <strong>Version / Date</strong><span>1.2 / 3 September 2026</span>
         </div>
 
         <p style={pStyle}>In delayed projects, management attention often converges on one question: how many days can be recovered? It is an understandable question, but it is incomplete. A project can recover time and still destroy value.</p>
@@ -51,7 +51,7 @@ export default function EngineersNote002(){
         <Section title="2. Maximum Recovery Is Not Necessarily Optimum Recovery">
           <p style={pStyle}>Consider a project delayed by 100 days. Management develops two alternatives. Scenario A seeks to recover 80 days through extensive overtime, second and third shifts, premium material procurement, overlapping activities, additional subcontractors, and heavy acceleration of critical packages. The programme appears attractive because the delay is almost eliminated, but the intervention introduces substantial additional cost, reduced productivity, site congestion, coordination difficulty, rework exposure, and commercial strain.</p>
           <p style={pStyle}>Scenario B seeks to recover 45 days through selective acceleration, improved sequencing, constraint removal, targeted additional resources, workface optimisation, and early procurement of genuinely critical items. The project remains 55 days late, yet this option may preserve more margin, quality, safety, workforce stability, client confidence, and downstream flexibility.</p>
-          <p style={pStyle}>The first programme recovers more time. The second may recover more value. The optimum recovery point is therefore not necessarily the maximum technically achievable recovery.</p>
+          <p style={pStyle}>Scenario A recovers more time, while Scenario B may preserve more value. The optimum recovery point therefore need not coincide with the maximum technically achievable recovery.</p>
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,margin:'18px 0'}}>
             <div style={{border:'1px solid #c4c6c2',padding:'15px 16px',background:'#f6f5f0'}}><strong>SCENARIO A</strong><div style={smallStyle}>80 days recovered · high acceleration · premium procurement · added shifts and subcontractors · higher congestion and commercial/quality/rework exposure.</div></div>
             <div style={{border:'1px solid #c4c6c2',padding:'15px 16px',background:'#f6f5f0'}}><strong>SCENARIO B</strong><div style={smallStyle}>45 days recovered · selective acceleration · constraint removal · targeted resources · critical procurement intervention · lower disruption and greater retained flexibility.</div></div>
@@ -91,7 +91,7 @@ export default function EngineersNote002(){
 
         <Section title="8. Partial Recovery Can Be the Correct Engineering Decision">
           <p style={pStyle}>There is often psychological pressure to eliminate the entire delay. If a project is 100 days late, management may assume that anything less than 100 days of recovery represents failure. It does not. If recovering the final 20 days requires excessive risk, cost, congestion, quality compromise, or commercial exposure, retaining part of the delay may preserve greater total value.</p>
-          <p style={pStyle}>The planner must be willing to recommend that the project should not recover everything, but should recover what is worth recovering. This is not surrender. It is optimisation.</p>
+          <p style={pStyle}>The planner must be willing to recommend that the project should not recover everything, but should recover what is worth recovering. Accepting part of the delay can therefore be the more disciplined optimisation decision.</p>
         </Section>
 
         <Section title="9. Recovery Must Protect Executability">
@@ -111,7 +111,8 @@ export default function EngineersNote002(){
 
         <Section title="11. The Planner's Responsibility">
           <p style={pStyle}>The planner is not merely a producer of dates. The planner is part of the project's decision system. That responsibility includes stating when a recovery scenario is unrealistic, exposing assumptions, showing the cost of acceleration, identifying physical interference created by compression, and distinguishing target dates from credible forecasts.</p>
-          <p style={pStyle}>Sometimes that responsibility includes advising management that accepting part of the delay is economically and operationally preferable to pursuing total recovery. A good planner does not make the schedule say what management wants to hear. A good planner helps management understand what the project can actually achieve and what each alternative will cost.</p>
+          <p style={pStyle}>In practice, this can mean presenting management with an uncomfortable forecast. A network may be made to reach a requested date while the resource loading, access sequence, procurement assumptions, or workfront availability needed to support it remain implausible. The planner's duty is to make that difference visible before the target is mistaken for an executable commitment.</p>
+          <p style={pStyle}>Sometimes that responsibility includes advising management that accepting part of the delay is economically and operationally preferable to pursuing total recovery. A good planner does not make the schedule say what management wants to hear. The job is to help management understand what the project can actually achieve and what each alternative will cost.</p>
         </Section>
 
         <Section title="12. The LUM Planner Principle">
@@ -127,7 +128,7 @@ export default function EngineersNote002(){
         </Section>
 
         <div style={{marginTop:38,paddingTop:23,borderTop:'1px solid #aeb2ae',textAlign:'center'}}>
-          <div style={{fontFamily:"'Bodoni 72',Didot,'Bodoni MT',Baskerville,'Times New Roman',serif",fontSize:22,fontWeight:600,color:'#293a42'}}>Recover time when recovering time creates value.<br/>Protect value when further recovery would destroy it.</div>
+          <div style={{fontFamily:"'Bodoni 72',Didot,'Bodoni MT',Baskerville,'Times New Roman',serif",fontSize:22,fontWeight:600,color:'#293a42'}}>Recover time while recovery preserves value; stop when further acceleration would destroy it.</div>
           <div style={{marginTop:15,fontFamily:"'Times New Roman',serif",fontStyle:'italic',fontSize:13.5,letterSpacing:'.11em',color:'#686f72'}}>VALUE OVER RECOVERY · MENS UNA · INGENIA MULTA</div>
           <div style={{marginTop:22,font:"700 10.5px/1.3 'Courier New',monospace",letterSpacing:'.08em',color:'#777'}}>-- ENGINEER'S NOTE 002 --</div>
         </div>
