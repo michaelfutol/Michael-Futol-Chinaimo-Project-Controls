@@ -258,7 +258,7 @@ export default function Telemetry() {
   };
 
   const openSessions = () => {
-    window.open('/_logs', '_blank', 'noopener,noreferrer');
+    window.open('/reviewer-intelligence', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -291,7 +291,7 @@ export default function Telemetry() {
           <button
             type="button"
             onClick={openSessions}
-            title="Open anonymous reviewer-session telemetry logs"
+            title="Open anonymous reviewer-session intelligence"
             style={{
               height:26,padding:'0 8px',border:'1px solid #7e8587',background:'#f4f3ee',color:'#4e575a',
               font:'700 10px/1 Courier New, monospace',letterSpacing:'.04em',opacity:.34,cursor:'pointer'
