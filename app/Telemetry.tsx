@@ -207,17 +207,20 @@ export default function Telemetry() {
       activeSeconds = 0;
     };
 
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') flushEngagement();
+    };
+
     document.addEventListener('click', onClick, true);
     window.addEventListener('pagehide', flushEngagement);
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden') flushEngagement();
-    });
+    document.addEventListener('visibilitychange', onVisibilityChange);
 
     return () => {
       window.clearInterval(activeTimer);
       flushEngagement();
       document.removeEventListener('click', onClick, true);
       window.removeEventListener('pagehide', flushEngagement);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
     };
   }, [pathname]);
 
