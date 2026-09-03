@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_REVIEWER_SUPABASE_URL || '';
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_REVIEWER_SUPABASE_KEY || '';
+const SUPABASE_URL = process.env.NEXT_PUBLIC_REVIEWER_SUPABASE_URL || 'https://bpiwbibldjdiojqaznzc.supabase.co';
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_REVIEWER_SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwaXdiaWJsZGpkaW9qcWF6bnpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MTQwOTAsImV4cCI6MjEwMzk5MDA5MH0.q0ONSswmdEdSIS1AVHjqmUvzOvaSm6C5uIqzXhJb458';
 
 const clip = (value: unknown, max = 180) =>
   typeof value === 'string' ? value.replace(/[\r\n\t]/g, ' ').slice(0, max) : undefined;
@@ -15,7 +15,6 @@ const finiteNumber = (value: unknown, min = 0, max = Number.MAX_SAFE_INTEGER) =>
 };
 
 async function persist(record: Record<string, unknown>) {
-  if (!SUPABASE_URL || !SUPABASE_KEY) return;
   try {
     const row = {
       created_at: record.t,
@@ -47,7 +46,7 @@ async function persist(record: Record<string, unknown>) {
       body:JSON.stringify(row),
       cache:'no-store',
     });
-    if (!response.ok) console.warn(`[chinaimo-telemetry-store] ${response.status}`);
+    if (!response.ok && response.status !== 409) console.warn(`[chinaimo-telemetry-store] ${response.status}`);
   } catch {
     console.warn('[chinaimo-telemetry-store] unavailable');
   }
