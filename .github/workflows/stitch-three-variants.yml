@@ -1,0 +1,51 @@
+name: Stitch - Generate 3 UI Variants
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.stitch/REQUEST.md'
+      - 'DESIGN.md'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  stitch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Stitch SDK
+        run: npm install --no-save @google/stitch-sdk@0.1.1
+
+      - name: Generate three Stitch variants
+        env:
+          STITCH_API_KEY: ${{ secrets.STITCH_API_KEY }}
+        run: node scripts/stitch-three-variants.mjs
+
+      - name: Create design branch and PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          BRANCH="stitch/design-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add stitch-output/
+          git commit -m "Stitch: add three UI variants for review"
+          git push origin "$BRANCH"
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "Stitch design review: 3 variants" \
+            --body "Automated Google Stitch design exchange. Three variants were generated from .stitch/REQUEST.md + DESIGN.md + the current reviewer-intelligence source. No variant is production-approved until Lum reviews all three and selects one."
