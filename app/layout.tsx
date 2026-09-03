@@ -7,6 +7,7 @@ import SCurvePrecision from './SCurvePrecision';
 import GanttViewerControls from './GanttViewerControls';
 import OfficeReviewLinks from './OfficeReviewLinks';
 import OwnerAwareAnalytics from './OwnerAwareAnalytics';
+import EngineerNotesShelf from './EngineerNotesShelf';
 
 export const metadata: Metadata = {
   title: 'Michael Futol - Chinaimo Project Controls Assessment',
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <GanttViewerControls />
         <OfficeReviewLinks />
         <SCurvePrecision />
+        <EngineerNotesShelf />
         <Telemetry />
         <OwnerAwareAnalytics />
       </body>
