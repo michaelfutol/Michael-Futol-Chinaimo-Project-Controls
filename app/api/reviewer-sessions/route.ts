@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_REVIEWER_SUPABASE_URL || '';
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_REVIEWER_SUPABASE_KEY || '';
+const SUPABASE_URL = process.env.NEXT_PUBLIC_REVIEWER_SUPABASE_URL || 'https://bpiwbibldjdiojqaznzc.supabase.co';
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_REVIEWER_SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwaXdiaWJsZGpkaW9qcWF6bnpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MTQwOTAsImV4cCI6MjEwMzk5MDA5MH0.q0ONSswmdEdSIS1AVHjqmUvzOvaSm6C5uIqzXhJb458';
 
 type EventRow = {
   created_at?: string;
@@ -101,15 +101,11 @@ function summarize(rows: EventRow[]) {
 }
 
 export async function POST(request: Request) {
-  if (!SUPABASE_URL || !SUPABASE_KEY) {
-    return NextResponse.json({configured:false, reason:'Persistent reviewer store is not connected yet.', sessions:[], totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}});
-  }
-
   try {
     const body = await request.json();
     const key = clean(body?.key, 256);
     const limit = Math.max(50, Math.min(2000, Number(body?.limit || 1000)));
-    if (!key) return NextResponse.json({ok:false,error:'Dashboard key required.'},{status:401});
+    if (!key) return NextResponse.json({configured:true, error:'Owner access key required.', sessions:[], totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}},{status:401});
 
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_reviewer_events`, {
       method:'POST',
@@ -124,13 +120,12 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      const text = await response.text();
-      return NextResponse.json({ok:false,error:response.status === 401 || response.status === 403 ? 'Invalid dashboard key.' : `Reviewer store error: ${text.slice(0,180)}`},{status:response.status === 401 || response.status === 403 ? 401 : 502});
+      return NextResponse.json({configured:true,error:'Invalid owner access key.',sessions:[],totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}},{status:401});
     }
 
     const rows = await response.json() as EventRow[];
     return NextResponse.json({configured:true, ...summarize(Array.isArray(rows) ? rows : [])},{headers:{'Cache-Control':'no-store'}});
   } catch {
-    return NextResponse.json({ok:false,error:'Unable to read reviewer sessions.'},{status:500});
+    return NextResponse.json({configured:true,error:'Unable to read reviewer sessions.',sessions:[],totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}},{status:500});
   }
 }
