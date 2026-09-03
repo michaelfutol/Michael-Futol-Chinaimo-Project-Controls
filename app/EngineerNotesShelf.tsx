@@ -21,14 +21,14 @@ export default function EngineerNotesShelf(){
       </div>
       <div class="engineers-notes-grid">
         <a class="engineers-note-card" href="/engineers-notes/001">
-          <div class="engineers-note-number">NOTE 001 · v1.2</div>
+          <div class="engineers-note-number">NOTE 001 · v1.3</div>
           <div class="engineers-note-title">On Forensic Project Recovery</div>
           <div class="engineers-note-meta">Recovery Engineering / Project Controls</div>
           <p>Investigate the delay before attempting to compress it.</p>
           <div class="engineers-note-action">READ →</div>
         </a>
         <a class="engineers-note-card" href="/engineers-notes/002">
-          <div class="engineers-note-number">NOTE 002 · v1.1</div>
+          <div class="engineers-note-number">NOTE 002 · v1.2</div>
           <div class="engineers-note-title">Value Over Recovery</div>
           <div class="engineers-note-meta">Recovery Engineering / Value Recovery</div>
           <p>Why the fastest recovery programme is not always the best project decision.</p>
