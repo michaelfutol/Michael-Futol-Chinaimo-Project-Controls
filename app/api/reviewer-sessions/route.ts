@@ -3,8 +3,7 @@ import { NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_REVIEWER_SUPABASE_URL || 'https://bpiwbibldjdiojqaznzc.supabase.co';
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_REVIEWER_SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwaXdiaWJsZGpkaW9qcWF6bnpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MTQwOTAsImV4cCI6MjEwMzk5MDA5MH0.q0ONSswmdEdSIS1AVHjqmUvzOvaSm6C5uIqzXhJb458';
+const REVIEWER_FUNCTION_URL = 'https://bpiwbibldjdiojqaznzc.supabase.co/functions/v1/reviewer-sessions-private';
 
 type EventRow = {
   created_at?: string;
@@ -105,22 +104,21 @@ export async function POST(request: Request) {
     const body = await request.json();
     const key = clean(body?.key, 256);
     const limit = Math.max(50, Math.min(2000, Number(body?.limit || 1000)));
-    if (!key) return NextResponse.json({configured:true, error:'Owner access key required.', sessions:[], totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}},{status:401});
+    if (!key) return NextResponse.json({configured:true,error:'Owner access key required.',sessions:[],totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}},{status:401});
 
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_reviewer_events`, {
+    const response = await fetch(REVIEWER_FUNCTION_URL, {
       method:'POST',
       headers:{
-        apikey: SUPABASE_KEY,
-        Authorization:`Bearer ${SUPABASE_KEY}`,
-        'Content-Type':'application/json',
-        'Cache-Control':'no-store',
+        'content-type':'application/json',
+        'x-owner-key':key,
+        'cache-control':'no-store',
       },
-      body:JSON.stringify({p_key:key,p_limit:limit}),
+      body:JSON.stringify({limit}),
       cache:'no-store',
     });
 
     if (!response.ok) {
-      return NextResponse.json({configured:true,error:'Invalid owner access key.',sessions:[],totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}},{status:401});
+      return NextResponse.json({configured:true,error:response.status===401?'Invalid owner access key.':'Reviewer store unavailable.',sessions:[],totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}},{status:response.status===401?401:502});
     }
 
     const rows = await response.json() as EventRow[];
