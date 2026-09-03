@@ -101,16 +101,16 @@ function summarize(rows: EventRow[]) {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const key = clean(body?.key, 256);
-    const limit = Math.max(50, Math.min(2000, Number(body?.limit || 1000)));
-    if (!key) return NextResponse.json({configured:true,error:'Owner access key required.',sessions:[],totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}},{status:401});
+    let limit = 1500;
+    try {
+      const body = await request.json();
+      limit = Math.max(50, Math.min(2000, Number(body?.limit || 1500)));
+    } catch {}
 
     const response = await fetch(REVIEWER_FUNCTION_URL, {
       method:'POST',
       headers:{
         'content-type':'application/json',
-        'x-owner-key':key,
         'cache-control':'no-store',
       },
       body:JSON.stringify({limit}),
@@ -118,7 +118,7 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      return NextResponse.json({configured:true,error:response.status===401?'Invalid owner access key.':'Reviewer store unavailable.',sessions:[],totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}},{status:response.status===401?401:502});
+      return NextResponse.json({configured:true,error:'Reviewer store unavailable.',sessions:[],totals:{sessions:0,technical:0,highDepth:0,activeSeconds:0,downloads:0}},{status:502});
     }
 
     const rows = await response.json() as EventRow[];
