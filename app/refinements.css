@@ -12,6 +12,7 @@ main article { font-size: 17px; }
 main article header h1 { font-size: 48px !important; line-height: 1.08 !important; }
 main article header p { font-size: 17px !important; }
 main article section h2 { font-size: 29px !important; margin-bottom: 20px !important; flex-wrap: wrap; row-gap: 4px; }
+main article section h2::before { font-size: 24px !important; line-height: 1 !important; margin-right: 13px !important; padding-right: 12px !important; }
 main article section > p { font-size: 16px !important; }
 main article section div[class*="infoRow"] { font-size: 16px; }
 main article section table { font-size: 15px !important; }
@@ -113,6 +114,7 @@ main article svg[aria-label="Baseline, current forecast and recovery S-curve"] r
   main article { font-size:16px; }
   main article header h1 { font-size: 37px !important; }
   main article section h2 { font-size:25px !important; }
+  main article section h2::before { font-size:20px !important; }
   main article header:has(.jp-main-title) > p:first-child { font-size:12px !important; letter-spacing:.11em !important; }
   .jp-main-title { font-size:13px; }
   .jp-heading { margin-left:30px; font-size:12px; }
