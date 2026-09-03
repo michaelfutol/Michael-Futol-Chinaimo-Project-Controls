@@ -20,7 +20,7 @@ type TelemetryPayload = {
 
 type ClientContext = { platform: string; browser: string; device: string };
 
-const ANALYTICS_URL = 'https://vercel.com/michael-futol-projects/michael-futol-chinaimo-project-controls/analytics';
+const OWNER_CONSOLE_URL = '/reviewer-intelligence';
 const ADMIN_SEQUENCE = [1, 3, 7] as const;
 const OWNER_KEY = 'chinaimo_owner_exempt';
 const SEQ_KEY = 'chinaimo_session_seq';
@@ -182,7 +182,7 @@ export default function Telemetry() {
         localStorage.setItem(OWNER_KEY, '1');
         sessionStorage.setItem('chinaimo_admin_unlocked', '1');
         gateStep.current = 0;
-        window.open(ANALYTICS_URL, '_blank', 'noopener,noreferrer');
+        window.open(OWNER_CONSOLE_URL, '_blank', 'noopener,noreferrer');
         return;
       }
     } else {
