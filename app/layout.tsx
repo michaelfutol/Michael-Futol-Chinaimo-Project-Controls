@@ -1,5 +1,6 @@
 import './globals.css';
 import './refinements.css';
+import './assessment-theme.css';
 import type { Metadata } from 'next';
 import Telemetry from './Telemetry';
 import Enhancements from './Enhancements';
