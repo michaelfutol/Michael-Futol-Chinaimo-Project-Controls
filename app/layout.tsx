@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import Telemetry from './Telemetry';
 import Enhancements from './Enhancements';
 import SCurvePrecision from './SCurvePrecision';
+import SCurveStory from './SCurveStory';
 import GanttViewerControls from './GanttViewerControls';
 import OfficeReviewLinks from './OfficeReviewLinks';
 import OwnerAwareAnalytics from './OwnerAwareAnalytics';
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <GanttViewerControls />
         <OfficeReviewLinks />
         <SCurvePrecision />
+        <SCurveStory />
         <EngineerNotesShelf />
         <Telemetry />
         <OwnerAwareAnalytics />
