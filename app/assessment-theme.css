@@ -1,0 +1,73 @@
+/* Optional public-assessment dark theme. The light paper-matte design remains the default. */
+html[data-assessment-theme='dark']{color-scheme:dark;background:#111619}
+html[data-assessment-theme='dark'] body{background:#111619;color:#e9e4d8}
+
+html[data-assessment-theme='dark'] body > main:first-of-type{background:#111619!important;color:#e9e4d8!important}
+html[data-assessment-theme='dark'] body > main:first-of-type > article{background:#171d20!important;color:#e9e4d8!important;border-color:#465055!important;box-shadow:0 7px 24px rgba(0,0,0,.24)!important;background-image:repeating-linear-gradient(0deg,rgba(234,226,209,.018) 0 1px,transparent 1px 5px)!important}
+html[data-assessment-theme='dark'] body > main:first-of-type header{border-top-color:#83939b!important;border-bottom-color:#505d62!important}
+html[data-assessment-theme='dark'] body > main:first-of-type section,
+html[data-assessment-theme='dark'] body > main:first-of-type footer{border-color:#3a4448!important}
+
+html[data-assessment-theme='dark'] body > main:first-of-type h1,
+html[data-assessment-theme='dark'] body > main:first-of-type h2,
+html[data-assessment-theme='dark'] body > main:first-of-type h3,
+html[data-assessment-theme='dark'] body > main:first-of-type strong{color:#f0eadc!important}
+html[data-assessment-theme='dark'] body > main:first-of-type p,
+html[data-assessment-theme='dark'] body > main:first-of-type span,
+html[data-assessment-theme='dark'] body > main:first-of-type td,
+html[data-assessment-theme='dark'] body > main:first-of-type li{color:#c9c5bb}
+
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='name'],
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='metaLine'],
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='sectionIntro'],
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveNote'],
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='footer']{color:#b9b6ae!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='purpose']{color:#d0ccc2!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='section'] h2:before{color:#d47769!important;border-color:#d47769!important}
+
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='infoGrid'],
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='tableWrap'],
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveWrap']{border-color:#465055!important;background:#13191c!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='infoRow']{border-color:#384247!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='infoRow'] span{color:#bdb9b0!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='infoRow'] strong{background:rgba(255,255,255,.035)!important;color:#eee8da!important}
+
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='downloadButton'],
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='downloadButtonLight']{border-color:#66747a!important;background:rgba(255,255,255,.015)!important;color:#e7e1d4!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='downloadButton']:hover,
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='downloadButtonLight']:hover{background:#d9d3c6!important;color:#172024!important;border-color:#d9d3c6!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='jpLink']{color:#e1897b!important;border-color:#a85f54!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='jpLink']:hover{background:rgba(224,122,95,.08)!important}
+
+html[data-assessment-theme='dark'] body > main:first-of-type table{color:#ded8cc!important}
+html[data-assessment-theme='dark'] body > main:first-of-type th{background:#222b2f!important;color:#eee8da!important;border-color:#5c686d!important}
+html[data-assessment-theme='dark'] body > main:first-of-type td{border-color:#394347!important}
+html[data-assessment-theme='dark'] body > main:first-of-type tbody tr:nth-child(even){background:rgba(255,255,255,.018)!important}
+
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveLegend']{color:#c8c3b8!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveSvg'] rect{fill:#12181b!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveSvg'] g line{stroke:#303b3f!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveSvg'] g text,
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveSvg'] > text{fill:#d9d3c7!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveSvg'] polyline:nth-of-type(1){stroke:#8fb3c3!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveSvg'] polyline:nth-of-type(2){stroke:#d6b66e!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveSvg'] polyline:nth-of-type(3){stroke:#e47d87!important}
+html[data-assessment-theme='dark'] body > main:first-of-type [class*='curveSvg'] circle{stroke:#12181b!important}
+
+html[data-assessment-theme='dark'] body > main:first-of-type iframe{border-color:#536066!important;background:#fff!important}
+html[data-assessment-theme='dark'] body > main:first-of-type a{outline-color:#d9d3c6}
+
+/* Components appended to the public assessment should belong to the same night-paper world. */
+html[data-assessment-theme='dark'] .engineers-notes-shelf{background:#171d20!important;color:#d9d3c7!important;border-color:#3a4448!important}
+html[data-assessment-theme='dark'] .engineers-notes-shelf h2,
+html[data-assessment-theme='dark'] .engineers-note-title{color:#eee8da!important}
+html[data-assessment-theme='dark'] .engineers-notes-intro,
+html[data-assessment-theme='dark'] .engineers-note-card p,
+html[data-assessment-theme='dark'] .engineers-note-meta{color:#bdb9b0!important}
+html[data-assessment-theme='dark'] .engineers-note-card{background:#141a1d!important;border-color:#465055!important;color:#d9d3c7!important}
+html[data-assessment-theme='dark'] .engineers-note-card:hover{background:#20282c!important;border-color:#78868c!important}
+html[data-assessment-theme='dark'] .engineers-note-action{color:#cbd1cf!important}
+
+@media(max-width:680px){
+  html[data-assessment-theme='dark'] body > button[aria-label*='assessment']{top:10px!important;right:10px!important}
+}
