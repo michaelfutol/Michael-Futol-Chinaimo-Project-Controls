@@ -7,7 +7,10 @@ This file is the shared design contract for Google AI Studio, Google Stitch, Lum
 
 ### 1. Public assessment
 - Preserve the current Chinaimo assessment as-is unless a request explicitly targets it.
-- Warm near-white paper-matte background; restrained late-20th-century Japanese technical/editorial character.
+- Default theme: warm near-white paper-matte background; restrained late-20th-century Japanese technical/editorial character.
+- Optional dark theme is allowed as a user-controlled **paper-at-night** treatment of the same assessment: charcoal/ink surfaces, warm ivory text, restrained rust accents, and equivalent information hierarchy.
+- The public dark theme must remain recognizably Chinaimo editorial/technical -- never become the private 137 analytics/control-room aesthetic.
+- The first-visit default remains light; a visitor's Light/Dark choice may persist locally in their browser.
 - Minimal decoration, readable engineering evidence, calm typography, auditable interaction.
 - No generic AI/SaaS visual language, neon cyber grids, glossy black dashboards, floating HUDs, or decorative clutter.
 
